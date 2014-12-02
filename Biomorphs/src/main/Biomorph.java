@@ -8,7 +8,7 @@ import static main.Constants.*;
 /**
  * Represents a biomorph
  * 
- * @author Alex Luckett <lucketta@aston.ac.uk>
+ * @author Alex Luckett <lucketta@aston.ac.uk> and group 7 
  *
  */
 public class Biomorph {
