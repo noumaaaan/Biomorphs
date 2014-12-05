@@ -12,7 +12,7 @@ import static main.Constants.*;
  *
  */
 public class Biomorph {
-	public static final int DEFAULT_GENOME_SIZE = 500;
+	public static final int DEFAULT_GENOME_SIZE = 25;
 	
 	private Genome genome;
 	private Point origin;
@@ -62,10 +62,10 @@ public class Biomorph {
 	 */
 	public int generateRandomParents() {
 		Random rand = new Random();
-		int iterations = rand.nextInt(DEFAULT_GENOME_SIZE) + 1; // number of iterations. capped at 10 for demo purposes, and never 0 (so +1).
+		int evolutions = rand.nextInt(DEFAULT_GENOME_SIZE) + 1; // number of iterations. capped at 10 for demo purposes, and never 0 (so +1).
 		
 		Genome current = new Genome();
-		for(int i = 0; i < iterations; i++) {
+		for(int i = 0; i < evolutions; i++) {
 			Genome newParent = new Genome();
 			
 			newParent.setAngle(rand.nextInt(GENOME_MAX_ANGLE));
@@ -80,6 +80,6 @@ public class Biomorph {
 			current = current.getParent();
 		}
 		
-		return iterations;
+		return evolutions;
 	}
 }

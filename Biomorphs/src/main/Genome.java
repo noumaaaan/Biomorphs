@@ -1,6 +1,7 @@
 package main;
 import java.awt.Color;
 import java.util.Iterator;
+
 import static main.Constants.*;
 
 /**
@@ -123,7 +124,7 @@ public class Genome implements Iterable<Genome>, Cloneable {
 
 		@Override
 		public void remove() {
-			genome.setParent(genome.getParent());
+			throw new UnsupportedOperationException("Remove is not supported in a GenomeIterator");
 		}
 
 	}
