@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -32,7 +33,6 @@ public class BiomorphGUI extends JFrame{
 		f.pack();
 		f.setResizable(false);
 		f.setVisible(true); 
-			
 		
 		//Create a panel for the buttons and position it to SOUTH of frame 
 		JPanel button_panel = new JPanel();
@@ -42,20 +42,20 @@ public class BiomorphGUI extends JFrame{
 		JButton start = new JButton("START");
 		start.setToolTipText("Start application by clicking here"); 
 		button_panel.add(start, BorderLayout.EAST);
-		
+
 		JButton end = new JButton("END");
 		button_panel.add(end, BorderLayout.WEST);
 		end.setToolTipText("Quit the application by clicking here");
 
 		//Set Visibility of the buttons
 		start.setVisible(true);
+		//restart.setVisible(true);
 		end.setVisible(true);
 
 		//Add the canvas to the JFrame 
-		DrawCanvas d = new DrawCanvas();
-		f.add(d);
+				DrawCanvas d = new DrawCanvas();
+				f.add(d);
 				
-		
 		//Action listener to close application
 		end.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
@@ -83,7 +83,4 @@ public class BiomorphGUI extends JFrame{
 		}
 
 	}
-	
-	
-	
 }

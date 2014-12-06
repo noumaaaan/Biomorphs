@@ -1,7 +1,6 @@
 package main;
 import java.awt.Color;
 import java.util.Iterator;
-
 import static main.Constants.*;
 
 /**
@@ -40,7 +39,7 @@ public class Genome implements Iterable<Genome>, Cloneable {
 
 	public void setAngle(int angle) {
 		if(angle > GENOME_MAX_ANGLE || angle < 0)
-			throw new IllegalArgumentException("Genome angle cannot be greater than 10 or less than 0");
+			throw new IllegalArgumentException("Genome angle cannot be greater than 10 or less than 0.");
 		
 		this.angle = angle;
 	}
@@ -61,9 +60,6 @@ public class Genome implements Iterable<Genome>, Cloneable {
 	}
 
 	public void setColour(Color colour) {
-		if(colour != null)
-			throw new IllegalArgumentException("Colour cannot be null");
-		
 		this.colour = colour;
 	}
 
@@ -99,7 +95,7 @@ public class Genome implements Iterable<Genome>, Cloneable {
 	
 	
 	/**
-	 * An iterator for iterating through a genome tree.
+	 * An iterator for iterarting through a genome tree.
 	 * 
 	 * @author Alex Luckett <lucketta@aston.ac.uk>
 	 *
@@ -127,7 +123,8 @@ public class Genome implements Iterable<Genome>, Cloneable {
 
 		@Override
 		public void remove() {
-			throw new UnsupportedOperationException("Remove is not supported in a GenomeIterator");
+			genome.setParent(genome.getParent());
 		}
+
 	}
 }
