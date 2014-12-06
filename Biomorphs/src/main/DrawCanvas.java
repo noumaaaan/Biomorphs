@@ -28,8 +28,8 @@ public class DrawCanvas extends JPanel {
 		// everything will appear on screen
 		
 		/* keep track of the last x and y coordinates we printed to, so we don't overlap lines */
-		int lastX = biomorph.getX() + 500;
-		int lastY = biomorph.getY() + 300;
+		int lastX = biomorph.getPosition().x + 200;
+		int lastY = biomorph.getPosition().y + 200;
 		
 		for(Genome genome : biomorph.getGenomes()) {
 			double sinAngle = Math.sin((double) genome.getAngle());

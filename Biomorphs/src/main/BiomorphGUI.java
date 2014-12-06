@@ -17,9 +17,12 @@ import javax.swing.border.EmptyBorder;
 
 /**
  * Provides a graphical user interface
- * @author Nouman <mehmoodn@aston.ac.uk> and Jurgen <hajdinij@aston.ac.uk>
+ * 
+ * @author Nouman Mehmood <mehmoodn@aston.ac.uk>
+ * @author Jurgen Hajdini <hajdinij@aston.ac.uk>
  */
 
+@SuppressWarnings("serial") // TODO handle this better
 public class BiomorphGUI extends JFrame{
 	private static JFrame f;
 
