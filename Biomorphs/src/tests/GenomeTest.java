@@ -16,7 +16,7 @@ public class GenomeTest {
 		int count = 0;
 		
 		for(@SuppressWarnings("unused") Genome genome : biomorph.getGenomes()) {
-			System.out.println(genome);
+//			System.out.println(genome);
 			count++;
 		}
 		
