@@ -1,77 +1,89 @@
 package main;
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
-
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
-public class BiomorphGUI {
+/**
+ * Provides a graphical user interface
+ * @author Nouman <mehmoodn@aston.ac.uk> and Jurgen <hajdinij@aston.ac.uk>
+ */
 
+public class BiomorphGUI extends JFrame{
+	private static JFrame f;
 
 	public static void main(String[] args){
-		JFrame window = new JFrame();
-		int empty_space = 5;
+		
+		//Creates the main window via JFrame; Sets size, visibility, colour and close operation
+		f = new JFrame("Biomorph Mutation");  
+		//JFrame = new JFrame("Biomorph Mutation"); 
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setPreferredSize(new Dimension(600,400));
+		f.pack();
+		f.setResizable(false);
+		f.setVisible(true); 
+			
+		
+		//Create a panel for the buttons and position it to SOUTH of frame 
+		JPanel button_panel = new JPanel();
+		f.add(button_panel, BorderLayout.SOUTH);
 
-		//creating the window frame to display the biomorph
-		window = new JFrame("Biomorphs");
-		window.setPreferredSize(new Dimension(1000,600));
-		window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		window.setResizable(false);
-		window.pack();
-		window.setVisible(true);
+		//Create the buttons 
+		JButton start = new JButton("START");
+		start.setToolTipText("Start application by clicking here"); 
+		button_panel.add(start, BorderLayout.EAST);
 		
-		//creating the buttons
-		JButton Quit = new JButton("Quit");
-		Quit.setVisible(true);
-		JButton Start = new JButton("Start");
-		Start.setVisible(true);
-		JButton Restart = new JButton("Restart");
-		Restart.setVisible(true);
-		
-		JPanel hold_components = new JPanel();
-		hold_components.setVisible(true);
-		hold_components.setLayout(new BorderLayout());
-		hold_components.setBorder(new EmptyBorder(empty_space, empty_space, empty_space, empty_space));
+		JButton end = new JButton("END");
+		button_panel.add(end, BorderLayout.WEST);
+		end.setToolTipText("Quit the application by clicking here");
 
-		JPanel instruction_panel = new JPanel();
-		instruction_panel.setVisible(true);
-		instruction_panel.setLayout(new BorderLayout());
-		instruction_panel.setBorder(new EmptyBorder(empty_space, empty_space, empty_space, empty_space));
-		
-		
-		
-		//Create the panel to display the canvas
-		JPanel canvasPanel = new JPanel();		
+		//Set Visibility of the buttons
+		start.setVisible(true);
+		end.setVisible(true);
 
-		// adding the buttons to the button panel.
-		hold_components.add(Start, BorderLayout.WEST);
-		hold_components.add(Restart, BorderLayout.CENTER);
-		hold_components.add(Quit, BorderLayout.EAST);
+		//Add the canvas to the JFrame 
+		DrawCanvas d = new DrawCanvas();
+		f.add(d);
+				
 		
-		window.getContentPane().add(instruction_panel, BorderLayout.WEST);
-		instruction_panel.add(hold_components, BorderLayout.SOUTH);}
+		//Action listener to close application
+		end.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				exit_app();
+			}});
+		
+		f.addWindowListener(new WindowAdapter()
+		{
+			public void windowClosing(WindowEvent event)
+			{
+				exit_app();
+			}
+		});
 
-	private static JFrame JFrame() {
-		return null;
-
+		f.pack();
+		f.setVisible(true);
 	}
 
-	public class draw extends JFrame {
-		
-		private DrawCanvas canvas;
-		
-		public static final int CANVAS_WIDTH = 999;
-		public static final int CANVAS_HEIGHT = 400;
-		//public static final Color LINE_COLOR = Color.BLACK;
-		private int x1 = CANVAS_WIDTH / 2;
-		private int y1 = CANVAS_HEIGHT / 8;
-		private int x2 = x1;
-		private int y2 = CANVAS_HEIGHT / 8 * 7;
+	private static void exit_app()
+	{
+		int response = JOptionPane.showConfirmDialog(f, "Would you really like to quit the application?", "Quit?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+		if (response == JOptionPane.YES_OPTION)
+		{
+			System.exit(0);
+		}
 
 	}
 	
-
+	
+	
 }

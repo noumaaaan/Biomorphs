@@ -16,7 +16,8 @@ public class Biomorph {
 	
 	private Genome genome;
 	private Point origin;
-
+	private int xPoint;
+	private int yPoint;
 	/**
 	 * Constructs a biomorph
 	 * 
@@ -26,6 +27,10 @@ public class Biomorph {
 	public Biomorph(int x, int y) {
 		genome = new Genome();
 		origin = new Point(x, y);
+		this.xPoint = x;
+		this.yPoint = y;
+		
+		
 	}
 	
 	/**
@@ -34,7 +39,12 @@ public class Biomorph {
 	public Biomorph() {
 		this(0, 0);
 	}
-	
+	public int getX(){
+		return xPoint;
+	}
+	public int getY(){
+		return yPoint;
+	}
 	public void setX(int x) {
 		origin.setLocation(x, origin.getY());
 	}
