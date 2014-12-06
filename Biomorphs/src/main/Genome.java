@@ -12,7 +12,7 @@ import static main.Constants.*;
  *
  */
 public class Genome implements Iterable<Genome>, Cloneable {
-	private int angle;
+	private double angle;
 	private int length;
 	private Color colour;
 
@@ -37,14 +37,14 @@ public class Genome implements Iterable<Genome>, Cloneable {
 				
 	}
 
-	public void setAngle(int angle) {
-		if(angle > GENOME_MAX_ANGLE || angle < 0)
-			throw new IllegalArgumentException("Genome angle cannot be greater than 10 or less than 0.");
+	public void setAngle(double angle) {
+		//if(angle > GENOME_MAX_ANGLE || angle < 0)
+		//	throw new IllegalArgumentException("Genome angle cannot be greater than 10 or less than 0.");
 		
 		this.angle = angle;
 	}
 
-	public int getAngle() {
+	public double getAngle() {
 		return angle;
 	}
 

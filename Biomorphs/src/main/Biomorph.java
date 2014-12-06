@@ -78,7 +78,7 @@ public class Biomorph {
 		for(int i = 0; i < iterations; i++) {
 			Genome newParent = new Genome();
 			
-			newParent.setAngle(rand.nextInt(GENOME_MAX_ANGLE));
+			newParent.setAngle(rand.nextInt() * rand.nextDouble());
 			newParent.setLength(rand.nextInt(GENOME_MAX_LENGTH));
 			newParent.setColour(new Color(rand.nextFloat(), rand.nextFloat(), rand.nextFloat())); // random values for RGB
 			

@@ -6,8 +6,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
-public class DrawCanvas extends JPanel {
-	
+public class DrawCanvas extends JPanel {	
 	/**
 	 * 
 	 */
@@ -19,16 +18,29 @@ public class DrawCanvas extends JPanel {
 		this.setBackground(Color.WHITE);
 		g2d.setStroke(new BasicStroke(4));
 		
-		Biomorph b = new Biomorph();
-		b.generateRandomParents();
-		Genome gene = b.getGenomes().getParent();
+		Biomorph biomorph = new Biomorph();
+		biomorph.generateRandomParents();
 
+		g2d.setStroke(new BasicStroke(0.01f));
 		g2d.setColor(Color.BLACK);
-		
 		
 		/// implementation of the drawing just the math's part goes here handling the lines
 		// everything will appear on screen
 		
-		g2d.drawLine(b.getX(), b.getY(), b.getX() +65, b.getY() + 42);
+		/* keep track of the last x and y coordinates we printed to, so we don't overlap lines */
+		int lastX = biomorph.getX() + 500;
+		int lastY = biomorph.getY() + 300;
+		
+		for(Genome genome : biomorph.getGenomes()) {
+			double sinAngle = Math.sin((double) genome.getAngle());
+			double cosAngle = Math.cos((double) genome.getAngle());
+			
+			int maxX = (int) (lastX + genome.getLength() * sinAngle);
+			int maxY = (int) (lastY + genome.getLength() * cosAngle);
+			
+			g2d.drawLine(lastX, lastY, maxX, maxY);
+			
+			lastX = maxX; lastY = maxY;
+		}
 	}
 }

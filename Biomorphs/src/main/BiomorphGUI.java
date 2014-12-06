@@ -53,13 +53,19 @@ public class BiomorphGUI extends JFrame{
 		end.setVisible(true);
 
 		//Add the canvas to the JFrame 
-				DrawCanvas d = new DrawCanvas();
+				final DrawCanvas d = new DrawCanvas();
 				f.add(d);
 				
 		//Action listener to close application
 		end.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
 				exit_app();
+			}});
+		
+		start.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				d.revalidate();
+				d.repaint();
 			}});
 		
 		f.addWindowListener(new WindowAdapter()
