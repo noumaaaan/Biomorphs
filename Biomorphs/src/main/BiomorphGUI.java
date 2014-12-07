@@ -27,28 +27,27 @@ public class BiomorphGUI extends JFrame{
 	private static JFrame f;
 
 	public static void main(String[] args){
-		
+
 		//Creates the main window via JFrame; Sets size, visibility, colour and close operation
 		f = new JFrame("Biomorph Mutation");  
-		//JFrame = new JFrame("Biomorph Mutation"); 
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setPreferredSize(new Dimension(600,400));
-		f.pack();
+		f.pack();	
 		f.setResizable(false);
 		f.setVisible(true); 
-		
-		//Create a panel for the buttons and position it to SOUTH of frame 
-		JPanel button_panel = new JPanel();
-		f.add(button_panel, BorderLayout.SOUTH);
 
 		//Create the buttons 
 		JButton start = new JButton("START");
 		start.setToolTipText("Start application by clicking here"); 
-		button_panel.add(start, BorderLayout.EAST);
 
 		JButton end = new JButton("END");
-		button_panel.add(end, BorderLayout.WEST);
 		end.setToolTipText("Quit the application by clicking here");
+
+		//Create a panel for the buttons, add the buttons and position it SOUTH of fram 
+		JPanel button_panel = new JPanel();
+		button_panel.add(start, BorderLayout.EAST);
+		button_panel.add(end, BorderLayout.WEST);
+		f.add(button_panel, BorderLayout.SOUTH);
 
 		//Set Visibility of the buttons
 		start.setVisible(true);
@@ -56,21 +55,21 @@ public class BiomorphGUI extends JFrame{
 		end.setVisible(true);
 
 		//Add the canvas to the JFrame 
-				final DrawCanvas d = new DrawCanvas();
-				f.add(d);
-				
+		final DrawCanvas d = new DrawCanvas();
+		f.add(d);
+
 		//Action listener to close application
 		end.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
 				exit_app();
 			}});
-		
+
 		start.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
 				d.revalidate();
 				d.repaint();
 			}});
-		
+
 		f.addWindowListener(new WindowAdapter()
 		{
 			public void windowClosing(WindowEvent event)

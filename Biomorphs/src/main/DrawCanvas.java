@@ -3,6 +3,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.Random;
 
 import javax.swing.JPanel;
 
@@ -21,8 +22,15 @@ public class DrawCanvas extends JPanel {
 		Biomorph biomorph = new Biomorph();
 		biomorph.generateRandomParents();
 
+		
+		Random rand = new Random();
+		float red = rand.nextFloat();
+		float green = rand.nextFloat();
+		float blue = rand.nextFloat();
+		Color randomColor = new Color(red, green, blue);
+		
 		g2d.setStroke(new BasicStroke(0.01f));
-		g2d.setColor(Color.BLACK);
+		g2d.setColor(new Color(red, green, blue));
 		
 		/// implementation of the drawing just the math's part goes here handling the lines
 		// everything will appear on screen
