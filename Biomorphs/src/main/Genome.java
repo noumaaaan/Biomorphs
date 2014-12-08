@@ -92,7 +92,7 @@ public class Genome implements Iterable<Genome>, Cloneable {
 	
 	
 	/**
-	 * An iterator for iterarting through a genome tree.
+	 * An iterator for iterating through a genome tree.
 	 * 
 	 * @author Alex Luckett <lucketta@aston.ac.uk>
 	 *
