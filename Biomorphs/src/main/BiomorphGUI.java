@@ -32,7 +32,6 @@ public class BiomorphGUI extends JFrame {
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setPreferredSize(new Dimension(800,600));
 		f.setResizable(true);
-		f.setLocationRelativeTo(null); // centre aligned
 		
 		//enableOStheme();
 
@@ -88,6 +87,7 @@ public class BiomorphGUI extends JFrame {
 		});
 
 		f.pack();
+		f.setLocationRelativeTo(null); // centre aligned
 		f.setVisible(true);
 	}
 
