@@ -32,34 +32,29 @@ public class BiomorphPanel extends JPanel {
 		double startX = biomorph.getPosition().x + 300;
 		double startY = biomorph.getPosition().y + 200;
 		
-		for(Genome genome : biomorph.getGenome()) {
-			g2d.setColor(genome.getColour());
-			
-			double sinAngle = Math.sin(genome.getAngle());
-			double cosAngle = Math.cos(genome.getAngle());
-			
-			double endX = startX + (genome.getLength() * sinAngle);
-			double endY = startY + (genome.getLength() * cosAngle);
-			
-			g2d.draw(new Line2D.Double(startX, startY, endX, endY));
-			
-			startX = endX; startY = endY;
-		}
+		drawSection(startX, startY, biomorph, true, g2d);
 		
-		// LEFT SIDE
-		
-		/* keep track of the last x and y coordinates we printed to, so we don't overlap lines */
 		startX = biomorph.getPosition().x + 300;
 		startY = biomorph.getPosition().y + 200;
 		
+		drawSection(startX, startY, biomorph, false, g2d);
+	}
+	
+	private void drawSection(double startX, double startY, Biomorph biomorph, boolean isRightSide, Graphics2D g2d) {
 		for(Genome genome : biomorph.getGenome()) {
 			g2d.setColor(genome.getColour());
 			
 			double sinAngle = Math.sin(genome.getAngle());
 			double cosAngle = Math.cos(genome.getAngle());
-			
-			double endX = startX - (genome.getLength() * sinAngle);
+		
+			double endX;
 			double endY = startY + (genome.getLength() * cosAngle);
+			
+			if(isRightSide)
+				endX = startX + (genome.getLength() * sinAngle);
+			else
+				endX = startX - (genome.getLength() * sinAngle);
+			
 			g2d.draw(new Line2D.Double(startX, startY, endX, endY));
 			
 			startX = endX; startY = endY;
