@@ -6,6 +6,11 @@ import java.awt.geom.Line2D;
 
 import javax.swing.JPanel;
 
+/**
+ * A panel to draw a biomorph. 
+ * 
+ * @author Alex Luckett <lucketta@aston.ac.uk>
+ */
 public class BiomorphPanel extends JPanel {
 	/**
 	 * 

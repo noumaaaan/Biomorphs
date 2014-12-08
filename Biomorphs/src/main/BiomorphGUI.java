@@ -22,28 +22,30 @@ import javax.swing.JPanel;
 
 @SuppressWarnings("serial") 
 public class BiomorphGUI extends JFrame{
-	private static JFrame f;
-
-	public static void main(String[] args){
-
+	private JFrame f;
+	
+	public BiomorphGUI() {
 		//Create the window for the application
-		f = new JFrame("Biomorph Mutation");  
+		f = new JFrame("Evolutionary Art: PROTOTYPE (STAGE 1)");  
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setPreferredSize(new Dimension(650,450));
 		f.pack();	
 		f.setResizable(false);
+		f.setLocationRelativeTo(null); // centre aligned
 
 		//Create the panel to hold the buttons and define Grid Layout
 		JPanel button_panel = new JPanel();
 		button_panel.setLayout(new GridLayout(4, 1, 20, 20));
 
 		//Create the buttons for the panel 
-		JButton start = new JButton(" Create ");
+		JButton start = new JButton(" New Biomorph ");
 		start.setToolTipText("Create a new biomorph by clicking here"); 
 		JButton load = new JButton(" Load ");
 		load.setToolTipText("Open up a previously saved biomorph mutation");
+		load.setEnabled(false); // TODO: re-enable this when feature implemented
 		JButton help = new JButton(" Help ");
 		help.setToolTipText("Click here for Instructions on how to use the application");
+		help.setEnabled(false); // TODO: re-enable this when feature implemented
 		JButton end = new JButton(" Exit ");
 		end.setToolTipText("Quit the application by clicking here");
 
@@ -86,7 +88,11 @@ public class BiomorphGUI extends JFrame{
 		f.setVisible(true);
 	}
 
-	private static void exit_app()
+	public static void main(String[] args){
+		new BiomorphGUI(); // display GUI
+	}
+
+	private void exit_app()
 	{
 		int response = JOptionPane.showConfirmDialog(f, "Would you really like to quit the application?", "Quit?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 		if (response == JOptionPane.YES_OPTION)
