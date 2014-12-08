@@ -15,7 +15,7 @@ public class GenomeTest {
 		int totalParents = biomorph.generateRandomParents();
 		int count = 0;
 		
-		for(@SuppressWarnings("unused") Genome genome : biomorph.getGenomes()) {
+		for(@SuppressWarnings("unused") Genome genome : biomorph.getGenome()) {
 //			System.out.println(genome);
 			count++;
 		}

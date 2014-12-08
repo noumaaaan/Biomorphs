@@ -54,7 +54,7 @@ public class Biomorph {
 		this.genome = genome;
 	}
 	
-	public Genome getGenomes() {
+	public Genome getGenome() {
 		return genome;
 	}
 	
@@ -79,8 +79,8 @@ public class Biomorph {
 			
 			if(i == 0)
 				genome = current;
-			
-			current = current.getParent();
+			else
+				current = current.getParent();
 		}
 		
 		return evolutions;

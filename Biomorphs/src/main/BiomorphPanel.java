@@ -3,6 +3,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.geom.Line2D;
 import java.util.Random;
 
 import javax.swing.JPanel;
@@ -28,19 +29,19 @@ public class BiomorphPanel extends JPanel {
 		// everything will appear on screen
 		
 		/* keep track of the last x and y coordinates we printed to, so we don't overlap lines */
-		int startX = biomorph.getPosition().x + 300;
-		int startY = biomorph.getPosition().y + 200;
+		double startX = biomorph.getPosition().x + 300;
+		double startY = biomorph.getPosition().y + 200;
 		
-		for(Genome genome : biomorph.getGenomes().getParent()) {
+		for(Genome genome : biomorph.getGenome()) {
 			g2d.setColor(genome.getColour());
 			
-			double sinAngle = Math.sin((double) genome.getAngle());
-			double cosAngle = Math.cos((double) genome.getAngle());
+			double sinAngle = Math.sin(genome.getAngle());
+			double cosAngle = Math.cos(genome.getAngle());
 			
-			int endX = (int) (startX + (genome.getLength() * sinAngle));
-			int endY = (int) (startY + (genome.getLength() * cosAngle));
+			double endX = startX + (genome.getLength() * sinAngle);
+			double endY = startY + (genome.getLength() * cosAngle);
 			
-			g2d.drawLine(startX, startY, endX, endY);
+			g2d.draw(new Line2D.Double(startX, startY, endX, endY));
 			
 			startX = endX; startY = endY;
 		}
@@ -51,18 +52,17 @@ public class BiomorphPanel extends JPanel {
 		startX = biomorph.getPosition().x + 300;
 		startY = biomorph.getPosition().y + 200;
 		
-		for(Genome genome : biomorph.getGenomes().getParent()) {
+		for(Genome genome : biomorph.getGenome()) {
 			g2d.setColor(genome.getColour());
 			
-			double sinAngle = Math.sin((double) genome.getAngle());
-			double cosAngle = Math.cos((double) genome.getAngle());
+			double sinAngle = Math.sin(genome.getAngle());
+			double cosAngle = Math.cos(genome.getAngle());
 			
-			int maxX = (int) (startX - (genome.getLength() * sinAngle));
-			int maxY = (int) (startY + (genome.getLength() * cosAngle));
+			double endX = startX - (genome.getLength() * sinAngle);
+			double endY = startY + (genome.getLength() * cosAngle);
+			g2d.draw(new Line2D.Double(startX, startY, endX, endY));
 			
-			g2d.drawLine(startX, startY, maxX, maxY);
-			
-			startX = maxX; startY = maxY;
+			startX = endX; startY = endY;
 		}
 	}
 }
