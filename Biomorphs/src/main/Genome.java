@@ -49,8 +49,8 @@ public class Genome implements Iterable<Genome>, Cloneable {
 	}
 
 	public void setLength(int length) {
-		if(length > GENOME_MAX_LENGTH)
-			throw new IllegalArgumentException("Genome length cannot be greater than 10");
+		//if(length > GENOME_MAX_LENGTH)
+			//throw new IllegalArgumentException("Genome length cannot be greater than 10");
 			
 		this.length = length;
 	}

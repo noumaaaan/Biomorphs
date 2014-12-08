@@ -2,13 +2,18 @@ package main;
 
 import java.awt.Color;
 
+/**
+ * Constants to be used accross the program.
+ * 
+ * @author Alex Luckett <lucketta@aston.ac.uk>
+ */
 public final class Constants {
 	public static final int RANDOM_SEED = 42;
 	
 	public static final int GENOME_DEFAULT_ANGLE = 0;
 	public static final int GENOME_DEFAULT_LENGTH = 0;
 	public static final Color GENOME_DEFAULT_COLOUR = Color.BLACK;
+	public static final int GENOME_MINIMUM_EVOLUTIONS = 20;
 	
-	public static final int GENOME_MAX_ANGLE = 4; // 0-4, 1 for each possible angle. mirrored on other side.
-	public static final int GENOME_MAX_LENGTH = 10; 
+	public static final int GENOME_MAX_LENGTH = 40; 
 }
