@@ -60,7 +60,7 @@ public class BiomorphGUI extends JFrame{
 		f.add(button_panel, BorderLayout.WEST);
 
 		//Defining the Draw Canvas
-		final DrawCanvas d = new DrawCanvas();		
+		final BiomorphPanel d = new BiomorphPanel();		
 		
 		f.add(d);
 		f.setVisible(true);
