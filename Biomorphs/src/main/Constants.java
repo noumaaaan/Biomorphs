@@ -3,7 +3,7 @@ package main;
 import java.awt.Color;
 
 /**
- * Constants to be used accross the program.
+ * Constants to be used across the program.
  * 
  * @author Alex Luckett <lucketta@aston.ac.uk>
  */

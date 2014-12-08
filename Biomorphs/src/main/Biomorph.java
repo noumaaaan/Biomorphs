@@ -1,7 +1,9 @@
 package main;
 import java.awt.Color;
 import java.awt.Point;
+import java.awt.geom.Point2D;
 import java.util.Random;
+
 import static main.Constants.*;
 
 
@@ -11,20 +13,20 @@ import static main.Constants.*;
  * @author Alex Luckett <lucketta@aston.ac.uk>
  */
 public class Biomorph {
-	public static final int DEFAULT_GENOME_SIZE = 50;
+	public static final int DEFAULT_GENOME_SIZE = 100;
 	
 	private Genome genome;
-	private Point origin;
+	private Point2D origin;
 
 	/**
 	 * Constructs a biomorph
 	 * 
-	 * @param x coordinate on canvas
-	 * @param y coordinate on canvas
+	 * @param d coordinate on canvas
+	 * @param e coordinate on canvas
 	 */
-	public Biomorph(int x, int y) {
+	public Biomorph(double d, double e) {
 		genome = new Genome();
-		origin = new Point(x, y);
+		origin = new Point2D.Double(d, e);
 	}
 	
 	/**
@@ -46,7 +48,7 @@ public class Biomorph {
 		origin.setLocation(x, y);
 	}
 	
-	public Point getPosition() {
+	public Point2D getPosition() {
 		return origin;
 	}
 	

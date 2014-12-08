@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * Provides a graphical user interface
@@ -21,17 +23,18 @@ import javax.swing.JPanel;
  */
 
 @SuppressWarnings("serial") 
-public class BiomorphGUI extends JFrame{
+public class BiomorphGUI extends JFrame {
 	private JFrame f;
-	
+
 	public BiomorphGUI() {
 		//Create the window for the application
 		f = new JFrame("Evolutionary Art: PROTOTYPE (STAGE 1)");  
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setPreferredSize(new Dimension(650,450));
-		f.pack();	
-		f.setResizable(false);
+		f.setPreferredSize(new Dimension(800,600));
+		f.setResizable(true);
 		f.setLocationRelativeTo(null); // centre aligned
+		
+		//enableOStheme();
 
 		//Create the panel to hold the buttons and define Grid Layout
 		JPanel button_panel = new JPanel();
@@ -59,7 +62,7 @@ public class BiomorphGUI extends JFrame{
 
 		//Defining the Draw Canvas
 		final BiomorphPanel d = new BiomorphPanel();		
-		
+
 		f.add(d);
 		f.setVisible(true);
 
@@ -86,6 +89,20 @@ public class BiomorphGUI extends JFrame{
 
 		f.pack();
 		f.setVisible(true);
+	}
+
+	/**
+	 * BiomorphGUI will use native look and feel of host operating system.
+	 */
+	@SuppressWarnings("unused")
+	private void enableOStheme() {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+	    } 
+	    catch (UnsupportedLookAndFeelException | ClassNotFoundException | 
+	    		InstantiationException | IllegalAccessException e) {
+	    	// nothing to do here. discard command - will keep standard java theme.
+	    }
 	}
 
 	public static void main(String[] args){
