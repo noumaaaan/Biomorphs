@@ -42,6 +42,10 @@ public class Biomorph {
 		origin.setLocation(origin.getX(), y);
 	}
 	
+	public void setPosition(int x, int y) {
+		origin.setLocation(x, y);
+	}
+	
 	public Point getPosition() {
 		return origin;
 	}
@@ -67,7 +71,7 @@ public class Biomorph {
 		for(int i = 0; i < evolutions; i++) {
 			Genome newParent = new Genome();
 			
-			newParent.setAngle(rand.nextInt() * rand.nextDouble());
+			newParent.setAngle(rand.nextInt() * (rand.nextDouble()*10)); // ensure angle is not negative
 			newParent.setLength(rand.nextInt(GENOME_MAX_LENGTH));
 			newParent.setColour(new Color(rand.nextFloat(), rand.nextFloat(), rand.nextFloat())); // random values for RGB
 			
