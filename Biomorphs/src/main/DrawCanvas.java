@@ -39,14 +39,13 @@ public class DrawCanvas extends JPanel {
 			double sinAngle = Math.sin((double) genome.getAngle());
 			double cosAngle = Math.cos((double) genome.getAngle());
 			
-			int maxX = (int) (lastX + genome.getLength() * sinAngle);
-			int maxY = (int) (lastY + genome.getLength() * cosAngle);
+			int maxX = (int) (lastX + (genome.getLength() * sinAngle));
+			int maxY = (int) (lastY + (genome.getLength() * cosAngle));
 			
 			g2d.drawLine(lastX, lastY, maxX, maxY);
 			
 			lastX = maxX; lastY = maxY;
 		}
-		
 		
 		// LEFT SIDE
 		
@@ -60,8 +59,8 @@ public class DrawCanvas extends JPanel {
 			double sinAngle = Math.sin((double) genome.getAngle());
 			double cosAngle = Math.cos((double) genome.getAngle());
 			
-			int maxX = (int) (lastX - genome.getLength() * sinAngle);
-			int maxY = (int) (lastY + genome.getLength() * cosAngle);
+			int maxX = (int) (lastX - (genome.getLength() * sinAngle));
+			int maxY = (int) (lastY + (genome.getLength() * cosAngle));
 			
 			g2d.drawLine(lastX, lastY, maxX, maxY);
 			
