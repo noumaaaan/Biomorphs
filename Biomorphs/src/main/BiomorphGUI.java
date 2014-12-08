@@ -1,8 +1,10 @@
 package main;
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -22,52 +24,58 @@ import javax.swing.border.EmptyBorder;
  * @author Jurgen Hajdini <hajdinij@aston.ac.uk>
  */
 
-@SuppressWarnings("serial") // TODO handle this better
+@SuppressWarnings("serial") 
 public class BiomorphGUI extends JFrame{
 	private static JFrame f;
 
 	public static void main(String[] args){
 
-		//Creates the main window via JFrame; Sets size, visibility, colour and close operation
+		//Create the window for the application
 		f = new JFrame("Biomorph Mutation");  
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setPreferredSize(new Dimension(600,400));
+		f.setPreferredSize(new Dimension(650,450));
 		f.pack();	
 		f.setResizable(false);
-		f.setVisible(true); 
 
-		//Create the buttons 
-		JButton start = new JButton("START");
-		start.setToolTipText("Start application by clicking here"); 
+		//Create the panel to hold the buttons and define Grid Layout
+		JPanel button_panel = new JPanel();
+		button_panel.setLayout(new GridLayout(4, 1, 20, 20));
 
-		JButton end = new JButton("END");
+		//Create the buttons for the panel 
+		JButton start = new JButton(" Create ");
+		start.setToolTipText("Create a new biomorph by clicking here"); 
+		JButton load = new JButton(" Load ");
+		load.setToolTipText("Open up a previously saved biomorph mutation");
+		JButton help = new JButton(" Help ");
+		help.setToolTipText("Click here for Instructions on how to use the application");
+		JButton end = new JButton(" Exit ");
 		end.setToolTipText("Quit the application by clicking here");
 
-		//Create a panel for the buttons, add the buttons and position it SOUTH of fram 
-		JPanel button_panel = new JPanel();
-		button_panel.add(start, BorderLayout.EAST);
-		button_panel.add(end, BorderLayout.WEST);
-		f.add(button_panel, BorderLayout.SOUTH);
+		//Place the buttons within the panel and add them to the frame
+		button_panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		button_panel.add(start);
+		button_panel.add(load);
+		button_panel.add(help);
+		button_panel.add(end);
+		f.add(button_panel, BorderLayout.WEST);
 
-		//Set Visibility of the buttons
-		start.setVisible(true);
-		//restart.setVisible(true);
-		end.setVisible(true);
-
-		//Add the canvas to the JFrame 
-		final DrawCanvas d = new DrawCanvas();
+		//Defining the Draw Canvas
+		final DrawCanvas d = new DrawCanvas();		
+		
 		f.add(d);
+		f.setVisible(true);
+
+		//Action listener to start the application
+		start.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				d.revalidate();
+				d.repaint();
+			}});
 
 		//Action listener to close application
 		end.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
 				exit_app();
-			}});
-
-		start.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent event){
-				d.revalidate();
-				d.repaint();
 			}});
 
 		f.addWindowListener(new WindowAdapter()
@@ -88,7 +96,8 @@ public class BiomorphGUI extends JFrame{
 		if (response == JOptionPane.YES_OPTION)
 		{
 			System.exit(0);
-		}
-
+		}		
 	}
+
+
 }
