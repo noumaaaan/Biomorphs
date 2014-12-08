@@ -72,14 +72,14 @@ public class Biomorph {
 		for(int i = 0; i < evolutions; i++) {
 			Genome newParent = new Genome();
 			
-			newParent.setAngle(rand.nextInt() * (rand.nextDouble()*10)); // ensure angle is not negative
+			newParent.setAngle(rand.nextInt() * rand.nextDouble());
 			newParent.setLength(rand.nextInt(GENOME_MAX_LENGTH));
 			newParent.setColour(new Color(rand.nextFloat(), rand.nextFloat(), rand.nextFloat())); // random values for RGB
 			
 			current.setParent(newParent);
 			
 			if(i == 0)
-				genome = current;
+				genome = current; // need to save our first generation!
 			else
 				current = current.getParent();
 		}
