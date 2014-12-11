@@ -1,4 +1,5 @@
 package main;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -19,6 +20,7 @@ public class BiomorphPanel extends JPanel {
 		super.paintComponent(g); // do not remove this - clears the previous canvas
 		
 		Graphics2D g2d = (Graphics2D) g;
+		g2d.setStroke(new BasicStroke(2f));
 		this.setBackground(Color.WHITE);
 		
 		double canvasWidth = super.getSize().getWidth();
