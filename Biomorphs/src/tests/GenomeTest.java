@@ -1,7 +1,9 @@
 package tests;
-import static org.junit.Assert.*;
-import main.Biomorph;
+import static org.junit.Assert.assertTrue;
+import main.AbstractBiomorph;
+import main.DefaultBiomorph;
 import main.Genome;
+
 import org.junit.Test;
 
 public class GenomeTest {
@@ -11,14 +13,13 @@ public class GenomeTest {
 	 */
 	@Test
 	public void testIterator() {
-		Biomorph biomorph = new Biomorph();
+		AbstractBiomorph biomorph = new DefaultBiomorph();
 		int totalParents = biomorph.generateRandomParents();
 		int count = 0;
 		
 		for(@SuppressWarnings("unused") Genome genome : biomorph.getGenome()) {
-//			System.out.println(genome);
 			count++;
-		}
+		}		
 		
 		assertTrue(totalParents == count);
 	}

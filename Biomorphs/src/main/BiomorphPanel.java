@@ -26,7 +26,7 @@ public class BiomorphPanel extends JPanel {
 		double canvasWidth = super.getSize().getWidth();
 		double canvasHeight = super.getSize().getHeight();
 		
-		Biomorph biomorph = new Biomorph(canvasWidth/2, canvasHeight/2);
+		DefaultBiomorph biomorph = new DefaultBiomorph(canvasWidth/2, canvasHeight/2);
 		biomorph.generateRandomParents();
 		
 		double startX = biomorph.getPosition().getX();
@@ -45,7 +45,7 @@ public class BiomorphPanel extends JPanel {
 	 * @param isRightSide indicates true for right side of page, false for left
 	 * @param g2d graphics to draw with
 	 */
-	private void drawSection(double startX, double startY, Biomorph biomorph, DrawSection section, Graphics2D g2d) {
+	private void drawSection(double startX, double startY, AbstractBiomorph biomorph, DrawSection section, Graphics2D g2d) {		
 		double lastX = new Double(startX);
 		double lastY = new Double(startY);
 		
@@ -55,13 +55,14 @@ public class BiomorphPanel extends JPanel {
 			double sinAngle = Math.sin(genome.getAngle()); // used to calculate end point on X axis
 			double cosAngle = Math.cos(genome.getAngle()); // used to calculate end point on Y axis
 		
-			double endX = 0;
+			double endX = genome.getLength() * sinAngle;
 			double endY = lastY + (genome.getLength() * cosAngle); // always the same -> want it symmetrical along y axis
 			
-			if(section == DrawSection.RIGHT) // need to invert if left side (+ and -)
-				endX = lastX + (genome.getLength() * sinAngle);
-			else
-				endX = lastX - (genome.getLength() * sinAngle);
+			if(section == DrawSection.RIGHT) { // need to invert if left side (+ and -)
+				endX = lastX + endX;
+			} else {
+				endX = lastX - endX;
+			}
 			
 			g2d.draw(new Line2D.Double(lastX, lastY, endX, endY)); // draw the line
 			
