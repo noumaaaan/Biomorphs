@@ -13,20 +13,13 @@ import java.util.Random;
  * 
  * @author Alex Luckett <lucketta@aston.ac.uk>
  */
-public class DefaultBiomorph extends AbstractBiomorph {
+public class RandomBiomorph extends AbstractBiomorph {
 
-	/**
-	 * @param d
-	 * @param e
-	 */
-	public DefaultBiomorph(double d, double e) {
+	public RandomBiomorph(double d, double e) {
 		super(d, e);
 	}
 
-	/**
-	 * 
-	 */
-	public DefaultBiomorph() {
+	public RandomBiomorph() {
 		super();
 	}
 
