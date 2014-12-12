@@ -8,8 +8,6 @@ import java.awt.geom.Point2D;
  * @author Alex Luckett <lucketta@aston.ac.uk>
  */
 public abstract class AbstractBiomorph {
-	public static final int DEFAULT_GENOME_SIZE = 100;
-	
 	protected Genome genome;
 	private Point2D origin;
 

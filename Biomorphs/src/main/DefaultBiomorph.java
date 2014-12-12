@@ -3,8 +3,7 @@
  */
 package main;
 
-import static main.Constants.GENOME_MAX_LENGTH;
-import static main.Constants.GENOME_MINIMUM_EVOLUTIONS;
+import static main.Constants.*;
 
 import java.awt.Color;
 import java.util.Random;
