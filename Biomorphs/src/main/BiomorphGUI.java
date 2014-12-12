@@ -12,8 +12,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * Provides a graphical user interface
@@ -32,8 +30,6 @@ public class BiomorphGUI extends JFrame {
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setPreferredSize(new Dimension(800,600));
 		f.setResizable(true);
-		
-		//enableOStheme();
 
 		//Create the panel to hold the buttons and define Grid Layout
 		JPanel button_panel = new JPanel();
@@ -70,18 +66,19 @@ public class BiomorphGUI extends JFrame {
 			public void actionPerformed(ActionEvent event){
 				d.revalidate();
 				d.repaint();
-			}});
+			}
+		});
 
 		//Action listener to close application
 		end.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
 				exit_app();
-			}});
+			}
+		});
 
 		f.addWindowListener(new WindowAdapter()
 		{
-			public void windowClosing(WindowEvent event)
-			{
+			public void windowClosing(WindowEvent event){
 				exit_app();
 			}
 		});
@@ -90,20 +87,6 @@ public class BiomorphGUI extends JFrame {
 		f.setLocationRelativeTo(null); // centre aligned
 		f.setVisible(true);
 	}
-
-//	/**
-//	 * BiomorphGUI will use native look and feel of host operating system.
-//	 */
-//	@SuppressWarnings("unused")
-//	private void enableOStheme() {
-//		try {
-//			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//	    } 
-//	    catch (UnsupportedLookAndFeelException | ClassNotFoundException | 
-//	    		InstantiationException | IllegalAccessException e) {
-//	    	// nothing to do here. discard command - will keep standard java theme.
-//	    }
-//	}
 
 	public static void main(String[] args){
 		new BiomorphGUI(); // display GUI
