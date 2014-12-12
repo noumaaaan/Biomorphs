@@ -91,19 +91,19 @@ public class BiomorphGUI extends JFrame {
 		f.setVisible(true);
 	}
 
-	/**
-	 * BiomorphGUI will use native look and feel of host operating system.
-	 */
-	@SuppressWarnings("unused")
-	private void enableOStheme() {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-	    } 
-	    catch (UnsupportedLookAndFeelException | ClassNotFoundException | 
-	    		InstantiationException | IllegalAccessException e) {
-	    	// nothing to do here. discard command - will keep standard java theme.
-	    }
-	}
+//	/**
+//	 * BiomorphGUI will use native look and feel of host operating system.
+//	 */
+//	@SuppressWarnings("unused")
+//	private void enableOStheme() {
+//		try {
+//			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//	    } 
+//	    catch (UnsupportedLookAndFeelException | ClassNotFoundException | 
+//	    		InstantiationException | IllegalAccessException e) {
+//	    	// nothing to do here. discard command - will keep standard java theme.
+//	    }
+//	}
 
 	public static void main(String[] args){
 		new BiomorphGUI(); // display GUI

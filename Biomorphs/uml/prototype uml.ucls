@@ -3,7 +3,7 @@
   associations="true" dependencies="true" nesting-relationships="true">  
   <class id="1" language="java" name="main.AbstractBiomorph" project="Biomorphs" 
     file="/Biomorphs/src/main/AbstractBiomorph.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="589" y="152"/>    
+    <position height="-1" width="-1" x="554" y="151"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="main.BiomorphGUI" project="Biomorphs" file="/Biomorphs/src/main/BiomorphGUI.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="211" y="113"/>    
+    <position height="-1" width="-1" x="228" y="109"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="main.Constants" project="Biomorphs" file="/Biomorphs/src/main/Constants.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1149" y="137"/>    
+    <position height="-1" width="-1" x="976" y="134"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="main.Genome" project="Biomorphs" file="/Biomorphs/src/main/Genome.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="886" y="208"/>    
+    <position height="-1" width="-1" x="764" y="205"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="main.Genome.GenomeIterator" project="Biomorphs" 
     file="/Biomorphs/src/main/Genome.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="884" y="551"/>    
+    <position height="-1" width="-1" x="765" y="548"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="main.RandomBiomorph" project="Biomorphs" 
     file="/Biomorphs/src/main/RandomBiomorph.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="591" y="391"/>    
+    <position height="-1" width="-1" x="549" y="391"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </enumeration>  
   <interface id="9" language="java" name="java.util.Iterator" project="Biomorphs" 
     file="C:/Program Files/Java/jdk1.7.0_45/jre/lib/rt.jar" binary="true" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1089" y="445"/>    
+    <position height="-1" width="-1" x="930" y="463"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -99,7 +99,7 @@
     <end type="TARGET" refId="8"/>  
   </nesting>  
   <dependency id="15">    
-    <bendpoint x="747" y="333"/>    
+    <bendpoint x="662" y="346"/>    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
@@ -140,12 +140,12 @@
     <end type="TARGET" refId="9"/>  
   </realization>  
   <dependency id="27">    
+    <bendpoint x="900" y="327"/>    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="9"/>  
   </dependency>  
   <dependency id="28">    
     <bendpoint x="634" y="297"/>    
-    <bendpoint x="721" y="283"/>    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
