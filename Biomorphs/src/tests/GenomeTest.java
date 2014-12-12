@@ -14,7 +14,7 @@ public class GenomeTest {
 	@Test
 	public void testIterator() {
 		AbstractBiomorph biomorph = new RandomBiomorph();
-		int totalParents = biomorph.generateRandomParents();
+		int totalParents = biomorph.generateParents();
 		int count = 0;
 		
 		for(@SuppressWarnings("unused") Genome genome : biomorph.getGenome()) {

@@ -54,9 +54,9 @@ public abstract class AbstractBiomorph {
 	}
 	
 	/**
-	 * Generates a random genome tree for the biomorph
+	 * Generates a genome tree for the biomorph
 	 * 
 	 * @return iterationCount
 	 */
-	public abstract int generateRandomParents();
+	public abstract int generateParents();
 }

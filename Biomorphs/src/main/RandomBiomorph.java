@@ -24,7 +24,7 @@ public class RandomBiomorph extends AbstractBiomorph {
 	}
 
 	@Override
-	public int generateRandomParents() {
+	public int generateParents() {
 		Random rand = new Random();
 		int evolutions = rand.nextInt(DEFAULT_GENOME_SIZE) + GENOME_MINIMUM_EVOLUTIONS; // number of iterations. capped at 10 for demo purposes, and never 0 (so +1).
 		

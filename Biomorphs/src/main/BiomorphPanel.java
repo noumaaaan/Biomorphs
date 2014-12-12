@@ -27,7 +27,7 @@ public class BiomorphPanel extends JPanel {
 		double canvasHeight = super.getSize().getHeight();
 		
 		RandomBiomorph biomorph = new RandomBiomorph(canvasWidth/2, canvasHeight/2);
-		biomorph.generateRandomParents();
+		biomorph.generateParents();
 		
 		double startX = biomorph.getPosition().getX();
 		double startY = biomorph.getPosition().getY();
