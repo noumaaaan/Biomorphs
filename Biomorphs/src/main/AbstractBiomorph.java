@@ -29,15 +29,7 @@ public abstract class AbstractBiomorph {
 		this(0, 0);
 	}
 	
-	public void setX(int x) {
-		origin.setLocation(x, origin.getY());
-	}
-	
-	public void setY(int y) {
-		origin.setLocation(origin.getX(), y);
-	}
-	
-	public void setPosition(int x, int y) {
+	public void setPosition(double x, double y) {
 		origin.setLocation(x, y);
 	}
 	
