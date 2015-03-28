@@ -17,13 +17,13 @@ public class Genome implements Iterable<Genome>, Cloneable {
 	private int length;
 	private Color colour;
 
-	private Genome parent; // represents the parent biomorph's specific genome
+	private Genome child; // represents the parent biomorph's specific genome
 
 	public Genome() {
 		angle = GENOME_DEFAULT_ANGLE;
 		length = GENOME_DEFAULT_LENGTH;
 		colour = GENOME_DEFAULT_COLOUR;
-		parent = null;
+		child = null;
 	}
 	
 	public Genome(Genome genome) {
@@ -31,11 +31,21 @@ public class Genome implements Iterable<Genome>, Cloneable {
 		this.length = genome.length;
 		this.colour = genome.colour;
 		
-		if(genome.parent != null)
-			this.parent = genome.parent.clone();
-		else
-			this.parent = null;
-				
+		if(genome.child != null) {
+			this.child = genome.child.clone();
+		} else {
+			this.child = null;
+		}	
+	}
+	
+	public void append(Genome genome) {
+		Genome finalGenome = null;
+		
+		for(Genome currentGenome : this) {
+			finalGenome = currentGenome;
+		}
+		
+		finalGenome.setChild(genome);
 	}
 
 	public void setAngle(double angle) {		
@@ -65,12 +75,12 @@ public class Genome implements Iterable<Genome>, Cloneable {
 		return colour;
 	}
 
-	public void setParent(Genome parent) {
-		this.parent = parent;
+	public void setChild(Genome parent) {
+		this.child = parent;
 	}
 
-	public Genome getParent() {
-		return parent;
+	public Genome getChild() {
+		return child;
 	}
 	
 	@Override
@@ -107,14 +117,14 @@ public class Genome implements Iterable<Genome>, Cloneable {
 
 		@Override
 		public boolean hasNext() {
-			return (genome.getParent() != null);
+			return (genome.getChild() != null);
 		}
 
 		@Override
 		public Genome next() {
 			Genome current = genome.clone();
 
-			genome = genome.getParent();
+			genome = genome.getChild();
 
 			return current;
 		}

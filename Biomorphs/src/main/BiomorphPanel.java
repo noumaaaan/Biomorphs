@@ -14,21 +14,36 @@ import javax.swing.JPanel;
  */
 @SuppressWarnings("serial")
 public class BiomorphPanel extends JPanel {
+	AbstractBiomorph biomorph;
+	
+	public BiomorphPanel() {
+		this(new RandomBiomorph());
+	}
+	
+	public BiomorphPanel(AbstractBiomorph biomorph) {
+		super();
+		this.setBackground(Color.WHITE);
+		
+		this.biomorph = biomorph;
+	}
+	
+	private void centreBiomorph() {
+		double canvasWidth = super.getSize().getWidth();
+		double canvasHeight = super.getSize().getHeight();
+		
+		biomorph.setPosition(canvasWidth/2, canvasHeight/2);
+	}
 
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g); // do not remove this - clears the previous canvas
 		
+		centreBiomorph();
+		biomorph.evolve(new Genome());
+				
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setStroke(new BasicStroke(2f));
-		this.setBackground(Color.WHITE);
-		
-		double canvasWidth = super.getSize().getWidth();
-		double canvasHeight = super.getSize().getHeight();
-		
-		RandomBiomorph biomorph = new RandomBiomorph(canvasWidth/2, canvasHeight/2);
-		biomorph.generateParents();
-		
+				
 		double startX = biomorph.getPosition().getX();
 		double startY = biomorph.getPosition().getY();
 		
@@ -45,9 +60,10 @@ public class BiomorphPanel extends JPanel {
 	 * @param isRightSide indicates true for right side of page, false for left
 	 * @param g2d graphics to draw with
 	 */
-	private void drawSection(double startX, double startY, AbstractBiomorph biomorph, DrawSection section, Graphics2D g2d) {		
-		double lastX = new Double(startX);
-		double lastY = new Double(startY);
+	private void drawSection(double startX, double startY, 
+			AbstractBiomorph biomorph, DrawSection section, Graphics2D g2d) {		
+		double lastX = startX;
+		double lastY = startY;
 		
 		for(Genome genome : biomorph.getGenome()) {
 			g2d.setColor(genome.getColour());

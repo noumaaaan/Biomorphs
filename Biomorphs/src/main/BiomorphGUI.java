@@ -1,5 +1,6 @@
 package main;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -8,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -56,16 +58,24 @@ public class BiomorphGUI extends JFrame {
 		f.add(button_panel, BorderLayout.WEST);
 
 		//Defining the Draw Canvas
-		final BiomorphPanel d = new BiomorphPanel();		
+		final JPanel biomorphGrid = new JPanel(new GridLayout(3, 3));
+		
+		for(int i = 0; i < 9; i++) {
+			BiomorphPanel panel = new BiomorphPanel();
+			panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+			
+			biomorphGrid.add(panel);	
+		}
+			
 
-		f.add(d);
+		f.add(biomorphGrid);
 		f.setVisible(true);
 
 		//Action listener to start the application
 		start.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				d.revalidate();
-				d.repaint();
+				biomorphGrid.revalidate();
+				biomorphGrid.repaint();
 			}
 		});
 

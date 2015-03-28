@@ -14,12 +14,12 @@ public abstract class AbstractBiomorph {
 	/**
 	 * Constructs a biomorph
 	 * 
-	 * @param d coordinate on canvas
-	 * @param e coordinate on canvas
+	 * @param x coordinate on canvas
+	 * @param y coordinate on canvas
 	 */
-	public AbstractBiomorph(double d, double e) {
+	public AbstractBiomorph(double x, double y) {
 		genome = new Genome();
-		origin = new Point2D.Double(d, e);
+		origin = new Point2D.Double(x, y);
 	}
 	
 	/**
@@ -45,10 +45,5 @@ public abstract class AbstractBiomorph {
 		return genome;
 	}
 	
-	/**
-	 * Generates a genome tree for the biomorph
-	 * 
-	 * @return iterationCount
-	 */
-	public abstract int generateParents();
+	public abstract void evolve(Genome genome);
 }
