@@ -61,24 +61,16 @@ public class BasicGUI extends AbstractGUI {
 		f.add(button_panel, BorderLayout.WEST);
 
 		//Defining the Draw Canvas
-		final JPanel biomorphGrid = new JPanel(new GridLayout(3, 3));
-		
-		for(int i = 0; i < 9; i++) {
-			BiomorphPanel panel = new BiomorphPanel();
-			panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-			
-			biomorphGrid.add(panel);	
-		}
-			
+		final BiomorphPanel panel = new BiomorphPanel();
 
-		f.add(biomorphGrid);
+		f.add(panel);
 		f.setVisible(true);
 
 		//Action listener to start the application
 		start.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				biomorphGrid.revalidate();
-				biomorphGrid.repaint();
+				panel.revalidate();
+				panel.repaint();
 			}
 		});
 

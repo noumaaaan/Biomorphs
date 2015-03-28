@@ -89,6 +89,16 @@ public class GuiStartup extends AbstractGUI {
 			
 		});
 		
+		// Add the listener for the beginner and advanced
+		advanced.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				displayGui(userSelectionFrame, new EvolutionaryGUI());
+			}
+
+		});
+		
 		userSelectionFrame.pack();
 		userSelectionFrame.setLocationRelativeTo(null); // centre aligned
 		userSelectionFrame.setVisible(true);
