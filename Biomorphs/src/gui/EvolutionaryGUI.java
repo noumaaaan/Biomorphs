@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -11,10 +10,13 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import main.AbstractBiomorph;
 import main.BiomorphPanel;
 
 /**
@@ -27,58 +29,35 @@ import main.BiomorphPanel;
 
 @SuppressWarnings("serial") 
 public class EvolutionaryGUI extends AbstractGUI {
-	private JFrame f;
+	private JFrame windowFrame;
+
+	private final int gridRows = 3;
+	private final int gridCols = 3;
 
 	public EvolutionaryGUI() {
 		//Create the window for the application
-		f = new JFrame("Evolutionary Art: PROTOTYPE (STAGE 1)");  
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setPreferredSize(new Dimension(800,600));
-		f.setResizable(true);
+		windowFrame = new JFrame("Evolutionary Art: Final (STAGE 2)");  
+		windowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		windowFrame.setPreferredSize(new Dimension(800,600));
+		windowFrame.setResizable(true);
 
-		//Create the panel to hold the buttons and define Grid Layout
-		JPanel button_panel = new JPanel();
-		button_panel.setLayout(new GridLayout(4, 1, 20, 20));
-
-		//Create the buttons for the panel 
-		JButton start = new JButton(" New Biomorph ");
-		start.setToolTipText("Create a new biomorph by clicking here"); 
-		JButton load = new JButton(" Load ");
-		load.setToolTipText("Open up a previously saved biomorph mutation");
-		load.setEnabled(false); // TODO: re-enable this when feature implemented
-		JButton help = new JButton(" Help ");
-		help.setToolTipText("Click here for Instructions on how to use the application");
-		help.setEnabled(false); // TODO: re-enable this when feature implemented
-		JButton end = new JButton(" Exit ");
-		end.setToolTipText("Quit the application by clicking here");
-
-		//Place the buttons within the panel and add them to the frame
-		button_panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		button_panel.add(start);
-		button_panel.add(load);
-		button_panel.add(help);
-		button_panel.add(end);
-		f.add(button_panel, BorderLayout.WEST);
-
-		//Defining the Draw Canvas
-		final JPanel biomorphGrid = new JPanel(new GridLayout(3, 3));
+		BiomorphPanel activeBiomorphPanel = new BiomorphPanel();
 		
-		for(int i = 0; i < 9; i++) {
-			BiomorphPanel panel = new BiomorphPanel();
-			panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-			
-			biomorphGrid.add(panel);	
-		}
-			
+		windowFrame.add(createMenuBar(), BorderLayout.NORTH);
 
-		f.add(biomorphGrid);
-		f.setVisible(true);
+		final JPanel biomorphs = new JPanel(new GridLayout(1, 2));
+		biomorphs.add(createBiomorphGrid());
+		biomorphs.add(activeBiomorphPanel);
 
-		//Action listener to start the application
+		windowFrame.add(biomorphs);
+		windowFrame.setVisible(true);
+
+		// TODO reimplement this for menu bar (this is old code from buttons)
+		/*Action listener to start the application
 		start.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				biomorphGrid.revalidate();
-				biomorphGrid.repaint();
+				biomorphPanel.revalidate();
+				biomorphPanel.repaint();
 			}
 		});
 
@@ -88,16 +67,47 @@ public class EvolutionaryGUI extends AbstractGUI {
 				exitApplication(f);
 			}
 		});
+		*/
 
-		f.addWindowListener(new WindowAdapter()
+		windowFrame.addWindowListener(new WindowAdapter()
 		{
 			public void windowClosing(WindowEvent event){
-				exitApplication(f);
+				exitApplication(windowFrame);
 			}
 		});
 
-		f.pack();
-		f.setLocationRelativeTo(null); // centre aligned
+		windowFrame.pack();
+		windowFrame.setLocationRelativeTo(null); // centre aligned
+	}
+
+	private JMenuBar createMenuBar() {
+		JMenuBar menuBar = new JMenuBar();
+		JMenu fileMenu = new JMenu("File");
+		JMenu editMenu = new JMenu("Edit");
+		JMenu biomorphMenu = new JMenu("Biomorph");
+		
+		JMenuItem newBiomorph = new JMenuItem("New biomorph");
+		biomorphMenu.add(newBiomorph);
+
+		menuBar.add(fileMenu);
+		menuBar.add(editMenu);
+		menuBar.add(biomorphMenu);
+
+		return menuBar;
+	}
+
+	private JPanel createBiomorphGrid() {
+		//Defining the Draw Canvas
+		JPanel biomorphGrid = new JPanel(new GridLayout(gridRows, gridCols));
+
+		for(int i = 0; i < (gridRows * gridCols); i++) {
+			BiomorphPanel panel = new BiomorphPanel();
+			panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+
+			biomorphGrid.add(panel);	
+		}
+		
+		return biomorphGrid;
 	}
 
 }
