@@ -28,6 +28,8 @@ public class BasicGUI extends AbstractGUI {
 	private JFrame f;
 
 	public BasicGUI() {
+		super();
+		
 		//Create the window for the application
 		f = new JFrame("Evolutionary Art: PROTOTYPE (STAGE 1)");  
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

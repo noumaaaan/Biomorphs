@@ -25,6 +25,7 @@ public class BiomorphPanel extends JPanel {
 		this.setBackground(Color.WHITE);
 		
 		this.biomorph = biomorph;
+		this.biomorph.evolve(new Genome());
 	}
 	
 	private void centreBiomorph() {
@@ -39,7 +40,6 @@ public class BiomorphPanel extends JPanel {
 		super.paintComponent(g); // do not remove this - clears the previous canvas
 		
 		centreBiomorph();
-		biomorph.evolve(new Genome());
 				
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setStroke(new BasicStroke(2f));
@@ -84,6 +84,15 @@ public class BiomorphPanel extends JPanel {
 			
 			lastX = endX; lastY = endY; // update start position for next line to use
 		}
+	}
+	
+	public AbstractBiomorph getBiomorph() {
+		return biomorph;
+	}
+	
+	public void refresh() {
+		this.revalidate();
+		this.repaint();
 	}
 	
 	/**
