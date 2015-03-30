@@ -6,8 +6,6 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -19,7 +17,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import main.AbstractBiomorph;
-import main.Genome;
 
 /**
  * Provides a graphical user interface
@@ -54,7 +51,7 @@ public class EvolutionaryGUI extends AbstractGUI {
 		windowFrame.add(createMenuBar(activeBiomorphPanel), BorderLayout.NORTH);
 
 		final JPanel biomorphs = new JPanel(new GridLayout(1, 2));
-		biomorphs.add(createBiomorphGrid(activeBiomorphPanel));
+		biomorphs.add(createBiomorphGrid());
 		biomorphs.add(activeBiomorphPanel);
 
 		windowFrame.add(biomorphs);
@@ -106,41 +103,14 @@ public class EvolutionaryGUI extends AbstractGUI {
 		return menuBar;
 	}
 
-	private JPanel createBiomorphGrid(final BiomorphPanel activeBiomorphPanel) {
+	private JPanel createBiomorphGrid() {
 		//Defining the Draw Canvas
-		JPanel biomorphGrid = new JPanel(new GridLayout(gridRows, gridCols));
-
-		for(int i = 0; i < (gridRows * gridCols); i++) {
-			final BiomorphPanel panel = new BiomorphPanel();
-			panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-			
-			panel.addMouseListener(new MouseListener() {
-				
-				@Override
-				public void mousePressed(MouseEvent e) { }
-				
-				@Override
-				public void mouseExited(MouseEvent e) { }
-				
-				@Override
-				public void mouseEntered(MouseEvent e) { }
-				
-				@Override
-				public void mouseClicked(MouseEvent e) { }
-
-				@Override
-				public void mouseReleased(MouseEvent e) {
-					AbstractBiomorph activeBiomorph = activeBiomorphPanel.getBiomorph();
-					Genome mergingGenome = panel.getBiomorph().getGenome();
-					
-					activeBiomorph.evolve(mergingGenome); // merge genome into our active biomorph
-					
-					activeBiomorphPanel.refresh();
-				}
-			});
-
-			biomorphGrid.add(panel);	
-		}
+		AbstractBiomorph biomorph = activeBiomorphPanel.getBiomorph();
+		
+		BiomorphGrid biomorphGrid = new BiomorphGrid(
+				gridRows, gridCols, biomorph, activeBiomorphPanel);
+		
+		biomorphGrid.setupGrid((gridRows * gridCols));
 		
 		return biomorphGrid;
 	}
