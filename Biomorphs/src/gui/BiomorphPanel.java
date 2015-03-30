@@ -21,7 +21,7 @@ public class BiomorphPanel extends JPanel {
 	EvolutionaryBiomorph biomorph;
 	
 	public BiomorphPanel() {
-		this(new EvolutionaryBiomorph());
+		this(new EvolutionaryBiomorph()); // default use evolutionary
 	}
 	
 	public BiomorphPanel(AbstractBiomorph biomorph) {
@@ -91,7 +91,10 @@ public class BiomorphPanel extends JPanel {
 	}
 	
 	public void newBiomorph() {
-		biomorph = new EvolutionaryBiomorph();
+		newBiomorph(new EvolutionaryBiomorph());
+	}
+	
+	public void newBiomorph(AbstractBiomorph biomorph) {
 		biomorph.generateChildren();
 	}
 	
@@ -108,7 +111,6 @@ public class BiomorphPanel extends JPanel {
 	 * Represents the section of a panel to draw on.
 	 * 
 	 * @author Alex Luckett <lucketta@aston.ac.uk>
-	 *
 	 */
 	private enum DrawSection {
 		RIGHT, LEFT

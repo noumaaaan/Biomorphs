@@ -1,5 +1,9 @@
 package main;
+import static main.Constants.DEFAULT_GENOME_SIZE;
+import static main.Constants.GENOME_MINIMUM_EVOLUTIONS;
+
 import java.awt.geom.Point2D;
+import java.util.Random;
 
 
 /**
@@ -46,4 +50,21 @@ public abstract class AbstractBiomorph {
 	}
 	
 	public abstract void evolve(Genome genome);
+	
+	public int generateChildren() {
+		Random rand = new Random();
+		int evolutions = rand.nextInt(DEFAULT_GENOME_SIZE) + GENOME_MINIMUM_EVOLUTIONS; // number of iterations. capped at 10 for demo purposes, and never 0 (so +1).
+		
+		Genome current = new Genome();
+		this.genome = current;
+				
+		for(int i = 0; i <= evolutions; i++) {
+			Genome newParent = new Genome(true);			
+			current.setChild(newParent);
+			
+			current = current.getChild();
+		}
+		
+		return evolutions;
+	}
 }

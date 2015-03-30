@@ -29,8 +29,9 @@ import main.Genome;
  * @author Alexander Luckett <lucketta@aston.ac.uk>
  */
 
-@SuppressWarnings("serial") 
 public class EvolutionaryGUI extends AbstractGUI {
+	private static final long serialVersionUID = 1L;
+
 	private JFrame windowFrame;
 	
 	private final BiomorphPanel activeBiomorphPanel;
@@ -48,6 +49,7 @@ public class EvolutionaryGUI extends AbstractGUI {
 		windowFrame.setResizable(true);
 
 		activeBiomorphPanel = new BiomorphPanel();
+		activeBiomorphPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		
 		windowFrame.add(createMenuBar(activeBiomorphPanel), BorderLayout.NORTH);
 
@@ -129,12 +131,10 @@ public class EvolutionaryGUI extends AbstractGUI {
 				@Override
 				public void mouseReleased(MouseEvent e) {
 					AbstractBiomorph activeBiomorph = activeBiomorphPanel.getBiomorph();
-					Genome activeGenome = activeBiomorph.getGenome();
+					Genome mergingGenome = panel.getBiomorph().getGenome();
 					
-					AbstractBiomorph mergingBiomorph = panel.getBiomorph();
-					Genome mergingGenome = mergingBiomorph.getGenome();
+					activeBiomorph.evolve(mergingGenome); // merge genome into our active biomorph
 					
-					activeBiomorph.evolve(mergingGenome);
 					activeBiomorphPanel.refresh();
 				}
 			});

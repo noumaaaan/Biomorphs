@@ -26,14 +26,14 @@ public class GuiStartup extends AbstractGUI {
 
 	public static void main(String[] args) {
 		switch(args[0]) {
-		case "evolutionary":
-			new EvolutionaryGUI().setVisible(true);
-			break;
-		case "basic":
-			new BasicGUI().setVisible(true);
-			break;
-		default:
-			new GuiStartup();
+			case "evolutionary":
+				new EvolutionaryGUI().setVisible(true);
+				break;
+			case "basic":
+				new BasicGUI().setVisible(true);
+				break;
+			default:
+				new GuiStartup();
 		}		
 	}
 	
