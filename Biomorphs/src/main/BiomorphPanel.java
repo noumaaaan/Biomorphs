@@ -14,18 +14,18 @@ import javax.swing.JPanel;
  */
 @SuppressWarnings("serial")
 public class BiomorphPanel extends JPanel {
-	AbstractBiomorph biomorph;
+	EvolutionaryBiomorph biomorph;
 	
 	public BiomorphPanel() {
-		this(new RandomBiomorph());
+		this(new EvolutionaryBiomorph());
 	}
 	
 	public BiomorphPanel(AbstractBiomorph biomorph) {
 		super();
 		this.setBackground(Color.WHITE);
 		
-		this.biomorph = biomorph;
-		this.biomorph.evolve(new Genome());
+		this.biomorph = (EvolutionaryBiomorph) biomorph;
+		this.biomorph.generateChildren();
 	}
 	
 	private void centreBiomorph() {
@@ -84,6 +84,11 @@ public class BiomorphPanel extends JPanel {
 			
 			lastX = endX; lastY = endY; // update start position for next line to use
 		}
+	}
+	
+	public void newBiomorph() {
+		biomorph = new EvolutionaryBiomorph();
+		biomorph.generateChildren();
 	}
 	
 	public AbstractBiomorph getBiomorph() {

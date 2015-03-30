@@ -39,13 +39,30 @@ public class Genome implements Iterable<Genome>, Cloneable {
 	}
 	
 	public void append(Genome genome) {
-		Genome finalGenome = null;
+		Genome finalGenome = getLastGenome(this);		
+		Genome finalMerging = getLastGenome(genome).clone();
 		
-		for(Genome currentGenome : this) {
-			finalGenome = currentGenome;
+		printGenomeHistory("BEFORE");
+		
+		finalGenome.setChild(finalMerging);
+		
+		printGenomeHistory("AFTER");
+	}
+	
+	private Genome getLastGenome(Genome genome) {
+		Genome lastGenome = null;
+		
+		for(Genome currentGenome : genome) {
+			lastGenome = currentGenome;
 		}
 		
-		finalGenome.setChild(genome);
+		return lastGenome;
+	}
+	
+	private void printGenomeHistory(String prefix) {
+		for(Genome genome : this) {
+			System.out.println(prefix + " " + genome);
+		}
 	}
 
 	public void setAngle(double angle) {		
@@ -83,6 +100,16 @@ public class Genome implements Iterable<Genome>, Cloneable {
 		return child;
 	}
 	
+	public int size() {
+		int size = 0;
+		
+		for(Genome genome : this) {
+			size++;
+		}
+		
+		return size;
+	}
+	
 	@Override
 	public String toString() {
 		return "Angle " + angle + ", length " + length + ", colour " + colour.toString();
@@ -99,40 +126,5 @@ public class Genome implements Iterable<Genome>, Cloneable {
 	@Override
 	public Iterator<Genome> iterator() {
 		return new GenomeIterator(this);
-	}
-	
-	
-	/**
-	 * An iterator for iterating through a genome tree.
-	 * 
-	 * @author Alex Luckett <lucketta@aston.ac.uk>
-	 *
-	 */
-	private class GenomeIterator implements Iterator<Genome> {
-		private Genome genome;
-
-		public GenomeIterator(Genome genome) {
-			this.genome = genome;
-		}
-
-		@Override
-		public boolean hasNext() {
-			return (genome.getChild() != null);
-		}
-
-		@Override
-		public Genome next() {
-			Genome current = genome.clone();
-
-			genome = genome.getChild();
-
-			return current;
-		}
-
-		@Override
-		public void remove() {
-			throw new UnsupportedOperationException("Cannot remove genome");
-		}
-
 	}
 }

@@ -9,7 +9,15 @@ import java.util.Random;
 
 public class EvolutionaryBiomorph extends AbstractBiomorph {
 	
-	public void evolve(Genome geneome) {
+	public EvolutionaryBiomorph(double d, double e) {
+		super(d, e);
+	}
+	
+	public EvolutionaryBiomorph() {
+		super();
+	}
+	
+	public void evolve(Genome genome) {
 		this.genome.append(genome);
 		//this.genome.setChild(genome);
 	}

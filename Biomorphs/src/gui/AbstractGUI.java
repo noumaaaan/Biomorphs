@@ -27,6 +27,10 @@ public abstract class AbstractGUI extends JFrame {
 		gui.setVisible(true);
 	}
 	
+	protected void displayGui() {
+		this.setVisible(true);
+	}
+	
 	protected void exitApplication(JFrame frame)
 	{
 		int response = JOptionPane.showConfirmDialog(frame,
