@@ -1,4 +1,6 @@
 package main;
+import gui.BiomorphPanel;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.ComponentOrientation;

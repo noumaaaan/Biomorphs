@@ -19,7 +19,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import main.AbstractBiomorph;
-import main.BiomorphPanel;
 import main.Genome;
 
 /**
@@ -86,6 +85,17 @@ public class EvolutionaryGUI extends AbstractGUI {
 			}
 		});
 		biomorphMenu.add(newBiomorph);
+		
+		JMenuItem repaintBiomorph = new JMenuItem("Repaint");
+		repaintBiomorph.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel.refresh();
+			}
+			
+		});
+		biomorphMenu.add(repaintBiomorph);
 
 		menuBar.add(fileMenu);
 		menuBar.add(editMenu);
@@ -118,17 +128,14 @@ public class EvolutionaryGUI extends AbstractGUI {
 
 				@Override
 				public void mouseReleased(MouseEvent e) {
-					AbstractBiomorph activeBiomorph = panel.getBiomorph();
+					AbstractBiomorph activeBiomorph = activeBiomorphPanel.getBiomorph();
 					Genome activeGenome = activeBiomorph.getGenome();
 					
-					AbstractBiomorph mergingBiomorph = activeBiomorphPanel.getBiomorph();
+					AbstractBiomorph mergingBiomorph = panel.getBiomorph();
 					Genome mergingGenome = mergingBiomorph.getGenome();
 					
 					activeBiomorph.evolve(mergingGenome);
 					activeBiomorphPanel.refresh();
-					
-//					System.out.println("EVOLVING: " + evolvingGenome);
-//					System.out.println("    |----INTO: " + targetGenome);
 				}
 			});
 

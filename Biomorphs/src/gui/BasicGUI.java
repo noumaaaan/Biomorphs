@@ -13,8 +13,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import main.BiomorphPanel;
-
 /**
  * Provides a graphical user interface
  * 
