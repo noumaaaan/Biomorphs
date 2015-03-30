@@ -2,8 +2,12 @@ package main;
 
 public class EvolutionaryBiomorph extends AbstractBiomorph {
 	
-	public EvolutionaryBiomorph(double d, double e) {
-		super(d, e);
+	public EvolutionaryBiomorph(double x, double y) {
+		super(x, y);
+	}
+
+	public EvolutionaryBiomorph(AbstractBiomorph bio) {
+		super(bio.getPosition().getX(), bio.getPosition().getY(), bio.getGenome().clone());
 	}
 	
 	public EvolutionaryBiomorph() {

@@ -26,11 +26,20 @@ public abstract class AbstractBiomorph {
 		origin = new Point2D.Double(x, y);
 	}
 	
+	public AbstractBiomorph(double x, double y, Genome genome) {
+		this.genome = genome.clone();
+		origin = new Point2D.Double(x, y);
+	}
+	
 	/**
 	 * Creates a biomorph at the default position (0, 0)
 	 */
 	public AbstractBiomorph() {
 		this(0, 0);
+	}
+	
+	public AbstractBiomorph(AbstractBiomorph bio) {
+		this(bio.getPosition().getX(), bio.getPosition().getY(), bio.getGenome());
 	}
 	
 	public void setPosition(double x, double y) {
@@ -66,5 +75,13 @@ public abstract class AbstractBiomorph {
 		}
 		
 		return evolutions;
+	}
+	
+	public void mutate() {		
+		for(int i = 0; i < 50; i++) {
+			Genome mutation = new Genome(true); // FIXME - random mutation not mutating!
+			
+			evolve(mutation);
+		}
 	}
 }

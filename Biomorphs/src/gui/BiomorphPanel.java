@@ -18,18 +18,20 @@ import main.Genome;
  */
 @SuppressWarnings("serial")
 public class BiomorphPanel extends JPanel {
-	EvolutionaryBiomorph biomorph;
+	AbstractBiomorph biomorph;
 	
 	public BiomorphPanel() {
-		this(new EvolutionaryBiomorph()); // default use evolutionary
+		this(new EvolutionaryBiomorph(), true); // default use evolutionary
 	}
 	
-	public BiomorphPanel(AbstractBiomorph biomorph) {
+	public BiomorphPanel(AbstractBiomorph biomorph, boolean generateChildren) {
 		super();
 		this.setBackground(Color.WHITE);
 		
 		this.biomorph = (EvolutionaryBiomorph) biomorph;
-		this.biomorph.generateChildren();
+		
+		if(generateChildren)
+			this.biomorph.generateChildren();
 	}
 	
 	private void centreBiomorph() {
@@ -96,6 +98,8 @@ public class BiomorphPanel extends JPanel {
 	
 	public void newBiomorph(AbstractBiomorph biomorph) {
 		biomorph.generateChildren();
+		
+		this.biomorph = biomorph;
 	}
 	
 	public AbstractBiomorph getBiomorph() {

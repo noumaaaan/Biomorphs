@@ -6,11 +6,14 @@ import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import main.AbstractBiomorph;
+import main.EvolutionaryBiomorph;
 import main.Genome;
 
 /**
@@ -22,6 +25,8 @@ import main.Genome;
 public class BiomorphGrid extends JPanel {
 	private int rows = 0;
 	private int cols = 0;
+	
+	private List<BiomorphPanel> panels;
 
 	private AbstractBiomorph baseBiomorph;
 	private final BiomorphPanel activeBiomorphPanel;
@@ -29,6 +34,8 @@ public class BiomorphGrid extends JPanel {
 	public BiomorphGrid(int rows, int cols, AbstractBiomorph baseBiomorph, BiomorphPanel activeBiomorphPanel) {
 		super(new GridLayout(rows, cols));
 
+		panels = new ArrayList<BiomorphPanel>();
+		
 		this.rows = rows;
 		this.cols = cols;
 		this.baseBiomorph = baseBiomorph;
@@ -43,7 +50,9 @@ public class BiomorphGrid extends JPanel {
 		}
 
 		for(int i = 0; i < cellCount; i++) {
-			final BiomorphPanel panel = new BiomorphPanel(baseBiomorph);
+			AbstractBiomorph bio = new EvolutionaryBiomorph(baseBiomorph);
+			final BiomorphPanel panel = new BiomorphPanel(bio, false);
+			panels.add(panel);
 			panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
 			panel.addMouseListener(new MouseListener() {
@@ -67,6 +76,8 @@ public class BiomorphGrid extends JPanel {
 
 					activeBiomorph.evolve(mergingGenome); // merge genome into our active biomorph
 
+					BiomorphGrid.this.mutate();
+					
 					activeBiomorphPanel.refresh();
 				}
 			});
@@ -84,5 +95,10 @@ public class BiomorphGrid extends JPanel {
 		this.revalidate();
 		this.repaint();
 	}
-
+	
+	public void mutate() {
+		for(BiomorphPanel panel : panels) {
+			panel.getBiomorph().mutate();
+		}
+	}
 }
