@@ -14,6 +14,8 @@ import main.Genome;
 /**
  * A panel to draw a biomorph. 
  * 
+ * TODO: make all biomorphs scale within the panel.
+ * 
  * @author Alex Luckett <lucketta@aston.ac.uk>
  */
 @SuppressWarnings("serial")
@@ -102,12 +104,16 @@ public class BiomorphPanel extends JPanel {
 		this.biomorph = biomorph;
 	}
 	
+	public void setBiomorph(AbstractBiomorph biomorph) {
+		this.biomorph = biomorph;
+	}
+	
 	public AbstractBiomorph getBiomorph() {
 		return biomorph;
 	}
 	
 	public void refresh() {
-		//this.revalidate();
+		this.revalidate();
 		this.repaint();
 	}
 	

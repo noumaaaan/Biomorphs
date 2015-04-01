@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 
 import main.AbstractBiomorph;
 import main.EvolutionaryBiomorph;
-import main.Genome;
 
 /**
  * A panel to draw a biomorph. 
@@ -65,10 +64,11 @@ public class BiomorphGrid extends JPanel {
 
 				@Override
 				public void mouseReleased(MouseEvent e) {
-					AbstractBiomorph activeBiomorph = activeBiomorphPanel.getBiomorph();
-					Genome mergingGenome = panel.getBiomorph().getGenome();
+					//AbstractBiomorph activeBiomorph = activeBiomorphPanel.getBiomorph();
+					//Genome mergingGenome = panel.getBiomorph().getGenome();
 
-					activeBiomorph.evolve(mergingGenome); // merge genome into our active biomorph
+					activeBiomorphPanel.setBiomorph(panel.getBiomorph());
+					//activeBiomorph.evolve(mergingGenome); // merge genome into our active biomorph
 
 					activeBiomorphPanel.refresh();
 					
