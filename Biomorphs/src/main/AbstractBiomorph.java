@@ -78,10 +78,6 @@ public abstract class AbstractBiomorph {
 	}
 	
 	public void mutate() {		
-		for(int i = 0; i < 50; i++) {
-			Genome mutation = new Genome(true); // FIXME - random mutation not mutating!
-			
-			evolve(mutation);
-		}
+		evolve(new Genome(true)); // TODO mutate around 10 times, not 1. else not really visible.
 	}
 }

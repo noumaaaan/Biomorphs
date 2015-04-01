@@ -107,7 +107,7 @@ public class BiomorphPanel extends JPanel {
 	}
 	
 	public void refresh() {
-		this.revalidate();
+		//this.revalidate();
 		this.repaint();
 	}
 	

@@ -52,17 +52,20 @@ public class Genome implements Iterable<Genome>, Cloneable {
 	}
 
 	public void append(Genome genome) {
-		Genome finalGenome = this.getLastGenome();		
+		Genome finalGenome = getLastGenome();		
 		Genome finalMerging = genome.getLastGenome().clone();
+		
+		System.out.println("CURRENT LAST: " + finalGenome);
+		System.out.println("NEW LAST    : " + finalMerging);
 
 		finalGenome.setChild(finalMerging);
 	}
 
 	public Genome getLastGenome() {
 		Genome lastGenome = this;
-
-		for(Genome currentGenome : this) {
-			lastGenome = currentGenome;
+		
+		while(lastGenome.getChild() != null) {
+			lastGenome = lastGenome.getChild();
 		}
 
 		return lastGenome;

@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
@@ -25,16 +26,12 @@ import main.Genome;
 public class BiomorphGrid extends JPanel {
 	private int rows = 0;
 	private int cols = 0;
-	
-	private List<BiomorphPanel> panels;
 
 	private AbstractBiomorph baseBiomorph;
 	private final BiomorphPanel activeBiomorphPanel;
 
 	public BiomorphGrid(int rows, int cols, AbstractBiomorph baseBiomorph, BiomorphPanel activeBiomorphPanel) {
 		super(new GridLayout(rows, cols));
-
-		panels = new ArrayList<BiomorphPanel>();
 		
 		this.rows = rows;
 		this.cols = cols;
@@ -52,7 +49,6 @@ public class BiomorphGrid extends JPanel {
 		for(int i = 0; i < cellCount; i++) {
 			AbstractBiomorph bio = new EvolutionaryBiomorph(baseBiomorph);
 			final BiomorphPanel panel = new BiomorphPanel(bio, false);
-			panels.add(panel);
 			panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
 			panel.addMouseListener(new MouseListener() {
@@ -76,14 +72,16 @@ public class BiomorphGrid extends JPanel {
 
 					activeBiomorph.evolve(mergingGenome); // merge genome into our active biomorph
 
-					BiomorphGrid.this.mutate();
-					
 					activeBiomorphPanel.refresh();
+					
+					BiomorphGrid.this.mutate(); // mutate all panels
 				}
 			});
 
 			BiomorphGrid.this.add(panel);
 		}
+		
+		this.mutate();
 	}
 
 	@Override
@@ -96,9 +94,16 @@ public class BiomorphGrid extends JPanel {
 		this.repaint();
 	}
 	
+	/**
+	 * TODO update all panels with new biomorph based on active, once
+	 * mutation has occurred.
+	 */
 	public void mutate() {
-		for(BiomorphPanel panel : panels) {
-			panel.getBiomorph().mutate();
+		for(Component component : this.getComponents()) {
+			BiomorphPanel panel = (BiomorphPanel) component;
+			
+			panel.getBiomorph().mutate(); 
+			panel.refresh();
 		}
 	}
 }
