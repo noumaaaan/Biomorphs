@@ -73,6 +73,7 @@ public class BiomorphGrid extends JPanel {
 					activeBiomorphPanel.setBiomorph(panel.getBiomorph()); // user has selected new biomorph to become the active
 					activeBiomorphPanel.refresh();
 					
+					BiomorphGrid.this.newBiomorphs();
 					BiomorphGrid.this.mutateBiomorphs(); // mutate all panels
 				}
 			});
@@ -94,7 +95,7 @@ public class BiomorphGrid extends JPanel {
 	 * TODO update all panels with new biomorph based on active, once
 	 * mutation has occurred.
 	 */
-	public void mutateBiomorphs() {
+	private void mutateBiomorphs() {
 		for(Component component : this.getComponents()) {
 			BiomorphPanel panel = (BiomorphPanel) component;
 			
@@ -102,4 +103,15 @@ public class BiomorphGrid extends JPanel {
 			panel.refresh();
 		}
 	}
+	
+	private void newBiomorphs() {
+		removeAll();
+		repaint();
+				
+		baseBiomorph = activeBiomorphPanel.getBiomorph();
+		
+		setupGrid(rows * cols);
+	}
+	
+	
 }
