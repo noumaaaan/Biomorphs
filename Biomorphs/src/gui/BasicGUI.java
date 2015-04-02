@@ -2,15 +2,10 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.ComponentOrientation;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import biomorph.AbstractBiomorph;
@@ -21,18 +16,11 @@ import biomorph.RandomBiomorph;
  * 
  * @author Nouman Mehmood <mehmoodn@aston.ac.uk>
  * @author Jurgen Hajdini <hajdinij@aston.ac.uk>
- * @author Alexander Luckett <lucketta@aston.ac.uk>
  */
 public class BasicGUI extends AbstractGUI {
 
 	public BasicGUI() {
-		super();
-		
-		//Create the window for the application
-		windowFrame = new JFrame("Evolutionary Art: PROTOTYPE (STAGE 1)");  
-		windowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		windowFrame.setPreferredSize(new Dimension(800,600));
-		windowFrame.setResizable(true);
+		super("Evolutionary Art: PROTOTYPE (STAGE 1)", 800, 600);
 
 		//Create the panel to hold the buttons and define Grid Layout
 		JPanel button_panel = new JPanel();
@@ -76,14 +64,7 @@ public class BasicGUI extends AbstractGUI {
 		//Action listener to close application
 		end.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				exitApplication(windowFrame);
-			}
-		});
-
-		windowFrame.addWindowListener(new WindowAdapter()
-		{
-			public void windowClosing(WindowEvent event){
-				exitApplication(windowFrame);
+				exitApplication();
 			}
 		});
 

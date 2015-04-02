@@ -37,14 +37,7 @@ public class GuiStartup extends AbstractGUI {
 	}
 
 	public GuiStartup() {
-		/**
-		 * First part concerns choosing user type The user has the choice to
-		 * either be a beginner or advanced user
-		 */
-
-		// Create the window frame where ut = user type
-		windowFrame = new JFrame("Choose User Type");
-		windowFrame.setSize(500, 300);
+		super("Choose User Type", 500, 300);
 		windowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		windowFrame.setResizable(false);
 

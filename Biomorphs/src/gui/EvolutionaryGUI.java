@@ -2,15 +2,11 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -33,13 +29,7 @@ public class EvolutionaryGUI extends AbstractGUI {
 	private final int gridCols = 3;
 
 	public EvolutionaryGUI() {
-		super();
-		
-		//Create the window for the application
-		windowFrame = new JFrame("Evolutionary Art: Final (STAGE 2)");  
-		windowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		windowFrame.setPreferredSize(new Dimension(800,600));
-		windowFrame.setResizable(true);
+		super("Evolutionary Art: Final (STAGE 2)", 800, 600);
 
 		activeBiomorphPanel = new BiomorphPanel();
 		activeBiomorphPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
@@ -52,13 +42,6 @@ public class EvolutionaryGUI extends AbstractGUI {
 
 		windowFrame.add(biomorphs);
 		windowFrame.setVisible(true);
-
-		windowFrame.addWindowListener(new WindowAdapter()
-		{
-			public void windowClosing(WindowEvent event){
-				exitApplication(windowFrame);
-			}
-		});
 
 		windowFrame.pack();
 		windowFrame.setLocationRelativeTo(null); // centre aligned
