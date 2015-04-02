@@ -16,7 +16,6 @@ import javax.swing.JPanel;
  * Display splash screen with user selection.
  * 
  * @author Nouman Mehmood <mehmoodn@aston.ac.uk>
- * @author Alexander Luckett <lucketta@aston.ac.uk>
  */
 public class GuiStartup extends AbstractGUI {
 
