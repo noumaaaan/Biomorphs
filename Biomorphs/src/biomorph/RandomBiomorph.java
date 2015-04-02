@@ -1,7 +1,7 @@
 /**
  * 
  */
-package main;
+package biomorph;
 
 /**
  * Represents the default biomorph type.

@@ -7,9 +7,9 @@ import java.awt.geom.Line2D;
 
 import javax.swing.JPanel;
 
-import main.AbstractBiomorph;
-import main.EvolutionaryBiomorph;
-import main.Genome;
+import biomorph.AbstractBiomorph;
+import biomorph.EvolutionaryBiomorph;
+import biomorph.Genome;
 
 /**
  * A panel to draw a biomorph. 

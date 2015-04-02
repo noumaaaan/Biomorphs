@@ -1,4 +1,4 @@
-package main;
+package biomorph;
 
 public class EvolutionaryBiomorph extends AbstractBiomorph {
 	

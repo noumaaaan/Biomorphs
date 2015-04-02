@@ -1,6 +1,6 @@
-package main;
-import static main.Constants.DEFAULT_GENOME_SIZE;
-import static main.Constants.GENOME_MINIMUM_EVOLUTIONS;
+package biomorph;
+import static biomorph.Constants.DEFAULT_GENOME_SIZE;
+import static biomorph.Constants.GENOME_MINIMUM_EVOLUTIONS;
 
 import java.awt.geom.Point2D;
 import java.util.Random;

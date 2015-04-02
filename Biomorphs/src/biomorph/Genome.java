@@ -1,9 +1,9 @@
-package main;
+package biomorph;
 import java.awt.Color;
 import java.util.Iterator;
 import java.util.Random;
 
-import static main.Constants.*;
+import static biomorph.Constants.*;
 
 /**
  * Represents a genome structure, to be used within a biomorph.

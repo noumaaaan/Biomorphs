@@ -1,4 +1,4 @@
-package main;
+package biomorph;
 
 import java.awt.Color;
 

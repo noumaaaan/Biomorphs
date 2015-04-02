@@ -16,7 +16,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-import main.AbstractBiomorph;
+import biomorph.AbstractBiomorph;
 
 /**
  * Provides a graphical user interface

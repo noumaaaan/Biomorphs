@@ -11,8 +11,8 @@ import java.security.InvalidParameterException;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-import main.AbstractBiomorph;
-import main.EvolutionaryBiomorph;
+import biomorph.AbstractBiomorph;
+import biomorph.EvolutionaryBiomorph;
 
 /**
  * A panel to draw a biomorph. 
