@@ -20,23 +20,23 @@ import javax.swing.JPanel;
  */
 public class GuiStartup extends AbstractGUI {
 
-	private static final long serialVersionUID = 1L;
-	
-	private JFrame userSelectionFrame;
-
 	public static void main(String[] args) {
-		switch(args[0]) {
-			case "evolutionary":
-				new EvolutionaryGUI().setVisible(true);
-				break;
-			case "basic":
-				new BasicGUI().setVisible(true);
-				break;
-			default:
-				new GuiStartup();
-		}		
+		if (args.length == 0) {
+			new GuiStartup().displayGui();
+		} else {
+			switch (args[0]) {
+				case "evolutionary":
+					new EvolutionaryGUI().displayGui();
+					break;
+				case "basic":
+					new BasicGUI().displayGui();
+					break;
+				default:
+					new GuiStartup().displayGui();
+			}
+		}
 	}
-	
+
 	public GuiStartup() {
 		/**
 		 * First part concerns choosing user type The user has the choice to
@@ -44,11 +44,11 @@ public class GuiStartup extends AbstractGUI {
 		 */
 
 		// Create the window frame where ut = user type
-		userSelectionFrame = new JFrame("Choose User Type");
-		userSelectionFrame.setSize(500, 300);
-		userSelectionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		userSelectionFrame.setResizable(false);
-		
+		windowFrame = new JFrame("Choose User Type");
+		windowFrame.setSize(500, 300);
+		windowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		windowFrame.setResizable(false);
+
 		// Create components the different components
 		JLabel description = new JLabel("Nouman is our KING");
 		JLabel usertype = new JLabel("Choose the type of user you are: ");
@@ -59,8 +59,8 @@ public class GuiStartup extends AbstractGUI {
 		JPanel panel = new JPanel(new GridBagLayout());
 
 		// Add components to panel
-		userSelectionFrame.getContentPane().add(panel, BorderLayout.NORTH);
-		userSelectionFrame.add(panel);
+		windowFrame.getContentPane().add(panel, BorderLayout.NORTH);
+		windowFrame.add(panel);
 		panel.add(description);
 		panel.add(usertype);
 		panel.add(beginner);
@@ -90,26 +90,27 @@ public class GuiStartup extends AbstractGUI {
 
 		// Add the listener for the beginner and advanced
 		beginner.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				displayGui(userSelectionFrame, new BasicGUI());
+				destroyGui();
+				new BasicGUI().displayGui();
 			}
-			
+
 		});
-		
+
 		// Add the listener for the beginner and advanced
 		advanced.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				displayGui(userSelectionFrame, new EvolutionaryGUI());
+				destroyGui();
+				new EvolutionaryGUI().displayGui();
 			}
 
 		});
-		
-		userSelectionFrame.pack();
-		userSelectionFrame.setLocationRelativeTo(null); // centre aligned
-		userSelectionFrame.setVisible(true);
+
+		windowFrame.pack();
+		windowFrame.setLocationRelativeTo(null); // centre aligned
 	}
 }

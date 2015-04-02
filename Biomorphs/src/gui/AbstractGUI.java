@@ -9,9 +9,9 @@ import javax.swing.UIManager;
  * 
  * @author Alexander Luckett <lucketta@aston.ac.uk>
  */
-public abstract class AbstractGUI extends JFrame {
+public abstract class AbstractGUI {
 	
-	private static final long serialVersionUID = 1L;
+	protected JFrame windowFrame;
 	
 	public AbstractGUI() {
 		try {
@@ -21,14 +21,18 @@ public abstract class AbstractGUI extends JFrame {
 		}
 	}
 	
-	protected void displayGui(JFrame existingFrame, AbstractGUI gui) {
-		existingFrame.setVisible(false);
-		existingFrame.dispose();
-		gui.setVisible(true);
+	/**
+	 * Hide
+	 * @param existingFrame
+	 * @param gui
+	 */
+	protected void destroyGui() {
+		windowFrame.setVisible(false);
+		windowFrame.dispose();
 	}
 	
-	protected void displayGui() {
-		this.setVisible(true);
+	public void displayGui() {
+		windowFrame.setVisible(true);
 	}
 	
 	protected void exitApplication(JFrame frame)

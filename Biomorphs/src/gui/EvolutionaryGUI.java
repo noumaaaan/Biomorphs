@@ -27,10 +27,6 @@ import main.AbstractBiomorph;
  */
 
 public class EvolutionaryGUI extends AbstractGUI {
-	private static final long serialVersionUID = 1L;
-
-	private JFrame windowFrame;
-	
 	private final BiomorphPanel activeBiomorphPanel;
 
 	private final int gridRows = 3;

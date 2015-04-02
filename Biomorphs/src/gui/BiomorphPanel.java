@@ -30,7 +30,7 @@ public class BiomorphPanel extends JPanel {
 		super();
 		this.setBackground(Color.WHITE);
 		
-		this.biomorph = (EvolutionaryBiomorph) biomorph;
+		this.biomorph = biomorph;
 		
 		if(generateChildren)
 			this.biomorph.generateChildren();

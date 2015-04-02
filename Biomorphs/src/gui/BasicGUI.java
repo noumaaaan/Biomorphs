@@ -13,6 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import main.AbstractBiomorph;
+import main.RandomBiomorph;
+
 /**
  * Provides a graphical user interface
  * 
@@ -20,19 +23,16 @@ import javax.swing.JPanel;
  * @author Jurgen Hajdini <hajdinij@aston.ac.uk>
  * @author Alexander Luckett <lucketta@aston.ac.uk>
  */
-
-@SuppressWarnings("serial") 
 public class BasicGUI extends AbstractGUI {
-	private JFrame f;
 
 	public BasicGUI() {
 		super();
 		
 		//Create the window for the application
-		f = new JFrame("Evolutionary Art: PROTOTYPE (STAGE 1)");  
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setPreferredSize(new Dimension(800,600));
-		f.setResizable(true);
+		windowFrame = new JFrame("Evolutionary Art: PROTOTYPE (STAGE 1)");  
+		windowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		windowFrame.setPreferredSize(new Dimension(800,600));
+		windowFrame.setResizable(true);
 
 		//Create the panel to hold the buttons and define Grid Layout
 		JPanel button_panel = new JPanel();
@@ -56,38 +56,39 @@ public class BasicGUI extends AbstractGUI {
 		button_panel.add(load);
 		button_panel.add(help);
 		button_panel.add(end);
-		f.add(button_panel, BorderLayout.WEST);
+		windowFrame.add(button_panel, BorderLayout.WEST);
 
 		//Defining the Draw Canvas
-		final BiomorphPanel panel = new BiomorphPanel();
+		AbstractBiomorph bio = new RandomBiomorph();
+		final BiomorphPanel panel = new BiomorphPanel(bio, true);
 
-		f.add(panel);
-		f.setVisible(true);
+		windowFrame.add(panel);
+		windowFrame.setVisible(true);
 
 		//Action listener to start the application
 		start.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				panel.revalidate();
-				panel.repaint();
+				panel.getBiomorph().mutate();
+				panel.refresh();
 			}
 		});
 
 		//Action listener to close application
 		end.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				exitApplication(f);
+				exitApplication(windowFrame);
 			}
 		});
 
-		f.addWindowListener(new WindowAdapter()
+		windowFrame.addWindowListener(new WindowAdapter()
 		{
 			public void windowClosing(WindowEvent event){
-				exitApplication(f);
+				exitApplication(windowFrame);
 			}
 		});
 
-		f.pack();
-		f.setLocationRelativeTo(null); // centre aligned
+		windowFrame.pack();
+		windowFrame.setLocationRelativeTo(null); // centre aligned
 	}
 
 }

@@ -51,6 +51,10 @@ public class Genome implements Iterable<Genome>, Cloneable {
 		}	
 	}
 
+	/**
+	 * Appends the genome to 
+	 * @param genome
+	 */
 	public void append(Genome genome) {
 		Genome finalGenome = getLastGenome();		
 		Genome finalMerging = genome.getLastGenome().clone();
@@ -58,7 +62,12 @@ public class Genome implements Iterable<Genome>, Cloneable {
 		finalGenome.setChild(finalMerging);
 	}
 
-	public Genome getLastGenome() {
+	/**
+	 * Returns the last child from the genome.
+	 * 
+	 * @return Genome
+	 */
+	private Genome getLastGenome() {
 		Genome lastGenome = this;
 		
 		while(lastGenome.getChild() != null) {
@@ -70,10 +79,13 @@ public class Genome implements Iterable<Genome>, Cloneable {
 
 	public void setAngle(double angle) { this.angle = angle; }
 	public double getAngle() {	return angle; }
+	
 	public void setLength(int length) { this.length = length; }
 	public int getLength() { return length; }
+	
 	public void setColour(Color colour) { this.colour = colour; }
 	public Color getColour() { return colour; }
+	
 	public void setChild(Genome child) { this.child = child; }
 	public Genome getChild() { return child; }
 
