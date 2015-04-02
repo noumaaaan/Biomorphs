@@ -14,8 +14,11 @@ public class EvolutionaryBiomorph extends AbstractBiomorph {
 		super();
 	}
 	
-	public void evolve(Genome genome) {
-		this.genome.append(genome);
+	/**
+	 * Appends the new genome to the end of the current.
+	 */
+	protected void evolve(Genome genome) {
+		getGenome().append(genome);
 	}
 
 }

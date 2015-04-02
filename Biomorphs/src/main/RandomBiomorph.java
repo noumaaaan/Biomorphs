@@ -10,8 +10,8 @@ package main;
  */
 public class RandomBiomorph extends AbstractBiomorph {
 
-	public RandomBiomorph(double d, double e) {
-		super(d, e);
+	public RandomBiomorph(double x, double y) {
+		super(x, y);
 	}
 
 	public RandomBiomorph() {
@@ -19,5 +19,7 @@ public class RandomBiomorph extends AbstractBiomorph {
 	}
 
 	@Override
-	public void evolve(Genome genome) {	} // this biomorph type won't evolve!
+	protected void evolve(Genome genome) {
+		super.generateChildren();
+	}
 }

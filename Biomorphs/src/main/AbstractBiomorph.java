@@ -58,11 +58,13 @@ public abstract class AbstractBiomorph {
 		return genome;
 	}
 	
-	public abstract void evolve(Genome genome);
-	
+	/**
+	 * Generates a random amount of children to the biomorph's genome.
+	 * @return
+	 */
 	public int generateChildren() {
 		Random rand = new Random();
-		int evolutions = rand.nextInt(DEFAULT_GENOME_SIZE) + GENOME_MINIMUM_EVOLUTIONS; // number of iterations. capped at 10 for demo purposes, and never 0 (so +1).
+		int evolutions = rand.nextInt(DEFAULT_GENOME_SIZE) + GENOME_MINIMUM_EVOLUTIONS; // number of iterations
 		
 		Genome current = new Genome();
 		this.genome = current;
@@ -77,7 +79,17 @@ public abstract class AbstractBiomorph {
 		return evolutions;
 	}
 	
-	public void mutate() {		
-		evolve(new Genome(true)); // TODO mutate around 10 times, not 1. else not really visible.
+	/**
+	 * Controls how a biomorph evolves.
+	 * 
+	 * @param genome
+	 */
+	protected abstract void evolve(Genome genome);
+	
+	/**
+	 * Mutates the biomorph using a random genome.
+	 */
+	public void mutate() {
+		evolve(new Genome(true));
 	}
 }

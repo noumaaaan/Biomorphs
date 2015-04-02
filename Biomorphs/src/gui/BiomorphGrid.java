@@ -36,6 +36,12 @@ public class BiomorphGrid extends JPanel {
 		this.activeBiomorphPanel = activeBiomorphPanel;
 	}
 
+	/**
+	 * Populates the grid with a number of cells. Constructs BiomorphPanels within the cells
+	 * with evolutionary biomorphs.
+	 * 
+	 * @param cellCount
+	 */
 	public void setupGrid(int cellCount) {
 		int maxCells = rows * cols;
 
@@ -64,39 +70,31 @@ public class BiomorphGrid extends JPanel {
 
 				@Override
 				public void mouseReleased(MouseEvent e) {
-					//AbstractBiomorph activeBiomorph = activeBiomorphPanel.getBiomorph();
-					//Genome mergingGenome = panel.getBiomorph().getGenome();
-
-					activeBiomorphPanel.setBiomorph(panel.getBiomorph());
-					//activeBiomorph.evolve(mergingGenome); // merge genome into our active biomorph
-
+					activeBiomorphPanel.setBiomorph(panel.getBiomorph()); // user has selected new biomorph to become the active
 					activeBiomorphPanel.refresh();
 					
-					BiomorphGrid.this.mutate(); // mutate all panels
+					BiomorphGrid.this.mutateBiomorphs(); // mutate all panels
 				}
 			});
 
 			BiomorphGrid.this.add(panel);
 		}
 		
-		this.mutate();
+		this.mutateBiomorphs();
 	}
 
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 	}
-
-	public void refresh() {
-		this.revalidate();
-		this.repaint();
-	}
 	
 	/**
+	 * Mutates each biomorph within the grid.
+	 * 
 	 * TODO update all panels with new biomorph based on active, once
 	 * mutation has occurred.
 	 */
-	public void mutate() {
+	public void mutateBiomorphs() {
 		for(Component component : this.getComponents()) {
 			BiomorphPanel panel = (BiomorphPanel) component;
 			
