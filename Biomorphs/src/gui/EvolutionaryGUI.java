@@ -1,12 +1,9 @@
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -32,9 +29,9 @@ public class EvolutionaryGUI extends AbstractGUI {
 		super("Evolutionary Art: Final (STAGE 2)", 800, 600);
 
 		activeBiomorphPanel = new BiomorphPanel();
-		activeBiomorphPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		//activeBiomorphPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		
-		windowFrame.add(createMenuBar(activeBiomorphPanel), BorderLayout.NORTH);
+		//windowFrame.add(createMenuBar(activeBiomorphPanel), BorderLayout.NORTH); // TODO re-enable once actually needed
 
 		final JPanel biomorphs = new JPanel(new GridLayout(1, 2));
 		biomorphs.add(createBiomorphGrid());
@@ -47,7 +44,7 @@ public class EvolutionaryGUI extends AbstractGUI {
 		windowFrame.setLocationRelativeTo(null); // centre aligned
 	}
 
-	private JMenuBar createMenuBar(final BiomorphPanel panel) {
+	private JMenuBar createMenuBar(final BiomorphPanel panel) { // don't delete this - modify and uncomment method in constructor when needed
 		JMenuBar menuBar = new JMenuBar();
 		JMenu fileMenu = new JMenu("File");
 		JMenu editMenu = new JMenu("Edit");
