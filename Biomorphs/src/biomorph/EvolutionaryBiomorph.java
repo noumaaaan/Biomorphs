@@ -1,5 +1,7 @@
 package biomorph;
 
+import java.util.Random;
+
 public class EvolutionaryBiomorph extends AbstractBiomorph {
 	
 	public EvolutionaryBiomorph(double x, double y) {
@@ -15,10 +17,13 @@ public class EvolutionaryBiomorph extends AbstractBiomorph {
 	}
 	
 	/**
-	 * Appends the new genome to the end of the current.
+	 * Inserts a new genome randomly within the biomorph
 	 */
 	protected void evolve(Genome genome) {
-		getGenome().append(genome);
+		Random rand = new Random();
+		int position = rand.nextInt(getGenome().size());
+		
+		getGenome().get(position).insert(genome);
 	}
 
 }

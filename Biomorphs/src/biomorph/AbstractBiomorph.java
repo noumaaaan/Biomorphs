@@ -1,6 +1,5 @@
 package biomorph;
-import static biomorph.Constants.DEFAULT_GENOME_SIZE;
-import static biomorph.Constants.GENOME_MINIMUM_EVOLUTIONS;
+import static biomorph.Constants.*;
 
 import java.awt.geom.Point2D;
 import java.util.Random;
@@ -22,7 +21,7 @@ public abstract class AbstractBiomorph {
 	 * @param y coordinate on canvas
 	 */
 	public AbstractBiomorph(double x, double y) {
-		genome = new Genome();
+		genome = new Genome(true);
 		origin = new Point2D.Double(x, y);
 	}
 	
@@ -60,34 +59,34 @@ public abstract class AbstractBiomorph {
 	
 	/**
 	 * Generates a random amount of children to the biomorph's genome.
+	 * 
 	 * @return
 	 */
-	public int generateChildren() {
+	public void generateChildren() {
 		Random rand = new Random();
 		int evolutions = rand.nextInt(DEFAULT_GENOME_SIZE) + GENOME_MINIMUM_EVOLUTIONS; // number of iterations
 		
-		Genome current = new Genome();
-		this.genome = current;
-				
-		for(int i = 0; i <= evolutions; i++) {
-			Genome newParent = new Genome(true);			
-			current.setChild(newParent);
+		Genome current = genome;			
+		for(int i = 0; i < evolutions; i++) {
+			Genome newChild = new Genome(true);
+			current.setChild(newChild); // randomly generated child
 			
-			current = current.getChild();
+			current = newChild;
 		}
-		
-		return evolutions;
 	}
 	
 	/**
-	 * Controls how a biomorph evolves.
+	 * Controls how a biomorph evolves, given a genome.
 	 * 
 	 * @param genome
+	 * @throws InvalidGenomePositionException 
 	 */
 	protected abstract void evolve(Genome genome);
 	
 	/**
 	 * Mutates the biomorph using a random genome.
+	 * 
+	 * @throws InvalidGenomePositionException 
 	 */
 	public void mutate() {
 		evolve(new Genome(true));

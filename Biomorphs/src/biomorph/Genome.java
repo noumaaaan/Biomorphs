@@ -19,10 +19,6 @@ public class Genome implements Iterable<Genome>, Cloneable {
 
 	private Genome child; // chain from parent to final child
 
-	public Genome() {
-		this(false);
-	}
-
 	public Genome(boolean random) {
 		if(random) {
 			Random rand = new Random();
@@ -49,32 +45,6 @@ public class Genome implements Iterable<Genome>, Cloneable {
 		} else {
 			this.child = null;
 		}	
-	}
-
-	/**
-	 * Appends the genome to 
-	 * @param genome
-	 */
-	public void append(Genome genome) {
-		Genome finalGenome = getLastGenome();		
-		Genome finalMerging = genome.getLastGenome().clone();
-
-		finalGenome.setChild(finalMerging);
-	}
-
-	/**
-	 * Returns the last child from the genome.
-	 * 
-	 * @return Genome
-	 */
-	private Genome getLastGenome() {
-		Genome lastGenome = this;
-		
-		while(lastGenome.getChild() != null) {
-			lastGenome = lastGenome.getChild();
-		}
-
-		return lastGenome;
 	}
 
 	public void setAngle(double angle) { this.angle = angle; }
@@ -117,5 +87,44 @@ public class Genome implements Iterable<Genome>, Cloneable {
 	@Override
 	public Iterator<Genome> iterator() {
 		return new GenomeIterator(this);
+	}
+	
+	/**
+	 * Inserts a genome into the sequence as a child of the current.
+	 * 
+	 * @param Genome genome to insert
+	 */
+	public void insert(Genome genome) {
+		Genome finalMerging = genome;
+		
+		Genome oldChild = getChild(); // keep track of current child
+		finalMerging.setChild(oldChild); // place the old child behind the new entry
+				
+		setChild(finalMerging); // insert the new genome between the current and child
+	}
+	
+	/**
+	 * Returns a genome <code>index</code> positions down the sequence.
+	 * 
+	 * @param index of genome
+	 * @return Genome
+	 * @throws InvalidGenomePositionException
+	 */
+	public Genome get(int index) throws IndexOutOfBoundsException {
+		if(index > size()) {
+			throw new IndexOutOfBoundsException("Genome position cannot be greater than value returned by size()");
+		}
+		
+		Genome lastGenome = this;
+		
+		for(int i = 0; i < index; i++) {
+			if(lastGenome.getChild() != null) {
+				lastGenome = lastGenome.getChild();
+			} else {
+				throw new IndexOutOfBoundsException();
+			}
+		}
+
+		return lastGenome;
 	}
 }
