@@ -18,9 +18,10 @@ import biomorph.Genome;
  * 
  * @author Alex Luckett <lucketta@aston.ac.uk>
  */
-@SuppressWarnings("serial")
 public class BiomorphPanel extends JPanel {
-	AbstractBiomorph biomorph;
+	private static final long serialVersionUID = 1L;
+	
+	private AbstractBiomorph biomorph;
 	
 	public BiomorphPanel() {
 		this(new EvolutionaryBiomorph(), true); // default use evolutionary
@@ -65,7 +66,6 @@ public class BiomorphPanel extends JPanel {
 	 * @param startX start position on x axis
 	 * @param startY start position on y axis
 	 * @param biomorph biomorph to draw
-	 * @param isRightSide indicates true for right side of page, false for left
 	 * @param g2d graphics to draw with
 	 */
 	private void drawSection(double startX, double startY, 
@@ -92,16 +92,6 @@ public class BiomorphPanel extends JPanel {
 			
 			lastX = endX; lastY = endY; // update start position for next line to use
 		}
-	}
-	
-	public void newBiomorph() {
-		newBiomorph(new EvolutionaryBiomorph());
-	}
-	
-	public void newBiomorph(AbstractBiomorph biomorph) {
-		biomorph.generateChildren();
-		
-		this.biomorph = biomorph;
 	}
 	
 	public void setBiomorph(AbstractBiomorph biomorph) {

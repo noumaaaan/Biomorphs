@@ -37,10 +37,6 @@ public abstract class AbstractBiomorph {
 		this(0, 0);
 	}
 	
-	public AbstractBiomorph(AbstractBiomorph bio) {
-		this(bio.getPosition().getX(), bio.getPosition().getY(), bio.getGenome());
-	}
-	
 	public void setPosition(double x, double y) {
 		origin.setLocation(x, y);
 	}
@@ -58,9 +54,7 @@ public abstract class AbstractBiomorph {
 	}
 	
 	/**
-	 * Generates a random amount of children to the biomorph's genome.
-	 * 
-	 * @return
+	 * Generates a random amount of children to the biomorph's genome
 	 */
 	public void generateChildren() {
 		Random rand = new Random();
@@ -79,14 +73,11 @@ public abstract class AbstractBiomorph {
 	 * Controls how a biomorph evolves, given a genome.
 	 * 
 	 * @param genome
-	 * @throws InvalidGenomePositionException 
 	 */
 	protected abstract void evolve(Genome genome);
 	
 	/**
-	 * Mutates the biomorph using a random genome.
-	 * 
-	 * @throws InvalidGenomePositionException 
+	 * Mutates the biomorph using a random genome
 	 */
 	public void mutate() {
 		evolve(new Genome(true));

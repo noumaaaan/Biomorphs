@@ -1,12 +1,9 @@
 package gui;
 
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import biomorph.AbstractBiomorph;
@@ -30,7 +27,7 @@ public class EvolutionaryGUI extends AbstractGUI {
 
 		activeBiomorphPanel = new BiomorphPanel();
 		//activeBiomorphPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		
+
 		//windowFrame.add(createMenuBar(activeBiomorphPanel), BorderLayout.NORTH); // TODO re-enable once actually needed
 
 		final JPanel biomorphs = new JPanel(new GridLayout(1, 2));
@@ -48,33 +45,9 @@ public class EvolutionaryGUI extends AbstractGUI {
 		JMenuBar menuBar = new JMenuBar();
 		JMenu fileMenu = new JMenu("File");
 		JMenu editMenu = new JMenu("Edit");
-		JMenu biomorphMenu = new JMenu("Biomorph");
 		
-		JMenuItem newBiomorph = new JMenuItem("New biomorph");
-		newBiomorph.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				panel.newBiomorph(); // placeholder behaviour for now until evolving implemented
-				panel.refresh();
-			}
-		});
-		biomorphMenu.add(newBiomorph);
-		
-		JMenuItem repaintBiomorph = new JMenuItem("Repaint");
-		repaintBiomorph.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				panel.refresh();
-			}
-			
-		});
-		biomorphMenu.add(repaintBiomorph);
-
 		menuBar.add(fileMenu);
 		menuBar.add(editMenu);
-		menuBar.add(biomorphMenu);
 
 		return menuBar;
 	}
@@ -86,7 +59,7 @@ public class EvolutionaryGUI extends AbstractGUI {
 		BiomorphGrid biomorphGrid = new BiomorphGrid(
 				gridRows, gridCols, biomorph, activeBiomorphPanel);
 		
-		biomorphGrid.setupGrid((gridRows * gridCols));
+		biomorphGrid.setupGrid(gridRows * gridCols);
 		
 		return biomorphGrid;
 	}
