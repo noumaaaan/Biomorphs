@@ -23,11 +23,10 @@ public class EvolutionaryGUI extends AbstractGUI {
 	private final int gridCols = 3;
 
 	public EvolutionaryGUI() {
-		super("Evolutionary Art: Final (STAGE 2)", 800, 600);
+		super("Biomorph Mutation: Advanced User", 800, 600);
 
 		activeBiomorphPanel = new BiomorphPanel();
 		//activeBiomorphPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-
 		//windowFrame.add(createMenuBar(activeBiomorphPanel), BorderLayout.NORTH); // TODO re-enable once actually needed
 
 		final JPanel biomorphs = new JPanel(new GridLayout(1, 2));
@@ -36,7 +35,6 @@ public class EvolutionaryGUI extends AbstractGUI {
 
 		windowFrame.add(biomorphs);
 		windowFrame.setVisible(true);
-
 		windowFrame.pack();
 		windowFrame.setLocationRelativeTo(null); // centre aligned
 	}
@@ -45,10 +43,8 @@ public class EvolutionaryGUI extends AbstractGUI {
 		JMenuBar menuBar = new JMenuBar();
 		JMenu fileMenu = new JMenu("File");
 		JMenu editMenu = new JMenu("Edit");
-		
 		menuBar.add(fileMenu);
 		menuBar.add(editMenu);
-
 		return menuBar;
 	}
 

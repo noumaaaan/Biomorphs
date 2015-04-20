@@ -1,8 +1,12 @@
 package gui;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -12,6 +16,7 @@ import javax.swing.UIManager;
  * Base class for all GUIs
  * 
  * @author Alexander Luckett <lucketta@aston.ac.uk>
+ * @author Nouman Mehmood <mehmoodn@aston.ac.uk>
  */
 public abstract class AbstractGUI {
 	
@@ -62,5 +67,44 @@ public abstract class AbstractGUI {
 			System.exit(0);
 		}
 	}
+	
+	
+	
+	
+	protected void returnUserSelect()
+	{
+		int response = JOptionPane.showConfirmDialog(windowFrame,
+				"Would you really like to return to the User Selection Screen?", 
+				"Quit?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+		
+		int target = JOptionPane.YES_OPTION;
+		
+		if (response == target) {
+			destroyGui();
+			new GuiStartup().displayGui();
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	public void helpScreen() throws FileNotFoundException{
+		Scanner input = new Scanner(new File("Files/text.txt"));
+		System.out.println();
+
+		while (input.hasNextLine()){
+			
+			System.out.print(input.nextLine());
+			System.out.println();
+			
+		}
+	}
+	
+	
+	
+	
 	
 }
