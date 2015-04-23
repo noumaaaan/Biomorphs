@@ -1,0 +1,24 @@
+About
+Welcome to the Biomorph Mutation Application
+
+How to use (Beginner mode):
+
+1. Generate Biomorph
+
+2. Save
+
+3. Load
+
+4. help
+
+5. Return to User Selection
+
+6. Exit
+
+
+Developers:
+Nouman Mehmood (mehmoodn@aston.a.cuk)
+Alex Luckett (lucketta@aston.a.cuk)
+Jurgen Hajdini (hajdinij@aston.ac.uk)
+Kelvin Chui (chuikkl@aston.ac.uk)
+Hussain Ahmed (ahmedmh@aston.ac.uk)
