@@ -1,5 +1,6 @@
 package biomorph;
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -12,7 +13,9 @@ import static biomorph.Constants.*;
  * 
  * @author Alex Luckett <lucketta@aston.ac.uk>
  */
-public class Genome implements Iterable<Genome>, Cloneable {
+public class Genome implements Iterable<Genome>, Cloneable, Serializable {
+	private static final long serialVersionUID = -705113420866471080L;
+	
 	private double angle;
 	private int length;
 	private Color colour;
@@ -71,9 +74,13 @@ public class Genome implements Iterable<Genome>, Cloneable {
 
 	@Override
 	public String toString() {
-		return "Angle " + angle + ", "
-			+ "length " + length + ", "
-			+ "colour " + colour.toString();
+		String str = angle + ", " + length + ", " + colour.getRGB();
+		
+		if(child != null) {
+			str += "\n {" + child.toString() + "}";
+		}
+		
+		return str;
 	}
 
 	/**

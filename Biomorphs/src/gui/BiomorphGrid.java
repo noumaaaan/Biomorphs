@@ -27,12 +27,12 @@ public class BiomorphGrid extends JPanel {
 	private AbstractBiomorph baseBiomorph;
 	private final BiomorphPanel activeBiomorphPanel;
 
-	public BiomorphGrid(int rows, int cols, AbstractBiomorph baseBiomorph, BiomorphPanel activeBiomorphPanel) {
+	public BiomorphGrid(int rows, int cols, BiomorphPanel activeBiomorphPanel) {
 		super(new GridLayout(rows, cols));
 		
 		this.rows = rows;
 		this.cols = cols;
-		this.baseBiomorph = baseBiomorph;
+		this.baseBiomorph = activeBiomorphPanel.getBiomorph();
 		this.activeBiomorphPanel = activeBiomorphPanel;
 	}
 
