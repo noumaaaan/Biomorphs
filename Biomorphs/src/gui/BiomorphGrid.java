@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
@@ -10,7 +9,6 @@ import java.awt.event.MouseListener;
 import java.security.InvalidParameterException;
 
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import biomorph.AbstractBiomorph;
@@ -53,7 +51,7 @@ public class BiomorphGrid extends JPanel {
 		}
 
 		for(int i = 0; i < cellCount; i++) {
-			AbstractBiomorph bio = new EvolutionaryBiomorph(baseBiomorph);
+			AbstractBiomorph bio = new EvolutionaryBiomorph(baseBiomorph.getGenome());
 			final BiomorphPanel panel = new BiomorphPanel(bio, false);
 			panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 

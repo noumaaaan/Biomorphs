@@ -1,7 +1,7 @@
 package biomorph;
-import static biomorph.Constants.*;
+import static biomorph.Constants.DEFAULT_GENOME_SIZE;
+import static biomorph.Constants.GENOME_MINIMUM_EVOLUTIONS;
 
-import java.awt.geom.Point2D;
 import java.util.Random;
 
 
@@ -12,37 +12,16 @@ import java.util.Random;
  */
 public abstract class AbstractBiomorph {
 	protected Genome genome;
-	private Point2D origin;
-
-	/**
-	 * Constructs a biomorph
-	 * 
-	 * @param x coordinate on canvas
-	 * @param y coordinate on canvas
-	 */
-	public AbstractBiomorph(double x, double y) {
-		genome = new Genome(true);
-		origin = new Point2D.Double(x, y);
-	}
 	
-	public AbstractBiomorph(double x, double y, Genome genome) {
+	public AbstractBiomorph( Genome genome) {
 		this.genome = genome.clone();
-		origin = new Point2D.Double(x, y);
 	}
 	
 	/**
 	 * Creates a biomorph at the default position (0, 0)
 	 */
 	public AbstractBiomorph() {
-		this(0, 0);
-	}
-	
-	public void setPosition(double x, double y) {
-		origin.setLocation(x, y);
-	}
-	
-	public Point2D getPosition() {
-		return origin;
+		genome = new Genome(true);
 	}
 	
 	public void setGenome(Genome genome) {

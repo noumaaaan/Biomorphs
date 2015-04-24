@@ -23,6 +23,9 @@ public class BiomorphPanel extends JPanel {
 	
 	private AbstractBiomorph biomorph;
 	
+	private double middleX = 0;
+	private double middleY = 0;
+	
 	public BiomorphPanel() {
 		this(new EvolutionaryBiomorph(), true); // default use evolutionary
 	}
@@ -38,10 +41,8 @@ public class BiomorphPanel extends JPanel {
 	}
 	
 	private void centreBiomorph() {
-		double canvasWidth = super.getSize().getWidth();
-		double canvasHeight = super.getSize().getHeight();
-		
-		biomorph.setPosition(canvasWidth/2, canvasHeight/2);
+		middleX = super.getSize().getWidth() / 2;
+		middleY = super.getSize().getHeight() / 2;
 	}
 
 	@Override
@@ -52,12 +53,9 @@ public class BiomorphPanel extends JPanel {
 				
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setStroke(new BasicStroke(2f));
-				
-		double startX = biomorph.getPosition().getX();
-		double startY = biomorph.getPosition().getY();
 		
-		drawSection(startX, startY, biomorph, DrawSection.LEFT, g2d);		
-		drawSection(startX, startY, biomorph, DrawSection.RIGHT, g2d);
+		drawSection(middleX, middleY, biomorph, DrawSection.LEFT, g2d);		
+		drawSection(middleX, middleY, biomorph, DrawSection.RIGHT, g2d);
 	}
 	
 	/**
@@ -68,8 +66,7 @@ public class BiomorphPanel extends JPanel {
 	 * @param biomorph biomorph to draw
 	 * @param g2d graphics to draw with
 	 */
-	private void drawSection(double startX, double startY, 
-			AbstractBiomorph biomorph, DrawSection section, Graphics2D g2d) {		
+	private void drawSection(double startX, double startY, AbstractBiomorph biomorph, DrawSection section, Graphics2D g2d) {		
 		double lastX = startX;
 		double lastY = startY;
 		

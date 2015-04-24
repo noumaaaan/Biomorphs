@@ -10,10 +10,6 @@ package biomorph;
  */
 public class RandomBiomorph extends AbstractBiomorph {
 
-	public RandomBiomorph(double x, double y) {
-		super(x, y);
-	}
-
 	public RandomBiomorph() {
 		super();
 	}
