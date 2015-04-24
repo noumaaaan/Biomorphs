@@ -5,9 +5,9 @@ import java.awt.ComponentOrientation;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 import biomorph.AbstractBiomorph;
 import biomorph.RandomBiomorph;
@@ -23,11 +23,11 @@ public class BasicGUI extends AbstractGUI {
 	public BasicGUI() {
 		super("Biomorph Mutation: Beginner User", 800, 600);
 
-		//Create the panel to hold the buttons and define Grid Layout
+		/** Panel to hold the components */
 		JPanel button_panel = new JPanel();
 		button_panel.setLayout(new GridLayout(6, 1, 20, 20));
 
-		//Create the buttons for the panel 
+		/** Create the buttons */ 
 		JButton start = new JButton(" Generate Biomorph ");
 		start.setToolTipText("Create a new biomorph by clicking here"); 
 		
@@ -46,7 +46,7 @@ public class BasicGUI extends AbstractGUI {
 		JButton end = new JButton(" Exit ");
 		end.setToolTipText("Quit the application by clicking here");
 
-		//Place the buttons within the panel and add them to the frame
+		/** Add buttons to the panel */
 		button_panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		button_panel.add(start);
 		button_panel.add(save);
@@ -56,7 +56,7 @@ public class BasicGUI extends AbstractGUI {
 		button_panel.add(end);
 		windowFrame.add(button_panel, BorderLayout.WEST);
 
-		//Defining the Draw Canvas
+		/** Defining the draw canvas */
 		AbstractBiomorph bio = new RandomBiomorph();
 		final BiomorphPanel panel = new BiomorphPanel(bio, true);
 
@@ -64,46 +64,62 @@ public class BasicGUI extends AbstractGUI {
 		windowFrame.setVisible(true);
 		
 		
-		//Action listener to Generate a new biomorph
+		
+		
+		
+		/** List Action Listeners below : */
+		
+		
+		
+		
+		/** 1. Generate new Biomorph */
 		start.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
 				panel.getBiomorph().mutate();
 				panel.refresh();
-			}
-		});
+		}});
+	
+		
+		/** 2. Save the Biomorph */
+		save.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+			new SaveFile();
+				
+		}});
+			
+		
+		/** 3. Load the Biomorph */
+		load.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				new LoadFile();
+				
+		}});
 		
 		
-		//Action listener to click the help option
+			
+		/** 4. Help Screen */
 		help1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				try{
+				destroyGui();
+				new Help().displayGui();
 				
-				helpScreen();	
-				} 
+			}});
+	
 				
-				catch (FileNotFoundException e) {
-				System.out.println("Failed to read the File. Contact Developer");
-				}
-			}
-		});
-				
-		
-		
-		// Add the listener to return to User Selection
+		/** 5. Return to User Selection */
 		userSelect.addActionListener(new ActionListener() {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						returnUserSelect();
-					}});
+		}});
 				
 		
-		//Action listener to close application
+		/** 6. Exit the Application */
 		end.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
 				exitApplication();
-			}
-		});
+		}});
 
 		windowFrame.pack();
 		windowFrame.setLocationRelativeTo(null); // centre aligned

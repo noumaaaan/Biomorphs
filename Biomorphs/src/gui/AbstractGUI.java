@@ -1,12 +1,8 @@
 package gui;
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -18,6 +14,7 @@ import javax.swing.UIManager;
  * @author Alexander Luckett <lucketta@aston.ac.uk>
  * @author Nouman Mehmood <mehmoodn@aston.ac.uk>
  */
+
 public abstract class AbstractGUI {
 	
 	protected JFrame windowFrame;
@@ -25,11 +22,12 @@ public abstract class AbstractGUI {
 	public AbstractGUI(String windowTitle, int width, int height) {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); // use native appearance
-			
+
 			windowFrame = new JFrame(windowTitle);
 			windowFrame.setPreferredSize(new Dimension(width,height));
 			windowFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 			windowFrame.setResizable(true);
+		
 		} catch (Exception e) {
 			System.err.println("Failed to set graphics mode. Reverting to Java LAF.");
 		}
@@ -43,18 +41,18 @@ public abstract class AbstractGUI {
 		});
 	}
 	
-	/**
-	 * Destroys the current frame.
-	 */
+	/** Destroy the Current Frame */
 	protected void destroyGui() {
 		windowFrame.setVisible(false);
 		windowFrame.dispose();
 	}
 	
+	/** Display the interface */
 	public void displayGui() {
 		windowFrame.setVisible(true);
 	}
 	
+	/** Exit the application w/ responses */
 	protected void exitApplication()
 	{
 		int response = JOptionPane.showConfirmDialog(windowFrame,
@@ -62,15 +60,12 @@ public abstract class AbstractGUI {
 				"Quit?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 		
 		int target = JOptionPane.YES_OPTION;
-		
 		if (response == target) {
 			System.exit(0);
 		}
 	}
 	
-	
-	
-	
+	/** Return to the User Selection screen */
 	protected void returnUserSelect()
 	{
 		int response = JOptionPane.showConfirmDialog(windowFrame,
@@ -82,29 +77,7 @@ public abstract class AbstractGUI {
 		if (response == target) {
 			destroyGui();
 			new GuiStartup().displayGui();
+		
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	public void helpScreen() throws FileNotFoundException{
-		Scanner input = new Scanner(new File("Files/text.txt"));
-		System.out.println();
-
-		while (input.hasNextLine()){
-			
-			System.out.print(input.nextLine());
-			System.out.println();
-			
-		}
-	}
-	
-	
-	
-	
-	
 }

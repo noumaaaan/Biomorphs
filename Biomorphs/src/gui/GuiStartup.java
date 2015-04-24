@@ -6,7 +6,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.InputStream;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,11 +13,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- * 	1. 		This is the start up screen that the viewer will first see 
- * 			It Displays a splash screen with user selection.
+ * Splash screen with user selection.
  * 
  * @author Nouman Mehmood <mehmoodn@aston.ac.uk>
  */
+
 public class GuiStartup extends AbstractGUI {
 
 	public static void main(String[] args) {
@@ -59,7 +58,7 @@ public class GuiStartup extends AbstractGUI {
 		JPanel panel = new JPanel(new GridBagLayout());
 
 	
-		// Add the different components to panel
+		/** Add components to panel */
 		windowFrame.getContentPane().add(panel, BorderLayout.NORTH);
 		windowFrame.add(panel);	
 		panel.add(description1);
@@ -69,7 +68,7 @@ public class GuiStartup extends AbstractGUI {
 		panel.add(advanced);
 		panel.add(quit);
 
-		// Set GridBag constraints to position the components on the JFrame
+		/** Set GridBrag constraints */
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridx = 0;
 		c.gridy = 0;
@@ -101,7 +100,7 @@ public class GuiStartup extends AbstractGUI {
 		c.insets = new Insets(10, 10, 10, 10);
 		panel.add(quit, c);			
 		
-		// Add the listener for the beginner setting
+		/** Beginner selection */
 		beginner.addActionListener(new ActionListener() {
 
 			@Override
@@ -112,7 +111,7 @@ public class GuiStartup extends AbstractGUI {
 
 		});
 
-		// Add the listener for the advanced setting
+		/** Advanced Selection */
 		advanced.addActionListener(new ActionListener() {
 
 			@Override
@@ -124,10 +123,10 @@ public class GuiStartup extends AbstractGUI {
 		});
 
 		
-		//Action listener to close application
-				quit.addActionListener(new ActionListener(){
-					public void actionPerformed(ActionEvent event){
-						exitApplication();
+		/** Exit the application*/
+		quit.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+			exitApplication();
 					}
 				});
 		
