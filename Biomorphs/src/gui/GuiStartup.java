@@ -117,7 +117,8 @@ public class GuiStartup extends AbstractGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				destroyGui();
-				new EvolutionaryGUI().displayGui();
+				new AdvancedGUI().displayGui();
+				//new EvolutionaryGUI().displayGui();
 			}
 
 		});

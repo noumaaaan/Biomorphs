@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
@@ -9,6 +10,7 @@ import java.awt.event.MouseListener;
 import java.security.InvalidParameterException;
 
 import javax.swing.BorderFactory;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import biomorph.AbstractBiomorph;
@@ -21,6 +23,7 @@ import biomorph.EvolutionaryBiomorph;
  */
 @SuppressWarnings("serial")
 public class BiomorphGrid extends JPanel {
+	
 	private int rows = 0;
 	private int cols = 0;
 
