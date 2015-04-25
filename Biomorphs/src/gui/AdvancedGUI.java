@@ -34,11 +34,6 @@ public class AdvancedGUI extends AbstractGUI{
 		JSlider colourSlider = new JSlider();
 		JLabel colourLabel = new JLabel();
 		
-
-		
-		
-		
-		
 		
 		
 		/** Panel to hold the components */
@@ -52,11 +47,12 @@ public class AdvancedGUI extends AbstractGUI{
 		windowFrame.add(panel1, BorderLayout.EAST);
 
 		/** Create the components */ 
-		JButton test = new JButton(" Test123 ");
-		JLabel label_test = new JLabel("Colour");
+		JButton test = new JButton(" Generate Biomorph");
+		JLabel label_test = new JLabel(" Colour ");
 		test.setToolTipText("Testing"); 
+		button_panel.add(test);
 		button_panel.add(label_test);
-
+		
 		
 		
 		colourSlider = new JSlider(JSlider.HORIZONTAL, 0, 20, 0);
