@@ -27,7 +27,7 @@ public class Genome implements Iterable<Genome>, Cloneable, Serializable {
 			Random rand = new Random();
 
 			angle = rand.nextInt() * rand.nextDouble();
-			length = rand.nextInt(GENOME_MAX_LENGTH);
+			length = rand.nextInt(GENOME_MAX_LENGTH) + 10;
 			colour = new Color(rand.nextFloat(), rand.nextFloat(), rand.nextFloat());
 			child = null;
 		} else {
