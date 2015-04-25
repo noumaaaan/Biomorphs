@@ -112,7 +112,7 @@ public class GuiStartup extends AbstractGUI {
 		});
 
 		/** Advanced Selection */
-		advanced.addActionListener(new ActionListener() {
+		advanced.addActionListener(new ActionListener() { 	
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
