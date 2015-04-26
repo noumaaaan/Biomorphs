@@ -220,7 +220,7 @@ public class BiomorphPanel extends JPanel {
 			double endX = e.getX();
 			double endY = e.getY();
 			
-			int length = (int) calculateLength(startX, endX, startY, endY);
+			int length = (int) calculateLength(startX, startY, endX, endY);
 			
 			genome.setLength(length);
 		}
