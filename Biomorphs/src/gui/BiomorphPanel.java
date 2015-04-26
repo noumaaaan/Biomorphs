@@ -62,7 +62,7 @@ public class BiomorphPanel extends JPanel {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				int lineNumber = 0;
-
+				
 				for (Line2D line : lines) {
 					if (lineNumber == lines.size() / 2) {
 						lineNumber = 0; // next half is the right side
@@ -134,6 +134,30 @@ public class BiomorphPanel extends JPanel {
 			private void checkHit(MouseEvent e, List<Line2D> lines) {
 				Genome genome = biomorph.getGenome().get(activeLineNumber);
 
+				setLength(e, genome);
+				setAngle(e, genome);
+				
+				BiomorphPanel.this.refresh();
+			}
+			
+			private void setAngle(MouseEvent e, Genome genome) {
+				int lengthA = (int) calculateLength(activeLine.getX1(), e.getX(),  activeLine.getX2(), e.getY());
+				int lengthB = (int) calculateLength(e.getX(), activeLine.getX2(), e.getY(), activeLine.getY2());
+				int lengthC = (int) calculateLength(e.getX(), activeLine.getX1(), e.getY(), activeLine.getY1());
+				
+				double cosX = (Math.pow(lengthA, 2) + Math.pow(lengthC, 2) - Math.pow(lengthB, 2))
+								/ (2 * lengthA * lengthC);
+				
+				double angle = Math.acos(cosX);
+				
+				if(angle < 0) {
+					angle += 360;
+				}
+				
+				genome.setAngle(angle);
+			}
+			
+			private void setLength(MouseEvent e, Genome genome) {
 				/* starts at the starting point of the current line */
 				double startX = activeLine.getX1();
 				double startY = activeLine.getY1();
@@ -145,8 +169,6 @@ public class BiomorphPanel extends JPanel {
 				int length = (int) calculateLength(startX, endX, startY, endY);
 				
 				genome.setLength(length);
-
-				BiomorphPanel.this.refresh();
 			}
 			
 			private double calculateLength(double x1, double y1, double x2, double y2 ) {
@@ -238,6 +260,12 @@ public class BiomorphPanel extends JPanel {
 	public void refresh() {
 		this.revalidate();
 		this.repaint();
+	}
+	
+	public void clearActiveLine() {
+		activeLine = null;
+		activeLineNumber = 0;
+		biomorph.getGenome().get(activeLineNumber).setColour(Color.PINK);		
 	}
 
 	/**

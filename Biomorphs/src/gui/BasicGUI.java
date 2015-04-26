@@ -77,6 +77,7 @@ public class BasicGUI extends AbstractGUI {
 			public void actionPerformed(ActionEvent event){
 				panel.getBiomorph().mutate();
 				panel.refresh();
+				panel.clearActiveLine();
 		}});
 	
 		
