@@ -28,15 +28,15 @@ import biomorph.Genome;
 public class BiomorphPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
-	private AbstractBiomorph biomorph;
-
 	private Point2D midPoint;
+	private AbstractBiomorph biomorph;
 
 	private ArrayList<Line2D> leftLines;
 	private ArrayList<Line2D> rightLines;
 
 	private Line2D activeLine; // line currently clicked
 	private int activeLineNumber; // corresponds to the child genome number
+	private CanvasSide activeLineSide;
 
 	public BiomorphPanel() {
 		this(new EvolutionaryBiomorph(), true); // default use evolutionary
@@ -136,11 +136,6 @@ public class BiomorphPanel extends JPanel {
 		this.revalidate();
 		this.repaint();
 	}
-	
-	public void clearActiveLine() {
-		activeLine = null;
-		activeLineNumber = 0;	
-	}
 
 	/**
 	 * Represents the section of a panel to draw on.
@@ -155,8 +150,14 @@ public class BiomorphPanel extends JPanel {
 		
 		@Override
 		public void mouseReleased(MouseEvent e) {
-			if(!checkSide(leftLines, e)) { // only check against right hand side if not on left. no need to pointlessly check.
-				checkSide(rightLines, e);
+			if(checkSide(leftLines, e)) { // only check against right hand side if not on left. no need to pointlessly check.
+				activeLineSide = CanvasSide.LEFT;
+			} else if(checkSide(rightLines, e)) {
+				activeLineSide = CanvasSide.RIGHT;
+			} else {
+				activeLine = null;
+				activeLineNumber = 0;
+				activeLineSide = null;
 			}
 		}
 		
@@ -190,18 +191,27 @@ public class BiomorphPanel extends JPanel {
 		
 		@Override
         public void mouseDragged(MouseEvent e) {
-			Genome genome = biomorph.getGenome().get(activeLineNumber);
-
-			setLength(e, genome);
-			setAngle(e, genome);
-			
-			BiomorphPanel.this.refresh();
+			if(activeLine != null) {
+				Genome genome = biomorph.getGenome().get(activeLineNumber);
+	
+				setLength(e, genome);
+				setAngle(e, genome);
+				
+				BiomorphPanel.this.refresh();
+			} 
 		}
 		
 		private void setAngle(MouseEvent e, Genome genome) {
-			double angle = getAngleBetweenTwoPoints(activeLine.getP1(), e.getPoint(), activeLine.getP2());
+			double angle = getAngleBetweenTwoPoints(
+					activeLine.getP2(), e.getPoint(), activeLine.getP1()
+				);
 			
-			genome.setAngle(angle);
+			if(activeLineSide == CanvasSide.LEFT) {
+				genome.setAngle(-angle);
+			} else {
+				genome.setAngle(angle);
+			}
+			
 		}
 		
 		private double getAngleBetweenTwoPoints(Point2D point1, Point2D point2, Point2D fixedPoint) {
