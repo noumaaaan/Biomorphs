@@ -74,7 +74,7 @@ public class Genome implements Iterable<Genome>, Cloneable, Serializable {
 
 	@Override
 	public String toString() {
-		String str = angle + ", " + length + ", " + colour.getRGB();
+		String str = "A" + angle + ", L" + length + ", C" + colour.getRGB();
 		
 		if(child != null) {
 			str += "\n {" + child.toString() + "}";
