@@ -70,8 +70,8 @@ public class BiomorphPanel extends JPanel {
 
 					if (isLineClicked(e, line)) {
 						activeLine = line;
-						biomorph.getGenome().get(lineNumber)
-								.setColour(Color.BLACK);
+						biomorph.getGenome().get(lineNumber).setColour(Color.BLACK);
+						
 						activeLineNumber = lineNumber;
 
 						BiomorphPanel.this.refresh();
@@ -113,26 +113,47 @@ public class BiomorphPanel extends JPanel {
 			public void mouseDragged(MouseEvent e) {
 				checkHit(e, BiomorphPanel.this.lines);
 			}
+			
+			/* e   (lenB)
+			 *   -------- active P2
+			 *    \     |
+			 *     \    |
+			 * (len \   | (lenA)
+			 *   C)  \  |
+			 *        \X|
+			 *         \| active P1
+			 *         
+			 *  lenA = Math.sqrt(p2.x - p1.x)^2 + (p2.y - p1.y)^2)
+			 *  lenB = Math.sqrt(e.x - pt2.x)^2 + (e.y - pt2.y)^2)
+			 *  lenC = Math.sqrt(e.x - p1.x)^2 + (e.y - p1.y)^2)
+			 *  
+			 *  cosX = (lenA^2 + lenC^2 - lenB^2) / 2 * lenA * lenC
+			 *     X = cos-1(cosX)
+			 */
 
 			private void checkHit(MouseEvent e, List<Line2D> lines) {
 				Genome genome = biomorph.getGenome().get(activeLineNumber);
 
+				/* starts at the starting point of the current line */
 				double startX = activeLine.getX1();
 				double startY = activeLine.getY1();
 
+				/* ends where the user's cursor currently is (drag location) */
 				double endX = e.getX();
 				double endY = e.getY();
 
-				int length = (int) Math.hypot(endX - startX, endY - startY); // length of current genome
-				
-				if(endX < startX && endY < startY) {
-					//genome.setAngle(-genome.getAngle());
-					System.out.println("hhhh");
-				}
+				int length = (int) calculateLength(startX, endX, startY, endY);
 				
 				genome.setLength(length);
 
 				BiomorphPanel.this.refresh();
+			}
+			
+			private double calculateLength(double x1, double y1, double x2, double y2 ) {
+				return Math.sqrt(
+						Math.pow(x2 - x1, 2) + 
+						Math.pow(y2 - y1, 2)
+					);
 			}
 
 		});
@@ -157,8 +178,8 @@ public class BiomorphPanel extends JPanel {
 
 		lines.clear();
 
-		lines.addAll(drawSection(midPoint, biomorph, DrawSection.LEFT, g2d));
-		lines.addAll(drawSection(midPoint, biomorph, DrawSection.RIGHT, g2d));
+		lines.addAll(drawSection(midPoint, biomorph, CanvasSide.LEFT, g2d));
+		lines.addAll(drawSection(midPoint, biomorph, CanvasSide.RIGHT, g2d));
 	}
 
 	/**
@@ -174,7 +195,7 @@ public class BiomorphPanel extends JPanel {
 	 *            graphics to draw with
 	 */
 	private ArrayList<Line2D> drawSection(Point2D point,
-			AbstractBiomorph biomorph, DrawSection section, Graphics2D g2d) {
+			AbstractBiomorph biomorph, CanvasSide section, Graphics2D g2d) {
 		ArrayList<Line2D> lines = new ArrayList<Line2D>(200);
 
 		double lastX = point.getX();
@@ -183,23 +204,13 @@ public class BiomorphPanel extends JPanel {
 		for (Genome genome : biomorph.getGenome()) {
 			g2d.setColor(genome.getColour());
 
-			double sinAngle = Math.sin(genome.getAngle()); // used to calculate
-															// end point on X
-															// axis
-			double cosAngle = Math.cos(genome.getAngle()); // used to calculate
-															// end point on Y
-															// axis
+			double sinAngle = Math.sin(genome.getAngle()); // used to calculate end point on X axis
+			double cosAngle = Math.cos(genome.getAngle()); // used to calculate end point on Y axis
 
 			double endX = genome.getLength() * sinAngle;
-			double endY = lastY + (genome.getLength() * cosAngle); // always the
-																	// same ->
-																	// want it
-																	// symmetrical
-																	// along y
-																	// axis
-
-			if (section == DrawSection.RIGHT) { // need to invert if left side
-												// (+ and -)
+			double endY = lastY + (genome.getLength() * cosAngle); // always the same -> want it symmetrical along y axis
+			
+			if (section == CanvasSide.RIGHT) { // need to invert if left side (+ and -)
 				endX = lastX + endX;
 			} else {
 				endX = lastX - endX;
@@ -234,7 +245,7 @@ public class BiomorphPanel extends JPanel {
 	 * 
 	 * @author Alex Luckett <lucketta@aston.ac.uk>
 	 */
-	private enum DrawSection {
+	private enum CanvasSide {
 		RIGHT, LEFT
 	}
 }
