@@ -155,25 +155,33 @@ public class BiomorphPanel extends JPanel {
 		
 		@Override
 		public void mouseReleased(MouseEvent e) {
-			checkSide(leftLines, e);
-			checkSide(rightLines, e);
+			if(!checkSide(leftLines, e)) { // only check against right hand side if not on left. no need to pointlessly check.
+				checkSide(rightLines, e);
+			}
 		}
 		
-		private void checkSide(List<Line2D> lines, MouseEvent e) {
+		private boolean checkSide(List<Line2D> lines, MouseEvent e) {
+			biomorph.getGenome().get(activeLineNumber).setHighlighted(false); // clear previous selection
+			
+			boolean isLineFound = false;
+			
 			int lineNumber = 0;
 			
 			for (Line2D line : lines) {
 				if (isLineClicked(e, line)) {
 					activeLine = line;
-					biomorph.getGenome().get(lineNumber).setColour(Color.BLACK);
+					biomorph.getGenome().get(lineNumber).setHighlighted(true);
 					
 					activeLineNumber = lineNumber;
-
+					
+					isLineFound = true;
 					BiomorphPanel.this.refresh();
 				}
 
 				lineNumber++;
 			}
+			
+			return isLineFound;
 		}
 		
 		private boolean isLineClicked(MouseEvent event, Line2D line) {
@@ -193,8 +201,7 @@ public class BiomorphPanel extends JPanel {
 		private void setAngle(MouseEvent e, Genome genome) {
 			double angle = getAngleBetweenTwoPoints(activeLine.getP1(), e.getPoint(), activeLine.getP2());
 			
-			System.out.println(-angle);
-			genome.setAngle(-angle);
+			genome.setAngle(angle);
 		}
 		
 		private double getAngleBetweenTwoPoints(Point2D point1, Point2D point2, Point2D fixedPoint) {

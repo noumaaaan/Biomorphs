@@ -19,6 +19,7 @@ public class Genome implements Iterable<Genome>, Cloneable, Serializable {
 	private double angle;
 	private int length;
 	private Color colour;
+	private boolean isHighlighted;
 
 	private Genome child; // chain from parent to final child
 
@@ -30,11 +31,13 @@ public class Genome implements Iterable<Genome>, Cloneable, Serializable {
 			length = rand.nextInt(GENOME_MAX_LENGTH) + 10;
 			colour = new Color(rand.nextFloat(), rand.nextFloat(), rand.nextFloat());
 			child = null;
+			isHighlighted = false;
 		} else {
 			angle = GENOME_DEFAULT_ANGLE;
 			length = GENOME_DEFAULT_LENGTH;
 			colour = GENOME_DEFAULT_COLOUR;
 			child = null;
+			isHighlighted = false;
 		}
 	}
 
@@ -57,7 +60,16 @@ public class Genome implements Iterable<Genome>, Cloneable, Serializable {
 	public int getLength() { return length; }
 	
 	public void setColour(Color colour) { this.colour = colour; }
-	public Color getColour() { return colour; }
+	public Color getColour() {
+		if(isHighlighted) {
+			return Color.BLACK;
+		}
+		
+		return colour;
+	}
+	
+	public void setHighlighted(boolean isHighlighted) {	this.isHighlighted = isHighlighted; } 
+	public boolean isHighlighted() { return isHighlighted; }
 	
 	public void setChild(Genome child) { this.child = child; }
 	public Genome getChild() { return child; }

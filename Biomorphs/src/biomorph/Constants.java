@@ -16,5 +16,5 @@ public final class Constants {
 	public static final int GENOME_MAX_LENGTH = 40; 
 	public static final Color GENOME_DEFAULT_COLOUR = Color.BLACK;
 	
-	public static final int DEFAULT_GENOME_SIZE = 5;
+	public static final int DEFAULT_GENOME_SIZE = 50;
 }
