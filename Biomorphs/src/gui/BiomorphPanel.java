@@ -8,6 +8,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
+
+import java.util.List;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -67,8 +69,7 @@ public class BiomorphPanel extends JPanel {
 
 	@Override
 	protected void paintComponent(Graphics g) {
-		super.paintComponent(g); // do not remove this - clears the previous
-									// canvas
+		super.paintComponent(g); // do not remove this - clears the previous canvas
 
 		resetMidPoint();
 
@@ -76,6 +77,7 @@ public class BiomorphPanel extends JPanel {
 		g2d.setStroke(new BasicStroke(5f));
 
 		leftLines.clear();
+		rightLines.clear();
 
 		leftLines.addAll(drawSection(midPoint, biomorph, CanvasSide.LEFT, g2d));
 		rightLines.addAll(drawSection(midPoint, biomorph, CanvasSide.RIGHT, g2d));
@@ -84,14 +86,10 @@ public class BiomorphPanel extends JPanel {
 	/**
 	 * Draws a biomorph on one side of the panel.
 	 * 
-	 * @param startX
-	 *            start position on x axis
-	 * @param startY
-	 *            start position on y axis
-	 * @param biomorph
-	 *            biomorph to draw
-	 * @param g2d
-	 *            graphics to draw with
+	 * @param startX start position on x axis
+	 * @param startY start position on y axis
+	 * @param biomorph biomorph to draw
+	 * @param g2d graphics to draw with
 	 */
 	private ArrayList<Line2D> drawSection(Point2D point,
 			AbstractBiomorph biomorph, CanvasSide section, Graphics2D g2d) {
@@ -153,17 +151,18 @@ public class BiomorphPanel extends JPanel {
 		RIGHT, LEFT
 	}
 	
-	public class BiomorphMouseHandler extends MouseAdapter {
+	private class BiomorphMouseHandler extends MouseAdapter {
 		
 		@Override
 		public void mouseReleased(MouseEvent e) {
+			checkSide(leftLines, e);
+			checkSide(rightLines, e);
+		}
+		
+		private void checkSide(List<Line2D> lines, MouseEvent e) {
 			int lineNumber = 0;
 			
-			for (Line2D line : leftLines) {
-				if (lineNumber == leftLines.size() / 2) {
-					lineNumber = 0; // next half is the right side
-				}
-
+			for (Line2D line : lines) {
 				if (isLineClicked(e, line)) {
 					activeLine = line;
 					biomorph.getGenome().get(lineNumber).setColour(Color.BLACK);
@@ -178,7 +177,7 @@ public class BiomorphPanel extends JPanel {
 		}
 		
 		private boolean isLineClicked(MouseEvent event, Line2D line) {
-			return line.intersects(event.getX(), event.getY(), 5, 5);
+			return line.intersects(event.getX(), event.getY(), 5, 5); // 5 is padding around line to allow for easy clicking
 		}
 		
 		@Override
@@ -194,8 +193,8 @@ public class BiomorphPanel extends JPanel {
 		private void setAngle(MouseEvent e, Genome genome) {
 			double angle = getAngleBetweenTwoPoints(activeLine.getP1(), e.getPoint(), activeLine.getP2());
 			
-			System.out.println(angle);
-			genome.setAngle(angle);
+			System.out.println(-angle);
+			genome.setAngle(-angle);
 		}
 		
 		private double getAngleBetweenTwoPoints(Point2D point1, Point2D point2, Point2D fixedPoint) {
@@ -213,7 +212,7 @@ public class BiomorphPanel extends JPanel {
 			/* ends where the user's cursor currently is (drag location) */
 			double endX = e.getX();
 			double endY = e.getY();
-
+			
 			int length = (int) calculateLength(startX, endX, startY, endY);
 			
 			genome.setLength(length);
