@@ -12,7 +12,7 @@ public final class Constants {
 	
 	public static final int GENOME_DEFAULT_ANGLE = 0;
 	public static final int GENOME_DEFAULT_LENGTH = 0;
-	public static final int GENOME_MINIMUM_EVOLUTIONS = 0;
+	public static final int GENOME_MINIMUM_EVOLUTIONS = 40;
 	public static final int GENOME_MAX_LENGTH = 40; 
 	public static final Color GENOME_DEFAULT_COLOUR = Color.BLACK;
 	

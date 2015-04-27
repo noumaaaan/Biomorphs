@@ -150,6 +150,8 @@ public class BiomorphPanel extends JPanel {
 		
 		@Override
 		public void mouseReleased(MouseEvent e) {
+			biomorph.getGenome().get(activeLineNumber).setHighlighted(false); // clear previous selection
+			
 			if(checkSide(leftLines, e)) { // only check against right hand side if not on left. no need to pointlessly check.
 				activeLineSide = CanvasSide.LEFT;
 			} else if(checkSide(rightLines, e)) {
@@ -159,11 +161,11 @@ public class BiomorphPanel extends JPanel {
 				activeLineNumber = 0;
 				activeLineSide = null;
 			}
+
+			BiomorphPanel.this.refresh();
 		}
 		
 		private boolean checkSide(List<Line2D> lines, MouseEvent e) {
-			biomorph.getGenome().get(activeLineNumber).setHighlighted(false); // clear previous selection
-			
 			boolean isLineFound = false;
 			
 			int lineNumber = 0;
@@ -176,7 +178,6 @@ public class BiomorphPanel extends JPanel {
 					activeLineNumber = lineNumber;
 					
 					isLineFound = true;
-					BiomorphPanel.this.refresh();
 				}
 
 				lineNumber++;
