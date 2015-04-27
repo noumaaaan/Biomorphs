@@ -77,14 +77,14 @@ public class AdvancedGUI extends AbstractGUI{
 		/** Create the panel and change the initial colour to black */
 		windowPanel.setLayout(null);
 		colorPanel = new JPanel();
-		colorPanel.setBounds(195, 5, 74, 73);
+		colorPanel.setBounds(216, 6, 74, 73);
 		colorPanel.setBackground(Color.black);
 		
 		/** Create a slider panel which will hold the different sliders */
 		JPanel sliderPanel = new JPanel();
 		sliderPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
 		sliderPanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
-		sliderPanel.setBounds(10, 117, 300, 120);
+		sliderPanel.setBounds(10, 122, 300, 120);
 		sliderPanel.setLayout(null);
 		redSlider = new JSlider(JSlider.HORIZONTAL, 0, 255, 0);
 		blueSlider = new JSlider(JSlider.HORIZONTAL, 0, 255, 0);
@@ -93,7 +93,7 @@ public class AdvancedGUI extends AbstractGUI{
 		blueSlider.addChangeListener(e);
 		greenSlider.addChangeListener(e);
 		JPanel sliders	= new JPanel();
-		sliders.setBounds(10, 6, 110, 73);
+		sliders.setBounds(10, 6, 126, 73);
 		sliderPanel.add(sliders);
 		
 		sliders.setLayout(new GridLayout(3, 1, 3, 3));
@@ -109,7 +109,7 @@ public class AdvancedGUI extends AbstractGUI{
 		blueLabel = new JLabel(" Green : 0 ");
 		greenLabel = new JLabel(" Blue : 0 ");
 		JPanel labelPanel = new JPanel();
-		labelPanel.setBounds(130, 6, 60, 73);
+		labelPanel.setBounds(146, 6, 60, 73);
 		sliderPanel.add(labelPanel);
 		
 		labelPanel.setLayout(new GridLayout(3, 1, 2, 2));
@@ -124,35 +124,33 @@ public class AdvancedGUI extends AbstractGUI{
 		sliderPanel.add(chckbxNewCheckBox);
 		chckbxNewCheckBox.setSelected(true);
 		windowFrame.getContentPane().add(windowPanel);
-		
-		
-		
-		JButton Generate = new JButton("GENERATE");
-		Generate.setBounds(95, 11, 130, 31);
-		windowPanel.add(Generate);
-		Generate.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		Generate.setToolTipText("Click here to generate a biomorph");
 		JPanel generatePanel = new JPanel();
-		generatePanel.setBounds(10, 53, 300, 26);
+		generatePanel.setBounds(10, 11, 300, 74);
 		generatePanel.setBorder(new EmptyBorder(15, 15, 15, 15));
 		generatePanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 		windowPanel.add(generatePanel);
 		generatePanel.setLayout(null);
 		JLabel GenerateLabel = new JLabel(" Click Generate to implement your changes! ");
-		GenerateLabel.setBounds(6, 6, 211, 14);
+		GenerateLabel.setBounds(50, 49, 211, 14);
 		generatePanel.add(GenerateLabel);
+		
+		
+		
+		JButton Generate = new JButton("GENERATE");
+		Generate.setBounds(91, 11, 130, 31);
+		generatePanel.add(Generate);
+		Generate.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		Generate.setToolTipText("Click here to generate a biomorph");
 		
 		JPanel BiomorphValueChanger = new JPanel();
 		BiomorphValueChanger.setBorder(new EmptyBorder(15, 15, 15, 15));
 		BiomorphValueChanger.setBorder(BorderFactory.createLineBorder(Color.lightGray));
-		BiomorphValueChanger.setBounds(10, 85, 300, 26);
+		BiomorphValueChanger.setBounds(10, 90, 300, 26);
 		windowPanel.add(BiomorphValueChanger);
 		BiomorphValueChanger.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		JLabel ValueLabel = new JLabel("Change the colour of the biomorphs by moving the Slider");
 		BiomorphValueChanger.add(ValueLabel);
 		BiomorphValueChanger.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{ValueLabel}));
-		
-		
 		
 		JButton save = new JButton(" Save ");
 		save.setBounds(10, 10, 63, 23);
@@ -186,6 +184,12 @@ public class AdvancedGUI extends AbstractGUI{
 		buttonPanel.add(userSelect);
 		userSelect.setToolTipText("Return to the user selection screen");
 		
+		JButton HallofFamebutton = new JButton("Hall of Fame");
+		HallofFamebutton.setHorizontalAlignment(SwingConstants.LEFT);
+		HallofFamebutton.setToolTipText("Insert text here :O");
+		HallofFamebutton.setBounds(189, 40, 91, 23);
+		buttonPanel.add(HallofFamebutton);
+		
 		
 		
 		windowFrame.getContentPane().add(windowPanel);
@@ -196,13 +200,22 @@ public class AdvancedGUI extends AbstractGUI{
 		bigBiomorphPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
 		bigBiomorphPanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 		
-		JTextArea txtrHello = new JTextArea();
-		txtrHello.setEditable(false);
-		txtrHello.setBackground(SystemColor.control);
-		txtrHello.setText("Some text here about how to use advanced mode");
-		txtrHello.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		txtrHello.setBounds(10, 248, 300, 142);
-		windowPanel.add(txtrHello);
+		/** Create a panel to add the current biomorph */
+		JPanel currentBiomorphPanel = new JPanel();
+		currentBiomorphPanel.setBounds(10, 285, 300, 232);
+		windowPanel.add(currentBiomorphPanel);
+		currentBiomorphPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
+		currentBiomorphPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+		currentBiomorphPanel.setBackground(Color.white);
+		
+		JPanel CurrentBiormorphPanel = new JPanel();
+		CurrentBiormorphPanel.setBounds(10, 248, 300, 26);
+		windowPanel.add(CurrentBiormorphPanel);
+		CurrentBiormorphPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JLabel CurrentBiomorphLabel = new JLabel("Current Biomorph :");
+		CurrentBiormorphPanel.add(CurrentBiomorphLabel);
+		
 		
 		
 		
