@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -37,6 +38,7 @@ public class Help extends AbstractGUI{
 		
 		JTextArea text= new JTextArea();
 		text.setEditable(false);
+		text.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		windowFrame.add(text, BorderLayout.CENTER);		
 		
 		try {
