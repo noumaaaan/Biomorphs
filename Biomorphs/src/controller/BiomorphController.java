@@ -17,6 +17,7 @@ public class BiomorphController {
 		this.model = biomorph;
 		
 		this.view.addMutateListener(new MutateListener());
+		view.addExitListener(new ExitListener());
 	}
 	
 	public static void main(String[] args) {
@@ -35,5 +36,17 @@ public class BiomorphController {
 		}
 		
 	}
+	
+	class ExitListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("exit");
+			
+		}
+		
+	}
+	
+	
 	
 }
