@@ -31,6 +31,9 @@ public class GuiStartup extends AbstractGUI {
 				case "basic":
 					new BasicGUI().displayGui();
 					break;
+				case "advanced":
+					new AdvancedGUI().displayGui();
+					break;
 				default:
 					new GuiStartup().displayGui();
 			}

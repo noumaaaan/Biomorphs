@@ -13,10 +13,12 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
-import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import biomorph.AbstractBiomorph;
+import biomorph.RandomBiomorph;
 
 /**
  * Provides the advanced Graphical User Interface which let's the user manipulate the biomorph
@@ -51,7 +53,7 @@ public class AdvancedGUI extends AbstractGUI{
 
 		/** 1. Create the JFrame */ 
 		
-		super("Biomorph Mutation: Advanced User", 1250, 650);
+		super("Biomorph Mutation: Advanced User", 1225, 640);
 		windowFrame.pack();
 		windowFrame.setLocationRelativeTo(null); 
 		windowFrame.setResizable(false);
@@ -108,9 +110,17 @@ public class AdvancedGUI extends AbstractGUI{
 		
 		/** Create the different sliders */
 		redSlider = new JSlider(JSlider.HORIZONTAL, 0, 255, 0);
-		blueSlider = new JSlider(JSlider.HORIZONTAL, 0, 255, 0);
-		greenSlider = new JSlider(JSlider.HORIZONTAL, 0, 255, 0);
+		redSlider.setMinorTickSpacing(34);
+	    redSlider.setPaintTicks(true);
 		
+	    blueSlider = new JSlider(JSlider.HORIZONTAL, 0, 255, 0);
+		blueSlider.setMinorTickSpacing(34);
+	    blueSlider.setPaintTicks(true);
+		
+	    greenSlider = new JSlider(JSlider.HORIZONTAL, 0, 255, 0);
+		greenSlider.setMinorTickSpacing(34);
+	    greenSlider.setPaintTicks(true); 
+	     
 		/** Create the different Labels for the Sliders */
 		redLabel = new JLabel(" Red : 0 ");
 		blueLabel = new JLabel(" Green : 0 ");
@@ -143,9 +153,14 @@ public class AdvancedGUI extends AbstractGUI{
 		blueSlider.addChangeListener(e);
 		greenSlider.addChangeListener(e);
 		
+		/** Create a button to save the colour combination */
+		JButton updateColor = new JButton("Save");
+		updateColor.setBounds(220, 86, 70, 20);
+		updateColor.setToolTipText("Save your current biomorph mutation to your local drive");
+		
 		/** Create a CheckBox which on default it checked */
-		JCheckBox randomColor = new JCheckBox("Check this box to use random Colours");
-		randomColor.setBounds(10, 86, 231, 23);
+		JCheckBox randomColor = new JCheckBox("Use Random Colours");
+		randomColor.setBounds(10, 86, 150, 23);
 		randomColor.setSelected(true);
 		
 		/** Create the Panel that will hold all of the the Slider components*/
@@ -160,6 +175,7 @@ public class AdvancedGUI extends AbstractGUI{
 		sliderPanel.add(colorPanel);
 		sliderPanel.add(labelPanel);
 		sliderPanel.add(randomColor);
+		sliderPanel.add(updateColor);
 		
 		
 		
@@ -174,23 +190,43 @@ public class AdvancedGUI extends AbstractGUI{
 		CBholdPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		CBholdPanel.add(CurrentBiomorphLabel);
 		
-		/** Create the Panel to hold the current Biomorph */
-		JPanel currentBiomorphPanel = new JPanel();
+		/** Add the Biomorph to the Panel */
+		AbstractBiomorph bio = new RandomBiomorph();
+		final BiomorphPanel currentBiomorphPanel = new BiomorphPanel(bio, true);
+		//panel.setSize(882, 591);
+		//currentBiomorphPanel.add(panel);
+		currentBiomorphPanel.setLayout(null);
 		currentBiomorphPanel.setBounds(10, 285, 300, 232);
 		currentBiomorphPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
 		currentBiomorphPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 		
-	
+		/** Create the Panel to hold the current Biomorph */
+//		JPanel currentBiomorphPanel = new JPanel();
+//		currentBiomorphPanel.setLayout(null);
+//		currentBiomorphPanel.setBounds(10, 285, 300, 232);
+//		currentBiomorphPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
+//		currentBiomorphPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+		
+		
 		
 		
 		
 		/** 6. Create a Panel that displays the different Evolutionary Biomorphs */
-		JPanel bigBiomorphPanel = new JPanel();
+		BiomorphGrid bigBiomorphPanel = new BiomorphGrid(3,3, currentBiomorphPanel);
 		bigBiomorphPanel.setBounds(320, 11, 882, 591);
 		bigBiomorphPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
 		bigBiomorphPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+		
+		bigBiomorphPanel.setupGrid(9);
+		
+		/** Add the Biomorph to the Panel */
 	
 		
+		Generate.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				currentBiomorphPanel.getBiomorph().mutate();
+				currentBiomorphPanel.refresh();
+		}});
 		
 		
 		
@@ -253,7 +289,7 @@ public class AdvancedGUI extends AbstractGUI{
 		
 		JButton HallofFamebutton = new JButton(" Hall of Fame ");
 		HallofFamebutton.setToolTipText("Insert text here :O");
-		HallofFamebutton.setBounds(189, 40, 91, 23);
+		HallofFamebutton.setBounds(180, 40, 100, 23);
 		
 		/** TODO Hall of Fame Listener*/ 
 		

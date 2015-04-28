@@ -22,6 +22,8 @@ public class BasicGUI extends AbstractGUI {
 
 	public BasicGUI() {
 		super("Biomorph Mutation: Beginner User", 800, 600);
+		windowFrame.pack();
+		windowFrame.setLocationRelativeTo(null); // centre aligned
 
 		/** Panel to hold the components */
 		JPanel button_panel = new JPanel();
@@ -68,10 +70,6 @@ public class BasicGUI extends AbstractGUI {
 		
 		
 		/** List Action Listeners below : */
-		
-		
-		
-		
 		/** 1. Generate new Biomorph */
 		start.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
@@ -120,8 +118,7 @@ public class BasicGUI extends AbstractGUI {
 				exitApplication();
 		}});
 
-		windowFrame.pack();
-		windowFrame.setLocationRelativeTo(null); // centre aligned
+		
 	}
 
 }
