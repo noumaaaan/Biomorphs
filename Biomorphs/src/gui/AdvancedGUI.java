@@ -1,44 +1,25 @@
 package gui;
 
-import gui.AdvancedGUI.event;
-
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.GridLayout;
-
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSlider;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
-import java.awt.Font;
-
-import javax.swing.ImageIcon;
-import javax.swing.border.EmptyBorder;
-
-import java.awt.Panel;
 import java.awt.FlowLayout;
-
-//import org.eclipse.wb.swing.FocusTraversalOnArray;
-
-import java.awt.Component;
-
-import javax.swing.SwingConstants;
-import javax.swing.JCheckBox;
-import javax.swing.JTextArea;
-
-import java.awt.SystemColor;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 /**
- * Provides the advanced GUI
+ * Provides the advanced Graphical User Interface which let's the user manipulate the biomorph
  * 
  * @author Nouman Mehmood <mehmoodn@aston.ac.uk>
  * @author Alexander Luckett <lucketta@aston.ac.uk>
@@ -47,236 +28,257 @@ import java.awt.event.ActionListener;
 
 public class AdvancedGUI extends AbstractGUI{
 	
-	/** Slider Variables */
-	JSlider redSlider;
-	JSlider blueSlider;
-	JSlider greenSlider;
-	JLabel redLabel;
-	JLabel blueLabel;
-	JLabel greenLabel;
-	JPanel colorPanel;
+	private JSlider redSlider;
+	private JSlider blueSlider;
+	private JSlider greenSlider;
+	private JLabel redLabel;
+	private JLabel blueLabel;
+	private JLabel greenLabel;
+	private JPanel colorPanel;
 	
 	public AdvancedGUI(){
+		
+		
+		
+		
 
-		/** Frame settings */ 
+		/** 1. Create the JFrame */ 
+		
 		super("Biomorph Mutation: Advanced User", 1250, 650);
 		windowFrame.pack();
-		windowFrame.setLocationRelativeTo(null); // centre aligned
+		windowFrame.setLocationRelativeTo(null); 
 		windowFrame.setResizable(false);
 		windowFrame.setVisible(true);
+		
+		
 
 		
-		/** Panel that will hold all the components on the JFrame */
-		JPanel windowPanel = new JPanel();
+		/** 2. Create the Generate button, label and panel*/
+		
+		/** Button : */
+		JButton Generate = new JButton("GENERATE");
+		Generate.setBounds(91, 11, 130, 31);
+		Generate.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		Generate.setToolTipText("Click here to generate the biomorph");
+		
+		/** Label */
+		JLabel GenerateLabel = new JLabel(" Click Generate to implement your changes! ");
+		GenerateLabel.setBounds(50, 49, 211, 14);	
+		
+		/** Panel : */
+		JPanel generatePanel = new JPanel();
+		generatePanel.setBounds(10, 11, 300, 74);
+		generatePanel.setBorder(new EmptyBorder(15, 15, 15, 15));
+		generatePanel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+		generatePanel.setLayout(null);
+		
+		/** Add the button and label to the Panel */
+		generatePanel.add(Generate);
+		generatePanel.add(GenerateLabel);
+	
 		
 		
-		/** Colour Sliders here */
-		/** Add the ChangeListener to the sliders*/
-		event e = new event();
 		
-		/** Create the panel and change the initial colour to black */
-		windowPanel.setLayout(null);
+		
+		/** 3. Create the label for the Sliders and add it to a Panel */
+		
+		/** Create the Panel */
+		JPanel BiomorphValueChanger = new JPanel();
+		BiomorphValueChanger.setBorder(new EmptyBorder(15, 15, 15, 15));
+		BiomorphValueChanger.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+		BiomorphValueChanger.setBounds(10, 90, 300, 26);
+		BiomorphValueChanger.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		/** Create the label and add it to the Panel */
+		JLabel ValueLabel = new JLabel("Change the colour of the biomorphs by moving the Slider");
+		BiomorphValueChanger.add(ValueLabel);
+		
+		
+		
+		
+		
+		/** 4. Create the different Sliders, labels, Listeners, CheckBox */
+		
+		/** Create the different sliders */
+		redSlider = new JSlider(JSlider.HORIZONTAL, 0, 255, 0);
+		blueSlider = new JSlider(JSlider.HORIZONTAL, 0, 255, 0);
+		greenSlider = new JSlider(JSlider.HORIZONTAL, 0, 255, 0);
+		
+		/** Create the different Labels for the Sliders */
+		redLabel = new JLabel(" Red : 0 ");
+		blueLabel = new JLabel(" Green : 0 ");
+		greenLabel = new JLabel(" Blue : 0 ");
+		
+		/** Create the Panel where the colour will be displayed */
 		colorPanel = new JPanel();
 		colorPanel.setBounds(216, 6, 74, 73);
 		colorPanel.setBackground(Color.black);
 		
-		/** Create a slider panel which will hold the different sliders */
-		JPanel sliderPanel = new JPanel();
-		sliderPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
-		sliderPanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
-		sliderPanel.setBounds(10, 122, 300, 120);
-		sliderPanel.setLayout(null);
-		redSlider = new JSlider(JSlider.HORIZONTAL, 0, 255, 0);
-		blueSlider = new JSlider(JSlider.HORIZONTAL, 0, 255, 0);
-		greenSlider = new JSlider(JSlider.HORIZONTAL, 0, 255, 0);
-		redSlider.addChangeListener(e);
-		blueSlider.addChangeListener(e);
-		greenSlider.addChangeListener(e);
-		JPanel sliders	= new JPanel();
-		sliders.setBounds(10, 6, 126, 73);
-		sliderPanel.add(sliders);
-		
-		sliders.setLayout(new GridLayout(3, 1, 3, 3));
-		sliders.add(redSlider);
-		sliders.add(blueSlider);
-		sliders.add(greenSlider);
-		//sliders.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{redSlider, blueSlider, greenSlider}));
-		sliderPanel.add(colorPanel);
-
-		windowPanel.add(sliderPanel);
-		
-		redLabel = new JLabel(" Red : 0 ");
-		blueLabel = new JLabel(" Green : 0 ");
-		greenLabel = new JLabel(" Blue : 0 ");
+		/** Create a Panel to hold the Labels */
 		JPanel labelPanel = new JPanel();
 		labelPanel.setBounds(146, 6, 60, 73);
-		sliderPanel.add(labelPanel);
-		
 		labelPanel.setLayout(new GridLayout(3, 1, 2, 2));
 		labelPanel.add(redLabel);
 		labelPanel.add(blueLabel);
 		labelPanel.add(greenLabel);
 		
+		/** Create a Panel to hold the Sliders */
+		JPanel sliders	= new JPanel();
+		sliders.setBounds(10, 6, 126, 73);
+		sliders.setLayout(new GridLayout(3, 1, 3, 3));
+		sliders.add(redSlider);
+		sliders.add(blueSlider);
+		sliders.add(greenSlider);
 		
-		/** Create the checkbox which if checked disables the sliders */
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Check this box to use random Colours");
-		chckbxNewCheckBox.setBounds(10, 86, 231, 23);
-		sliderPanel.add(chckbxNewCheckBox);
-		chckbxNewCheckBox.setSelected(true);
+		/** Change Listeners for the Sliders */
+		event e = new event();
+		redSlider.addChangeListener(e);
+		blueSlider.addChangeListener(e);
+		greenSlider.addChangeListener(e);
 		
-		windowFrame.getContentPane().add(windowPanel);
-		JPanel generatePanel = new JPanel();
-		generatePanel.setBounds(10, 11, 300, 74);
-		generatePanel.setBorder(new EmptyBorder(15, 15, 15, 15));
-		generatePanel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
-		windowPanel.add(generatePanel);
-		generatePanel.setLayout(null);
-		JLabel GenerateLabel = new JLabel(" Click Generate to implement your changes! ");
-		GenerateLabel.setBounds(50, 49, 211, 14);
-		generatePanel.add(GenerateLabel);
+		/** Create a CheckBox which on default it checked */
+		JCheckBox randomColor = new JCheckBox("Check this box to use random Colours");
+		randomColor.setBounds(10, 86, 231, 23);
+		randomColor.setSelected(true);
+		
+		/** Create the Panel that will hold all of the the Slider components*/
+		JPanel sliderPanel = new JPanel();
+		sliderPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
+		sliderPanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+		sliderPanel.setBounds(10, 122, 300, 120);
+		sliderPanel.setLayout(null);
+		
+		/** Add the different components to the sliderPanel() */
+		sliderPanel.add(sliders);
+		sliderPanel.add(colorPanel);
+		sliderPanel.add(labelPanel);
+		sliderPanel.add(randomColor);
 		
 		
-		/** while box is checked, disable the sliders */
-		
-	//	HandlerClass handler = new HandlerClass();
-	//	chckbxNewCheckBox.addItemListener(handler);
 		
 		
-		JButton Generate = new JButton("GENERATE");
-		Generate.setBounds(91, 11, 130, 31);
-		generatePanel.add(Generate);
-		Generate.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		Generate.setToolTipText("Click here to generate a biomorph");
 		
-		JPanel BiomorphValueChanger = new JPanel();
-		BiomorphValueChanger.setBorder(new EmptyBorder(15, 15, 15, 15));
-		BiomorphValueChanger.setBorder(BorderFactory.createLineBorder(Color.lightGray));
-		BiomorphValueChanger.setBounds(10, 90, 300, 26);
-		windowPanel.add(BiomorphValueChanger);
-		BiomorphValueChanger.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		JLabel ValueLabel = new JLabel("Change the colour of the biomorphs by moving the Slider");
-		BiomorphValueChanger.add(ValueLabel);
-		//BiomorphValueChanger.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{ValueLabel}));
+		/** 5. Create a Panel that will display the Current Biomorph */
 		
-		JButton save = new JButton(" Save ");
-		save.setBounds(10, 10, 63, 23);
-		save.setToolTipText("Save your current biomorph mutation to your local drive");
-		JButton load = new JButton(" Load ");
-		load.setBounds(83, 10, 61, 23);
-		load.setToolTipText("Open up a previously saved biomorph mutation");
+		/** Create a Label above the Current Biomorph and a Panel to hold it */
+		JLabel CurrentBiomorphLabel = new JLabel("Current Biomorph :");
+		JPanel CBholdPanel = new JPanel();
+		CBholdPanel.setBounds(10, 248, 300, 26);
+		CBholdPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		CBholdPanel.add(CurrentBiomorphLabel);
 		
+		/** Create the Panel to hold the current Biomorph */
+		JPanel currentBiomorphPanel = new JPanel();
+		currentBiomorphPanel.setBounds(10, 285, 300, 232);
+		currentBiomorphPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
+		currentBiomorphPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+		
+	
+		
+		
+		
+		/** 6. Create a Panel that displays the different Evolutionary Biomorphs */
+		JPanel bigBiomorphPanel = new JPanel();
+		bigBiomorphPanel.setBounds(320, 11, 882, 591);
+		bigBiomorphPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
+		bigBiomorphPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+	
+		
+		
+		
+		
+		/** 7. Create navigation buttons at the bottom of the Panel */
+		
+		/** Create the Panel that will hold the different Buttons */
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
 		buttonPanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 		buttonPanel.setBounds(10, 528, 300, 74);
-		windowPanel.add(buttonPanel);
 		buttonPanel.setLayout(null);
 		
-		buttonPanel.add(save);
-		buttonPanel.add(load);
 		
-		JButton help1 = new JButton(" Help ");
-		help1.setBounds(154, 10, 59, 23);
-		buttonPanel.add(help1);
-		help1.setToolTipText("Click here for Instructions on how to use the application");
-		
-		JButton end = new JButton(" Exit ");
-		end.setBounds(223, 10, 57, 23);
-		buttonPanel.add(end);
-		end.setToolTipText("Quit the application by clicking here");
-		
-		JButton userSelect = new JButton(" Return to User selection ");
-		userSelect.setBounds(10, 40, 155, 23);
-		buttonPanel.add(userSelect);
-		userSelect.setToolTipText("Return to the user selection screen");
-		
-		JButton HallofFamebutton = new JButton("Hall of Fame");
-		HallofFamebutton.setHorizontalAlignment(SwingConstants.LEFT);
-		HallofFamebutton.setToolTipText("Insert text here :O");
-		HallofFamebutton.setBounds(189, 40, 91, 23);
-		buttonPanel.add(HallofFamebutton);
-		
-		
-		
-		windowFrame.getContentPane().add(windowPanel);
-		
-		JPanel bigBiomorphPanel = new JPanel();
-		bigBiomorphPanel.setBounds(320, 11, 882, 591);
-		windowPanel.add(bigBiomorphPanel);
-		bigBiomorphPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
-		bigBiomorphPanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
-		
-		/** Create a panel to add the current biomorph */
-		JPanel currentBiomorphPanel = new JPanel();
-		currentBiomorphPanel.setBounds(10, 285, 300, 232);
-		windowPanel.add(currentBiomorphPanel);
-		currentBiomorphPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
-		currentBiomorphPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-		currentBiomorphPanel.setBackground(Color.white);
-		
-		JPanel CurrentBiormorphPanel = new JPanel();
-		CurrentBiormorphPanel.setBounds(10, 248, 300, 26);
-		windowPanel.add(CurrentBiormorphPanel);
-		CurrentBiormorphPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		JLabel CurrentBiomorphLabel = new JLabel("Current Biomorph :");
-		CurrentBiormorphPanel.add(CurrentBiomorphLabel);
-		//CurrentBiormorphPanel.add(new BiomorphGrid(2, 2, null));
-		
-		
-		
-		
-		
-		
-		/** 2. Save the Biomorph */
+		/** Create the different Buttons and Action Listener*/
+		JButton save = new JButton(" Save ");
+		save.setBounds(10, 10, 63, 23);
+		save.setToolTipText("Save your current biomorph mutation to your local drive");
 		save.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
 			new SaveFile();
 				
 		}});
-			
 		
-		/** 3. Load the Biomorph */
+		JButton load = new JButton(" Load ");
+		load.setBounds(83, 10, 61, 23);
+		load.setToolTipText("Open up a previously saved biomorph mutation");
 		load.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
 				new LoadFile();
 				
 		}});
 		
-		
-			
-		/** 4. Help Screen */
+		JButton help1 = new JButton(" Help ");
+		help1.setBounds(154, 10, 59, 23);
+		help1.setToolTipText("Click here for Instructions on how to use the application");
 		help1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
 				destroyGui();
 				new Help().displayGui();
 				
 			}});
-	
-				
-		/** 5. Return to User Selection */
-		userSelect.addActionListener(new ActionListener() {
-
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						returnUserSelect();
-		}});
-				
 		
-		/** 6. Exit the Application */
+		JButton end = new JButton(" Exit ");
+		end.setBounds(223, 10, 57, 23);
+		end.setToolTipText("Quit the application by clicking here");
 		end.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
 				exitApplication();
 		}});
 		
 		
+		JButton userSelect = new JButton(" Return to User selection ");
+		userSelect.setBounds(10, 40, 155, 23);
+		userSelect.setToolTipText("Return to the user selection screen");
+		userSelect.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				returnUserSelect();
+			
+			}});
+		
+		JButton HallofFamebutton = new JButton(" Hall of Fame ");
+		HallofFamebutton.setToolTipText("Insert text here :O");
+		HallofFamebutton.setBounds(189, 40, 91, 23);
+		
+		/** TODO Hall of Fame Listener*/ 
+		
+		
+		/** Add these different components to the Panel */
+		buttonPanel.add(save);
+		buttonPanel.add(load);
+		buttonPanel.add(help1);
+		buttonPanel.add(end);
+		buttonPanel.add(userSelect);
+		buttonPanel.add(HallofFamebutton);
+	
 		
 		
 		
 		
-		
+		/** 8. Create a Panel that will hold all the components on the Frame */
+		JPanel windowPanel = new JPanel();
+		windowFrame.getContentPane().add(windowPanel);
+		windowPanel.setLayout(null);
+		windowPanel.add(sliderPanel);
+		windowPanel.add(generatePanel);
+		windowPanel.add(BiomorphValueChanger);
+		windowPanel.add(buttonPanel);
+		windowPanel.add(bigBiomorphPanel);
+		windowPanel.add(currentBiomorphPanel);
+		windowPanel.add(CBholdPanel);
 		
 	}
+	
+	
 
 	public void stateChanged(ChangeEvent e) {
 			
@@ -288,8 +290,7 @@ public class AdvancedGUI extends AbstractGUI{
 			blueLabel.setText("Blue : " + b);
 			greenLabel.setText("Green : " + g);
 			
-			colorPanel.setBackground(new Color(r,g,b));
-			
+			colorPanel.setBackground(new Color(r,g,b));	
 		}
 		
 	public class event implements ChangeListener{
@@ -305,16 +306,9 @@ public class AdvancedGUI extends AbstractGUI{
 			greenLabel.setText("Green : " + g);
 			
 			colorPanel.setBackground(new Color(r,g,b));
-			
 		}
+
 	}
-
-	//private HandlerClass implements ItemListener{
-		
-		
-//	}
-
-
 }
 
 
