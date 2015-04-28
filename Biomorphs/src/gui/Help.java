@@ -63,7 +63,6 @@ public class Help extends AbstractGUI{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				destroyGui();
-				new BasicGUI().displayGui();
 			}
 
 		});

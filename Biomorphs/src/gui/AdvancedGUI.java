@@ -21,6 +21,16 @@ import javax.swing.event.ChangeListener;
 /**
  * Provides the advanced Graphical User Interface which let's the user manipulate the biomorph
  * 
+ * 	1. Create the JFrame
+ * 	2. Create the Generate button, label and panel
+ * 	3. Create the label for the Sliders and add it to a Panel
+ * 	4. Create the different Sliders, labels, Listeners, CheckBox
+ * 	5. Create a Panel that will display the Current Biomorph
+ * 	6. Create a Panel that displays the different Evolutionary Biomorphs
+ * 	7. Create navigation buttons at the bottom of the Panel
+ * 	8. Create a Panel that will hold all the components on the Frame
+ * 
+ * 
  * @author Nouman Mehmood <mehmoodn@aston.ac.uk>
  * @author Alexander Luckett <lucketta@aston.ac.uk>
  * 
@@ -38,9 +48,6 @@ public class AdvancedGUI extends AbstractGUI{
 	
 	public AdvancedGUI(){
 		
-		
-		
-		
 
 		/** 1. Create the JFrame */ 
 		
@@ -53,7 +60,7 @@ public class AdvancedGUI extends AbstractGUI{
 		
 
 		
-		/** 2. Create the Generate button, label and panel*/
+		/** 2. Create the Generate button, label and panel */
 		
 		/** Button : */
 		JButton Generate = new JButton("GENERATE");
@@ -221,7 +228,6 @@ public class AdvancedGUI extends AbstractGUI{
 		help1.setToolTipText("Click here for Instructions on how to use the application");
 		help1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				destroyGui();
 				new Help().displayGui();
 				
 			}});
@@ -277,7 +283,6 @@ public class AdvancedGUI extends AbstractGUI{
 		windowPanel.add(CBholdPanel);
 		
 	}
-	
 	
 
 	public void stateChanged(ChangeEvent e) {

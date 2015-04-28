@@ -100,7 +100,6 @@ public class BasicGUI extends AbstractGUI {
 		/** 4. Help Screen */
 		help1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				destroyGui();
 				new Help().displayGui();
 				
 			}});
