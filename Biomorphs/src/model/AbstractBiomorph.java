@@ -68,4 +68,6 @@ public abstract class AbstractBiomorph extends AbstractModel {
 		firePropertyChange("genome", current, newGenome);
 	}
 	
+	
+	
 }

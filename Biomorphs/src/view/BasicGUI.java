@@ -22,6 +22,10 @@ import model.AbstractModel;
 public class BasicGUI extends AbstractGUI {
 	
 	private JButton newBiomorphBtn;
+	private JButton newSaveBtn;
+	private JButton newLoadBtn;
+	private JButton newHelpBtn;
+	private JButton newEndBtn;
 	private AbstractModel model;
 	
 	private BiomorphPanel panel;
@@ -39,29 +43,29 @@ public class BasicGUI extends AbstractGUI {
 		newBiomorphBtn = new JButton(" Generate Biomorph ");
 		newBiomorphBtn.setToolTipText("Create a new biomorph by clicking here"); 
 		
-		JButton save = new JButton(" Save ");
-		save.setToolTipText("Save your current biomorph mutation to your local drive");
+		newSaveBtn = new JButton(" Save ");
+		newSaveBtn.setToolTipText("Save your current biomorph mutation to your local drive");
 		
-		JButton load = new JButton(" Load ");
-		load.setToolTipText("Open up a previously saved biomorph mutation");
+		newLoadBtn = new JButton(" Load ");
+		newLoadBtn.setToolTipText("Open up a previously saved biomorph mutation");
 		
-		JButton help1 = new JButton(" Help ");
-		help1.setToolTipText("Click here for Instructions on how to use the application");
+		newHelpBtn = new JButton(" Help ");
+		newHelpBtn.setToolTipText("Click here for Instructions on how to use the application");
 		
 		JButton userSelect = new JButton(" Return to User selection ");
 		userSelect.setToolTipText("Return to the user selection screen");
 		
-		JButton end = new JButton(" Exit ");
-		end.setToolTipText("Quit the application by clicking here");
+		newEndBtn = new JButton(" Exit ");
+		newEndBtn.setToolTipText("Quit the application by clicking here");
 
 		/** Add buttons to the panel */
 		button_panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		button_panel.add(newBiomorphBtn);
-		button_panel.add(save);
-		button_panel.add(load);
-		button_panel.add(help1);
+		button_panel.add(newSaveBtn);
+		button_panel.add(newLoadBtn);
+		button_panel.add(newHelpBtn);
 		button_panel.add(userSelect);
-		button_panel.add(end);
+		button_panel.add(newEndBtn);
 		windowFrame.add(button_panel, BorderLayout.WEST);
 
 		/** Defining the draw canvas */
@@ -86,6 +90,24 @@ public class BasicGUI extends AbstractGUI {
 
 	public void addMutateListener(ActionListener listener) {
 		newBiomorphBtn.addActionListener(listener);
-	};
+	}
 
+	
+	public void addExitListener(ActionListener listener) {
+		newEndBtn.addActionListener(listener);
+	}
+	
+	public void addSaveListener(ActionListener listener) {
+		newSaveBtn.addActionListener(listener);
+	}
+	
+	public void addLoadListener(ActionListener listener) {
+		newLoadBtn.addActionListener(listener);
+	}
+	
+	public void addHelpListener(ActionListener listener) {
+		newHelpBtn.addActionListener(listener);
+	}
+
+	
 }
