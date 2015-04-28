@@ -5,31 +5,35 @@ import model.RandomBiomorph;
 import view.BasicGUI;
 import view.Viewable;
 
+import java.awt.event.*;
+
 public class BiomorphController {
 
-	private AbstractBiomorph biomorph;
+	private AbstractBiomorph model;
 	private Viewable view; 
 	
 	public BiomorphController(Viewable view, AbstractBiomorph biomorph){
 		this.view = view; 
-		this.biomorph = biomorph;
-	}
-	
-	public void setMainBiomorph(AbstractBiomorph bio){
-		biomorph = bio;
-	}
-	
-	public AbstractBiomorph getBiomorph(){
-		return biomorph;
+		this.model = biomorph;
+		
+		this.view.addMutateListener(new MutateListener());
 	}
 	
 	public static void main(String[] args) {
 		AbstractBiomorph model = new RandomBiomorph();
 		Viewable view = new BasicGUI(model);
 		
-		BiomorphController controller = new BiomorphController(view, model);
+		new BiomorphController(view, model);
 	}
-	//public void selectBiomorph(){
-	//}
+	
+	class MutateListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("mutated");
+			model.mutate();
+		}
+		
+	}
 	
 }

@@ -10,7 +10,7 @@ import java.util.Random;
  * 
  * @author Alex Luckett <lucketta@aston.ac.uk>
  */
-public abstract class AbstractBiomorph {
+public abstract class AbstractBiomorph extends AbstractModel {
 	protected Genome genome;
 	
 	public AbstractBiomorph( Genome genome) {
@@ -59,7 +59,13 @@ public abstract class AbstractBiomorph {
 	 * Mutates the biomorph using a random genome
 	 */
 	public void mutate() {
+		Genome current = genome.clone();
+		
 		evolve(new Genome(true));
+		
+		Genome newGenome = genome;
+		
+		firePropertyChange("genome", current, newGenome);
 	}
 	
 }

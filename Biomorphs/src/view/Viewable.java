@@ -1,9 +1,9 @@
 package view;
 
-import model.AbstractBiomorph;
+import java.awt.event.ActionListener;
 
 public interface Viewable {
-
-	void setBiomorph(AbstractBiomorph bio);
+	
+	void addMutateListener(ActionListener listener);
 	
 }

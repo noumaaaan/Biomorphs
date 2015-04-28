@@ -3,7 +3,6 @@ package view;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Observer;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -16,7 +15,7 @@ import javax.swing.UIManager;
  * @author Nouman Mehmood <mehmoodn@aston.ac.uk>
  */
 
-public abstract class AbstractGUI implements Viewable, Observer  {
+public abstract class AbstractGUI implements Viewable  {
 	
 	protected JFrame windowFrame;
 	
