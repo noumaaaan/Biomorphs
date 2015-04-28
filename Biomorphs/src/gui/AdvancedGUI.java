@@ -25,7 +25,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Panel;
 import java.awt.FlowLayout;
 
-import org.eclipse.wb.swing.FocusTraversalOnArray;
+//import org.eclipse.wb.swing.FocusTraversalOnArray;
 
 import java.awt.Component;
 
@@ -100,7 +100,7 @@ public class AdvancedGUI extends AbstractGUI{
 		sliders.add(redSlider);
 		sliders.add(blueSlider);
 		sliders.add(greenSlider);
-		sliders.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{redSlider, blueSlider, greenSlider}));
+		//sliders.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{redSlider, blueSlider, greenSlider}));
 		sliderPanel.add(colorPanel);
 
 		windowPanel.add(sliderPanel);
@@ -123,17 +123,23 @@ public class AdvancedGUI extends AbstractGUI{
 		chckbxNewCheckBox.setBounds(10, 86, 231, 23);
 		sliderPanel.add(chckbxNewCheckBox);
 		chckbxNewCheckBox.setSelected(true);
+		
 		windowFrame.getContentPane().add(windowPanel);
 		JPanel generatePanel = new JPanel();
 		generatePanel.setBounds(10, 11, 300, 74);
 		generatePanel.setBorder(new EmptyBorder(15, 15, 15, 15));
-		generatePanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+		generatePanel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 		windowPanel.add(generatePanel);
 		generatePanel.setLayout(null);
 		JLabel GenerateLabel = new JLabel(" Click Generate to implement your changes! ");
 		GenerateLabel.setBounds(50, 49, 211, 14);
 		generatePanel.add(GenerateLabel);
 		
+		
+		/** while box is checked, disable the sliders */
+		
+	//	HandlerClass handler = new HandlerClass();
+	//	chckbxNewCheckBox.addItemListener(handler);
 		
 		
 		JButton Generate = new JButton("GENERATE");
@@ -150,7 +156,7 @@ public class AdvancedGUI extends AbstractGUI{
 		BiomorphValueChanger.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		JLabel ValueLabel = new JLabel("Change the colour of the biomorphs by moving the Slider");
 		BiomorphValueChanger.add(ValueLabel);
-		BiomorphValueChanger.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{ValueLabel}));
+		//BiomorphValueChanger.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{ValueLabel}));
 		
 		JButton save = new JButton(" Save ");
 		save.setBounds(10, 10, 63, 23);
@@ -215,6 +221,7 @@ public class AdvancedGUI extends AbstractGUI{
 		
 		JLabel CurrentBiomorphLabel = new JLabel("Current Biomorph :");
 		CurrentBiormorphPanel.add(CurrentBiomorphLabel);
+		//CurrentBiormorphPanel.add(new BiomorphGrid(2, 2, null));
 		
 		
 		
@@ -301,7 +308,17 @@ public class AdvancedGUI extends AbstractGUI{
 			
 		}
 	}
+
+	//private HandlerClass implements ItemListener{
+		
+		
+//	}
+
+
 }
+
+
+
 				
 		
 	
