@@ -59,6 +59,14 @@ public abstract class AbstractBiomorph extends AbstractModel {
 	 * Mutates the biomorph using a random genome
 	 */
 	public void mutate() {
+		Genome current = genome.clone();
+		
 		evolve(new Genome(true));
+		
+		Genome newGenome = genome;
+		
+		firePropertyChange("genome", current, newGenome);
+		System.out.println("mutate called, genome changed");
 	}
+	
 }

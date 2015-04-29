@@ -77,7 +77,7 @@ public class BasicGUI extends AbstractGUI {
 		windowFrame.pack();
 		windowFrame.setLocationRelativeTo(null); // centre aligned
 		
-		newBiomorphBtn.addPropertyChangeListener(new PropertyChangeListener() {
+		model.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent event) {
 				
 				if (event.getPropertyName().equals("genome")) {
