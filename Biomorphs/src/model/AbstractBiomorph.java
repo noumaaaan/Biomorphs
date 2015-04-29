@@ -1,6 +1,6 @@
-package biomorph;
-import static biomorph.Constants.DEFAULT_GENOME_SIZE;
-import static biomorph.Constants.GENOME_MINIMUM_EVOLUTIONS;
+package model;
+import static model.Constants.DEFAULT_GENOME_SIZE;
+import static model.Constants.GENOME_MINIMUM_EVOLUTIONS;
 
 import java.util.Random;
 
@@ -10,7 +10,7 @@ import java.util.Random;
  * 
  * @author Alex Luckett <lucketta@aston.ac.uk>
  */
-public abstract class AbstractBiomorph {
+public abstract class AbstractBiomorph extends AbstractModel {
 	protected Genome genome;
 	
 	public AbstractBiomorph( Genome genome) {

@@ -1,4 +1,4 @@
-package gui;
+package view;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -11,8 +11,8 @@ import java.security.InvalidParameterException;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-import biomorph.AbstractBiomorph;
-import biomorph.EvolutionaryBiomorph;
+import model.AbstractBiomorph;
+import model.EvolutionaryBiomorph;
 
 /**
  * A panel to draw a biomorph. 

@@ -1,10 +1,10 @@
-package biomorph;
+package model;
 import java.awt.Color;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Random;
 
-import static biomorph.Constants.*;
+import static model.Constants.*;
 
 /**
  * Represents a genome structure, to be used within a biomorph.

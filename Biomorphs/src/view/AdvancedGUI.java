@@ -1,4 +1,4 @@
-package gui;
+package view;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -17,8 +17,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import biomorph.AbstractBiomorph;
-import biomorph.RandomBiomorph;
+import model.AbstractBiomorph;
+import model.RandomBiomorph;
 
 /**
  * Provides the advanced Graphical User Interface which let's the user manipulate the biomorph
@@ -283,7 +283,7 @@ public class AdvancedGUI extends AbstractGUI{
 		userSelect.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				returnUserSelect();
+				//returnUserSelect();
 			
 			}});
 		
@@ -349,6 +349,40 @@ public class AdvancedGUI extends AbstractGUI{
 			colorPanel.setBackground(new Color(r,g,b));
 		}
 
+	}
+
+	@Override
+	public void addMutateListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void addExitListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void addSaveListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void addLoadListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void addHelpListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
 	}
 }
 

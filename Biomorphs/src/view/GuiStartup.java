@@ -1,4 +1,4 @@
-package gui;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
@@ -19,26 +19,6 @@ import javax.swing.JPanel;
  */
 
 public class GuiStartup extends AbstractGUI {
-
-	public static void main(String[] args) {
-		if (args.length == 0) {
-			new GuiStartup().displayGui();
-		} else {
-			switch (args[0]) {
-				case "evolutionary":
-					new EvolutionaryGUI().displayGui();
-					break;
-				case "basic":
-					new BasicGUI().displayGui();
-					break;
-				case "advanced":
-					new AdvancedGUI().displayGui();
-					break;
-				default:
-					new GuiStartup().displayGui();
-			}
-		}
-	}
 
 	public GuiStartup() {
 		super("Biomorph Mutation: Select User type", 500, 300);
@@ -109,7 +89,7 @@ public class GuiStartup extends AbstractGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				destroyGui();
-				new BasicGUI().displayGui();
+				//new BasicGUI().displayGui();
 			}
 
 		});
@@ -137,5 +117,35 @@ public class GuiStartup extends AbstractGUI {
 		
 		windowFrame.pack();
 		windowFrame.setLocationRelativeTo(null); // centre aligned
+	}
+
+	@Override
+	public void addMutateListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addExitListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addSaveListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addLoadListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addHelpListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -1,4 +1,4 @@
-package gui;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -69,5 +69,35 @@ public class Help extends AbstractGUI{
 
 		windowFrame.pack();
 		windowFrame.setLocationRelativeTo(null); // centre aligned
+	}
+
+	@Override
+	public void addMutateListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addExitListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addSaveListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addLoadListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addHelpListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
 	}
 }

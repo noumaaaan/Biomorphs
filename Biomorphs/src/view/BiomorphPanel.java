@@ -1,4 +1,4 @@
-package gui;
+package view;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -7,9 +7,9 @@ import java.awt.geom.Line2D;
 
 import javax.swing.JPanel;
 
-import biomorph.AbstractBiomorph;
-import biomorph.EvolutionaryBiomorph;
-import biomorph.Genome;
+import model.AbstractBiomorph;
+import model.EvolutionaryBiomorph;
+import model.Genome;
 
 /**
  * A panel to draw a biomorph. 
