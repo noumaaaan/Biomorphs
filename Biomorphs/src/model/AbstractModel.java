@@ -45,4 +45,16 @@ public abstract class AbstractModel {
 		propertyChangeSupport.firePropertyChange(propertyName, oldValue, newValue);
 	}
 	
+	/**
+	 * Informs any listeners that a value has changed.
+	 * 
+	 * @param propertyName
+	 * @param oldValue
+	 * @param newValue
+	 */
+	protected void firePropertyChange(String propertyName, Object newValue) {
+		System.out.println("FIRED!!");
+		propertyChangeSupport.firePropertyChange(propertyName, null, newValue);
+	}
+	
 }
