@@ -6,8 +6,10 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -223,12 +225,10 @@ public class AdvancedGUI extends AbstractGUI {
 		
 		
 		/** 6. Create a Panel that displays the different Evolutionary Biomorphs */
-		biomorphGrid = new BiomorphGrid(3,3, currentBiomorphPanel);
+		biomorphGrid = new BiomorphGrid(3,3);
 		biomorphGrid.setBounds(320, 11, 882, 591);
 		biomorphGrid.setBorder(new EmptyBorder(15, 15, 15, 15));
 		biomorphGrid.setBorder(BorderFactory.createLineBorder(Color.black));
-		
-		biomorphGrid.setupGrid(9);	
 		
 		
 		/** 7. Create navigation buttons at the bottom of the Panel */
@@ -312,6 +312,7 @@ public class AdvancedGUI extends AbstractGUI {
 				
 				if (event.getPropertyName().equals("genome")) {
 					AdvancedGUI.this.currentBiomorphPanel.refresh();
+					AdvancedGUI.this.biomorphGrid.refresh();
 				}
 				
 			}
@@ -354,7 +355,6 @@ public class AdvancedGUI extends AbstractGUI {
 		generateBtn.addActionListener(listener);
 	}
 
-
 	@Override
 	public void addExitListener(ActionListener listener) {
 		exitBtn.addActionListener(listener);
@@ -377,12 +377,26 @@ public class AdvancedGUI extends AbstractGUI {
 	public void addHelpListener(ActionListener listener) {
 		helpBtn.addActionListener(listener);
 	}
-}
 
+	@Override
+	public void addUpdateBiomorphListener(MouseListener listener) {
+		biomorphGrid.addUpdateBiomorphListener(listener);
+	}
 
+	@Override
+	public void addGenerateListener(ActionListener listener) {
+		generateBtn.addActionListener(listener);
+	}
 
-				
-		
+	@Override
+	public AbstractBiomorph getMutatedBiomorph() {
+		System.out.println("mutated returned");
+		return biomorphGrid.getSelectedBiomorph();
+	}
 	
-
-
+	@Override
+	public void updateMutations(List<AbstractBiomorph> biomorphs) {
+		biomorphGrid.updateGrid(biomorphs);
+	}
+	
+}

@@ -53,7 +53,6 @@ public abstract class AbstractModel {
 	 * @param newValue
 	 */
 	protected void firePropertyChange(String propertyName, Object newValue) {
-		System.out.println("FIRED!!");
 		propertyChangeSupport.firePropertyChange(propertyName, null, newValue);
 	}
 	

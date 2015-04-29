@@ -4,15 +4,19 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+
+import model.AbstractBiomorph;
 
 /**
  * Class to display User Manual 
@@ -99,5 +103,29 @@ public class Help extends AbstractGUI{
 	public void addHelpListener(ActionListener listener) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void addGenerateListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addUpdateBiomorphListener(MouseListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateMutations(List<AbstractBiomorph> biomorphs) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public AbstractBiomorph getMutatedBiomorph() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

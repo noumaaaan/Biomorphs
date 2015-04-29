@@ -4,8 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.ComponentOrientation;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -84,10 +86,14 @@ public class BasicGUI extends AbstractGUI {
 		});
 	}
 
-	public void addMutateListener(ActionListener listener) {
+	@Override
+	public void addGenerateListener(ActionListener listener) {
 		newBiomorphBtn.addActionListener(listener);
 	}
 
+	public void addMutateListener(ActionListener listener) {
+		newBiomorphBtn.addActionListener(listener);
+	}
 	
 	public void addExitListener(ActionListener listener) {
 		newEndBtn.addActionListener(listener);
@@ -105,6 +111,12 @@ public class BasicGUI extends AbstractGUI {
 		newHelpBtn.addActionListener(listener);
 	}
 
-	
-	
+	@Override
+	public void addUpdateBiomorphListener(MouseListener listener) { } // not needed for this gui
+
+	@Override
+	public void updateMutations(List<AbstractBiomorph> biomorphs) { }
+
+	@Override
+	public AbstractBiomorph getMutatedBiomorph() { return null; }
 }

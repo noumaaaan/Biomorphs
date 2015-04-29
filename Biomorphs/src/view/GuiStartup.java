@@ -6,11 +6,15 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import model.AbstractBiomorph;
 
 /**
  * Splash screen with user selection.
@@ -147,5 +151,29 @@ public class GuiStartup extends AbstractGUI {
 	public void addHelpListener(ActionListener listener) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void addGenerateListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addUpdateBiomorphListener(MouseListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateMutations(List<AbstractBiomorph> biomorphs) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public AbstractBiomorph getMutatedBiomorph() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -27,6 +27,8 @@ public abstract class AbstractBiomorph extends AbstractModel {
 	
 	public void setGenome(Genome genome) {
 		this.genome = genome;
+		
+		firePropertyChange("genome", genome);
 	}
 	
 	public Genome getGenome() {

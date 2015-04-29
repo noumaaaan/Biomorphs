@@ -6,53 +6,39 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.security.InvalidParameterException;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import model.AbstractBiomorph;
-import model.EvolutionaryBiomorph;
 
 /**
  * A panel to draw a biomorph. 
  * 
  * @author Alex Luckett <lucketta@aston.ac.uk>
  */
-@SuppressWarnings("serial")
 public class BiomorphGrid extends JPanel {
 	
-	private int rows = 0;
-	private int cols = 0;
+	private static final long serialVersionUID = -6158813952736333867L;
+	
+	private MouseListener onclickListener;
+	private AbstractBiomorph selectedBiomorph;
 
-	private AbstractBiomorph baseBiomorph;
-	private final BiomorphPanel activeBiomorphPanel;
-
-	public BiomorphGrid(int rows, int cols, BiomorphPanel activeBiomorphPanel) {
+	public BiomorphGrid(int rows, int cols) {
 		super(new GridLayout(rows, cols));
-		
-		this.rows = rows;
-		this.cols = cols;
-		this.baseBiomorph = activeBiomorphPanel.getBiomorph();
-		this.activeBiomorphPanel = activeBiomorphPanel;
 	}
 
-	/**
-	 * Populates the grid with a number of cells. Constructs BiomorphPanels within the cells
-	 * with evolutionary biomorphs.
-	 * 
-	 * @param cellCount
-	 */
-	public void setupGrid(int cellCount) {
-		int maxCells = rows * cols;
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+	}
 
-		if(cellCount > maxCells) {
-			throw new InvalidParameterException("Cell count cannot be greater than the available amount (" + maxCells + ")");
-		}
-
-		for(int i = 0; i < cellCount; i++) {
-			AbstractBiomorph bio = new EvolutionaryBiomorph(baseBiomorph.getGenome());
-			final BiomorphPanel panel = new BiomorphPanel(bio, false);
+	private void setupGrid(List<AbstractBiomorph> biomorphs) {
+		System.out.println("grid setup called");
+		
+		for(AbstractBiomorph biomorph : biomorphs) {
+			final BiomorphPanel panel = new BiomorphPanel(biomorph, false);
 			panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
 			panel.addMouseListener(new MouseListener() {
@@ -67,52 +53,46 @@ public class BiomorphGrid extends JPanel {
 				public void mouseEntered(MouseEvent e) { }
 
 				@Override
-				public void mouseClicked(MouseEvent e) { }
+				public void mouseClicked(MouseEvent e) {
+					selectedBiomorph = panel.getBiomorph();
+				}
 
 				@Override
-				public void mouseReleased(MouseEvent e) {
-					activeBiomorphPanel.setBiomorph(panel.getBiomorph()); // user has selected new biomorph to become the active
-					activeBiomorphPanel.refresh();
-					
-					BiomorphGrid.this.newBiomorphs();
-					BiomorphGrid.this.mutateBiomorphs(); // mutate all panels
-				}
+				public void mouseReleased(MouseEvent e) { }
 			});
 
 			BiomorphGrid.this.add(panel);
 		}
-		
-		this.mutateBiomorphs();
 	}
 
-	@Override
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-	}
 	
-	/**
-	 * Mutates each biomorph within the grid.
-	 * 
-	 * TODO update all panels with new biomorph based on active, once
-	 * mutation has occurred.
-	 */
-	private void mutateBiomorphs() {
+	public void refresh() {
 		for(Component component : this.getComponents()) {
 			BiomorphPanel panel = (BiomorphPanel) component;
-			
-			panel.getBiomorph().mutate(); 
+
 			panel.refresh();
 		}
 	}
 	
-	private void newBiomorphs() {
-		removeAll();
-		repaint();
-				
-		baseBiomorph = activeBiomorphPanel.getBiomorph();
+	public void addUpdateBiomorphListener(MouseListener listener) {
+		this.onclickListener = listener;
 		
-		setupGrid(rows * cols);
+		for(Component component : this.getComponents()) {
+			component.addMouseListener(listener);
+		}
+	}
+
+	public void updateGrid(List<AbstractBiomorph> biomorphs) {
+		removeAll();
+		
+		setupGrid(biomorphs);
+		addUpdateBiomorphListener(onclickListener);
+		
+		refresh();
 	}
 	
+	public AbstractBiomorph getSelectedBiomorph() {
+		return selectedBiomorph;
+	}
 	
 }
