@@ -31,7 +31,6 @@ public class BiomorphController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("mutated");
 			model.mutate();
 		}
 		
@@ -41,8 +40,7 @@ public class BiomorphController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("exit");
-			
+			view.exitApplication();
 		}
 		
 	}

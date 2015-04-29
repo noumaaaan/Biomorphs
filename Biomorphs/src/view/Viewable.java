@@ -10,6 +10,6 @@ public interface Viewable {
 	void addLoadListener(ActionListener listener);
 	void addHelpListener(ActionListener listener);
 	
-	
+	void exitApplication();
 	
 }

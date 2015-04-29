@@ -53,7 +53,7 @@ public abstract class AbstractGUI implements Viewable  {
 	}
 	
 	/** Exit the application w/ responses */
-	protected void exitApplication()
+	public void exitApplication()
 	{
 		int response = JOptionPane.showConfirmDialog(windowFrame,
 				"Would you really like to quit the application?", 
