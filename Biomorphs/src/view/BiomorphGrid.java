@@ -34,9 +34,7 @@ public class BiomorphGrid extends JPanel {
 		super.paintComponent(g);
 	}
 
-	private void setupGrid(List<AbstractBiomorph> biomorphs) {
-		System.out.println("grid setup called");
-		
+	private void setupGrid(List<AbstractBiomorph> biomorphs) {		
 		for(AbstractBiomorph biomorph : biomorphs) {
 			final BiomorphPanel panel = new BiomorphPanel(biomorph, false);
 			panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));

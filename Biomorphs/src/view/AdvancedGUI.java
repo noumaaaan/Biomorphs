@@ -390,7 +390,6 @@ public class AdvancedGUI extends AbstractGUI {
 
 	@Override
 	public AbstractBiomorph getMutatedBiomorph() {
-		System.out.println("mutated returned");
 		return biomorphGrid.getSelectedBiomorph();
 	}
 	

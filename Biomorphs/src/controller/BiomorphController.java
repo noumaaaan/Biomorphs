@@ -54,6 +54,7 @@ public class BiomorphController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			model.mutate();
+			view.updateMutations(getMutatedBiomorphs());
 		}
 		
 	}
@@ -71,7 +72,6 @@ public class BiomorphController {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			System.out.println("biomorph updated");
 			model.setGenome(view.getMutatedBiomorph().getGenome());
 			
 			view.updateMutations(getMutatedBiomorphs());
