@@ -46,7 +46,7 @@ public class Help extends AbstractGUI{
 		windowFrame.add(text, BorderLayout.CENTER);		
 		
 		try {
-			   FileReader fr = new FileReader("Files/text.txt");
+			   FileReader fr = new FileReader("Files/helpText.txt");
 			   BufferedReader reader = new BufferedReader(fr);
 			   text.read(reader, "text");
 			   

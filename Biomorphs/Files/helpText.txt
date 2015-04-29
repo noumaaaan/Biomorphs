@@ -1,0 +1,78 @@
+About the Application
+
+Welcome to the Biomorph Mutation Application. This project is a prototype software application 
+which allows you to produce evolutionary art based on Richard Dawkins's Biomorphs and extending
+this in a new and creative way. As a beginner user, you will be restricted as to how you can 
+manipulate the biomorph. For complete control, head over to the advanced user	 	
+
+How to use (Beginner mode):
+//Add brief description here
+
+1. Generate Biomorph
+This is will generate artwork iteratively by the computer through an artificial evolutionary 
+process. The software will have random representations of different artworks and the process will
+be repeated if this button is pressed
+
+2. Save
+Save your project by clicking this button. 
+
+3. Load
+Load an existing project by clicking here.
+
+4. Help
+Pull up the user manual on how to use the application
+
+5. Return to User Selection
+There are two user type modes. This is the beginner user. Click this button to try the advanced
+user
+
+6. Exit
+Exit the application
+
+
+
+
+
+
+
+
+
+
+How to use (Advanced Mode):
+//Add brief description here
+
+1. Generate 	
+This is will generate artwork iteratively by the computer through an artificial evolutionary 
+process. The software will have random representations of different artworks and the process will
+be repeated if this button is pressed
+
+2. Change Colour
+//Add brief description here
+
+3. Save
+Save your project by clicking this button. 
+
+4. Load
+Load an existing project by clicking here.
+
+5. Help
+Pull up the user manual on how to use the application
+
+6. Return to User Selection
+There are two user type modes. This is the beginner user. Click this button to try the advanced
+user
+
+7. Exit
+Exit the application
+
+8. Hall of Fame
+//Add brief description here
+
+
+
+Developers:
+Alex Luckett (lucketta@aston.ac.uk)
+Nouman Mehmood (mehmoodn@aston.ac.uk)
+Jurgen Hajdini (hajdinij@aston.ac.uk)
+Kelvin Chui (chuikkl@aston.ac.uk)
+Hussain Ahmed (ahmedmh@aston.ac.uk)
