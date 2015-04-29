@@ -11,6 +11,7 @@ import model.AbstractBiomorph;
 import model.EvolutionaryBiomorph;
 import model.RandomBiomorph;
 import view.AdvancedGUI;
+import view.Help;
 import view.Viewable;
 
 public class BiomorphController {
@@ -27,6 +28,7 @@ public class BiomorphController {
 		view.addMutateListener(new MutateListener());
 		view.addExitListener(new ExitListener());
 		view.addUpdateBiomorphListener(new UpdateBiomorphListener());
+		view.addHelpListener(new HelpListener());
 	}
 	
 	public static void main(String[] args) {
@@ -88,6 +90,15 @@ public class BiomorphController {
 
 		@Override
 		public void mouseExited(MouseEvent e) {}
+		
+	}
+	
+	class HelpListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			new Help().displayGui();
+		}
 		
 	}
 	
