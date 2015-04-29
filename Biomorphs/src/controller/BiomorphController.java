@@ -1,9 +1,6 @@
 package controller;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,21 +20,21 @@ public class BiomorphController {
 		this.view = view; 
 		this.model = biomorph;
 		
+		// update the mutations for the current biomorph
 		view.updateMutations(getMutatedBiomorphs());
 		
+		// add listeners to the interface
 		view.addMutateListener(new MutateListener());
 		view.addExitListener(new ExitListener());
 		view.addUpdateBiomorphListener(new UpdateBiomorphListener());
 		view.addHelpListener(new HelpListener());
 	}
 	
-	public static void main(String[] args) {
-		AbstractBiomorph model = new RandomBiomorph();
-		Viewable view = new AdvancedGUI(model);
-		
-		new BiomorphController(view, model);
-	}
-	
+	/**
+	 * Generates a list of mutated biomorphs, based on the genome of the active biomorph.
+	 * 
+	 * @return List<AbstractBiomorph>
+	 */
 	private List<AbstractBiomorph> getMutatedBiomorphs() {
 		ArrayList<AbstractBiomorph> biomorphs = new ArrayList<AbstractBiomorph>();
 		
@@ -51,7 +48,10 @@ public class BiomorphController {
 		return biomorphs;
 	}
 	
-	class MutateListener implements ActionListener {
+	/**
+	 * Action to run when the active biomorph is mutated.
+	 */
+	class MutateListener extends EventAction {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -61,7 +61,10 @@ public class BiomorphController {
 		
 	}
 	
-	class ExitListener implements ActionListener {
+	/**
+	 * Action to run when exiting the application.
+	 */
+	class ExitListener extends EventAction {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -70,36 +73,42 @@ public class BiomorphController {
 		
 	}
 	
-	class UpdateBiomorphListener implements MouseListener {
+	/**
+	 * Action to run when an active biomorph has been updated with a new genome.
+	 */
+	class UpdateBiomorphListener extends EventAction {
 
 		@Override
-		public void mouseClicked(MouseEvent e) {
+		public void actionPerformed(ActionEvent e) {
 			model.setGenome(view.getMutatedBiomorph().getGenome());
 			
 			view.updateMutations(getMutatedBiomorphs());
 		}
-
-		@Override
-		public void mousePressed(MouseEvent e) {}
-
-		@Override
-		public void mouseReleased(MouseEvent e) {}
-
-		@Override
-		public void mouseEntered(MouseEvent e) {}
-
-		@Override
-		public void mouseExited(MouseEvent e) {}
 		
 	}
 	
-	class HelpListener implements ActionListener {
+	/**
+	 * Action to run when a help button is pressed.
+	 */
+	class HelpListener extends EventAction {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			new Help().displayGui();
 		}
 		
+	}
+	
+	/**
+	 * Creates an instance of the controller, with a view and model.
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		AbstractBiomorph model = new RandomBiomorph();
+		Viewable view = new AdvancedGUI(model);
+		
+		new BiomorphController(view, model);
 	}
 	
 }
