@@ -13,7 +13,7 @@ public class BiomorphController {
 	private AbstractBiomorph model;
 	private Viewable view; 
 	
-	public BiomorphController(Viewable view, AbstractBiomorph biomorph){
+	public BiomorphController(Viewable view, AbstractBiomorph biomorph) {
 		this.view = view; 
 		this.model = biomorph;
 		
@@ -45,7 +45,5 @@ public class BiomorphController {
 		}
 		
 	}
-	
-	
 	
 }

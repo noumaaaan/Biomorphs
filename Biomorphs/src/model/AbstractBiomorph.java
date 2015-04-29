@@ -66,7 +66,6 @@ public abstract class AbstractBiomorph extends AbstractModel {
 		Genome newGenome = genome;
 		
 		firePropertyChange("genome", current, newGenome);
-		System.out.println("mutate called, genome changed");
 	}
 	
 }

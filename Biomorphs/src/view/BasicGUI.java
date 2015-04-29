@@ -11,7 +11,6 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import model.AbstractBiomorph;
-import model.AbstractModel;
 
 /**
  * Provides a graphical user interface
@@ -26,14 +25,11 @@ public class BasicGUI extends AbstractGUI {
 	private JButton newLoadBtn;
 	private JButton newHelpBtn;
 	private JButton newEndBtn;
-	private AbstractBiomorph model;
 	
 	private BiomorphPanel panel;
 
 	public BasicGUI(AbstractBiomorph model) {
 		super("Biomorph Mutation: Beginner User", 800, 600);
-		
-		this.model = model;
 
 		/** Panel to hold the components */
 		JPanel button_panel = new JPanel();

@@ -44,6 +44,7 @@ public class AdvancedGUI extends AbstractGUI {
 	private AbstractBiomorph model;
 	
 	private BiomorphPanel currentBiomorphPanel;
+	private BiomorphGrid biomorphGrid;
 	
 	private JSlider redSlider;
 	private JSlider blueSlider;
@@ -222,12 +223,12 @@ public class AdvancedGUI extends AbstractGUI {
 		
 		
 		/** 6. Create a Panel that displays the different Evolutionary Biomorphs */
-		BiomorphGrid bigBiomorphPanel = new BiomorphGrid(3,3, currentBiomorphPanel);
-		bigBiomorphPanel.setBounds(320, 11, 882, 591);
-		bigBiomorphPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
-		bigBiomorphPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+		biomorphGrid = new BiomorphGrid(3,3, currentBiomorphPanel);
+		biomorphGrid.setBounds(320, 11, 882, 591);
+		biomorphGrid.setBorder(new EmptyBorder(15, 15, 15, 15));
+		biomorphGrid.setBorder(BorderFactory.createLineBorder(Color.black));
 		
-		bigBiomorphPanel.setupGrid(9);	
+		biomorphGrid.setupGrid(9);	
 		
 		
 		/** 7. Create navigation buttons at the bottom of the Panel */
@@ -294,7 +295,7 @@ public class AdvancedGUI extends AbstractGUI {
 		windowPanel.add(generatePanel);
 		windowPanel.add(BiomorphValueChanger);
 		windowPanel.add(buttonPanel);
-		windowPanel.add(bigBiomorphPanel);
+		windowPanel.add(biomorphGrid);
 		windowPanel.add(currentBiomorphPanel);
 		windowPanel.add(CBholdPanel);
 		
