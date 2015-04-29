@@ -99,8 +99,8 @@ public class GuiStartup extends AbstractGUI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				destroyGui();
-				new AdvancedGUI().displayGui();
+				//destroyGui();
+				//new AdvancedGUI().displayGui();
 				//new EvolutionaryGUI().displayGui();
 			}
 
@@ -110,7 +110,7 @@ public class GuiStartup extends AbstractGUI {
 		/** Exit the application*/
 		quit.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-			exitApplication();
+			//exitApplication();
 					}
 				});
 		

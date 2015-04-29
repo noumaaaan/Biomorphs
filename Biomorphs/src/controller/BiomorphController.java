@@ -1,11 +1,12 @@
 package controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import model.AbstractBiomorph;
 import model.RandomBiomorph;
-import view.BasicGUI;
+import view.AdvancedGUI;
 import view.Viewable;
-
-import java.awt.event.*;
 
 public class BiomorphController {
 
@@ -22,7 +23,7 @@ public class BiomorphController {
 	
 	public static void main(String[] args) {
 		AbstractBiomorph model = new RandomBiomorph();
-		Viewable view = new BasicGUI(model);
+		Viewable view = new AdvancedGUI(model);
 		
 		new BiomorphController(view, model);
 	}
@@ -31,7 +32,6 @@ public class BiomorphController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("mutate listener");
 			model.mutate();
 		}
 		

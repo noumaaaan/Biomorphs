@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -18,7 +20,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import model.AbstractBiomorph;
-import model.RandomBiomorph;
 
 /**
  * Provides the advanced Graphical User Interface which let's the user manipulate the biomorph
@@ -38,7 +39,11 @@ import model.RandomBiomorph;
  * 
  */
 
-public class AdvancedGUI extends AbstractGUI{
+public class AdvancedGUI extends AbstractGUI {
+	
+	private AbstractBiomorph model;
+	
+	private BiomorphPanel currentBiomorphPanel;
 	
 	private JSlider redSlider;
 	private JSlider blueSlider;
@@ -48,7 +53,13 @@ public class AdvancedGUI extends AbstractGUI{
 	private JLabel greenLabel;
 	private JPanel colorPanel;
 	
-	public AdvancedGUI(){
+	private JButton generateBtn;
+	private JButton saveBtn;
+	private JButton loadBtn;
+	private JButton exitBtn;
+	private JButton helpBtn;
+	
+	public AdvancedGUI(AbstractBiomorph model) {
 		
 
 		/** 1. Create the JFrame */ 
@@ -59,16 +70,16 @@ public class AdvancedGUI extends AbstractGUI{
 		windowFrame.setResizable(false);
 		windowFrame.setVisible(true);
 		
-		
+		this.model = model;
 
 		
 		/** 2. Create the Generate button, label and panel */
 		
 		/** Button : */
-		JButton Generate = new JButton("GENERATE");
-		Generate.setBounds(91, 11, 130, 31);
-		Generate.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		Generate.setToolTipText("Click here to generate the biomorph");
+		generateBtn = new JButton("GENERATE");
+		generateBtn.setBounds(91, 11, 130, 31);
+		generateBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		generateBtn.setToolTipText("Click here to generate the biomorph");
 		
 		/** Label */
 		JLabel GenerateLabel = new JLabel(" Click Generate to implement your changes! ");
@@ -82,7 +93,7 @@ public class AdvancedGUI extends AbstractGUI{
 		generatePanel.setLayout(null);
 		
 		/** Add the button and label to the Panel */
-		generatePanel.add(Generate);
+		generatePanel.add(generateBtn);
 		generatePanel.add(GenerateLabel);
 	
 		
@@ -191,8 +202,7 @@ public class AdvancedGUI extends AbstractGUI{
 		CBholdPanel.add(CurrentBiomorphLabel);
 		
 		/** Add the Biomorph to the Panel */
-		AbstractBiomorph bio = new RandomBiomorph();
-		final BiomorphPanel currentBiomorphPanel = new BiomorphPanel(bio, true);
+		currentBiomorphPanel = new BiomorphPanel(model, true);
 		//panel.setSize(882, 591);
 		//currentBiomorphPanel.add(panel);
 		currentBiomorphPanel.setLayout(null);
@@ -217,17 +227,7 @@ public class AdvancedGUI extends AbstractGUI{
 		bigBiomorphPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
 		bigBiomorphPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 		
-		bigBiomorphPanel.setupGrid(9);
-		
-		/** Add the Biomorph to the Panel */
-	
-		
-		Generate.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent event){
-				currentBiomorphPanel.getBiomorph().mutate();
-				currentBiomorphPanel.refresh();
-		}});
-		
+		bigBiomorphPanel.setupGrid(9);	
 		
 		
 		/** 7. Create navigation buttons at the bottom of the Panel */
@@ -241,41 +241,21 @@ public class AdvancedGUI extends AbstractGUI{
 		
 		
 		/** Create the different Buttons and Action Listener*/
-		JButton save = new JButton(" Save ");
-		save.setBounds(10, 10, 63, 23);
-		save.setToolTipText("Save your current biomorph mutation to your local drive");
-		save.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent event){
-			new SaveFile();
-				
-		}});
+		saveBtn = new JButton(" Save ");
+		saveBtn.setBounds(10, 10, 63, 23);
+		saveBtn.setToolTipText("Save your current biomorph mutation to your local drive");
+
+		loadBtn = new JButton(" Load ");
+		loadBtn.setBounds(83, 10, 61, 23);
+		loadBtn.setToolTipText("Open up a previously saved biomorph mutation");
 		
-		JButton load = new JButton(" Load ");
-		load.setBounds(83, 10, 61, 23);
-		load.setToolTipText("Open up a previously saved biomorph mutation");
-		load.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent event){
-				new LoadFile();
-				
-		}});
+		helpBtn = new JButton(" Help ");
+		helpBtn.setBounds(154, 10, 59, 23);
+		helpBtn.setToolTipText("Click here for Instructions on how to use the application");
 		
-		JButton help1 = new JButton(" Help ");
-		help1.setBounds(154, 10, 59, 23);
-		help1.setToolTipText("Click here for Instructions on how to use the application");
-		help1.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent event){
-				new Help().displayGui();
-				
-			}});
-		
-		JButton end = new JButton(" Exit ");
-		end.setBounds(223, 10, 57, 23);
-		end.setToolTipText("Quit the application by clicking here");
-		end.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent event){
-				exitApplication();
-		}});
-		
+		exitBtn = new JButton(" Exit ");
+		exitBtn.setBounds(223, 10, 57, 23);
+		exitBtn.setToolTipText("Quit the application by clicking here");
 		
 		JButton userSelect = new JButton(" Return to User selection ");
 		userSelect.setBounds(10, 40, 155, 23);
@@ -295,10 +275,10 @@ public class AdvancedGUI extends AbstractGUI{
 		
 		
 		/** Add these different components to the Panel */
-		buttonPanel.add(save);
-		buttonPanel.add(load);
-		buttonPanel.add(help1);
-		buttonPanel.add(end);
+		buttonPanel.add(saveBtn);
+		buttonPanel.add(loadBtn);
+		buttonPanel.add(helpBtn);
+		buttonPanel.add(exitBtn);
 		buttonPanel.add(userSelect);
 		buttonPanel.add(HallofFamebutton);
 	
@@ -318,6 +298,23 @@ public class AdvancedGUI extends AbstractGUI{
 		windowPanel.add(currentBiomorphPanel);
 		windowPanel.add(CBholdPanel);
 		
+		windowFrame.setVisible(true);
+		windowFrame.pack();
+		
+		addPropertyChangeListeners();
+		
+	}
+	
+	private void addPropertyChangeListeners() {
+		model.addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent event) {
+				
+				if (event.getPropertyName().equals("genome")) {
+					AdvancedGUI.this.currentBiomorphPanel.refresh();
+				}
+				
+			}
+		});
 	}
 	
 
@@ -353,36 +350,31 @@ public class AdvancedGUI extends AbstractGUI{
 
 	@Override
 	public void addMutateListener(ActionListener listener) {
-		// TODO Auto-generated method stub
-		
+		generateBtn.addActionListener(listener);
 	}
 
 
 	@Override
 	public void addExitListener(ActionListener listener) {
-		// TODO Auto-generated method stub
-		
+		exitBtn.addActionListener(listener);
 	}
 
 
 	@Override
 	public void addSaveListener(ActionListener listener) {
-		// TODO Auto-generated method stub
-		
+		saveBtn.addActionListener(listener);
 	}
 
 
 	@Override
 	public void addLoadListener(ActionListener listener) {
-		// TODO Auto-generated method stub
-		
+		loadBtn.addActionListener(listener);
 	}
 
 
 	@Override
 	public void addHelpListener(ActionListener listener) {
-		// TODO Auto-generated method stub
-		
+		helpBtn.addActionListener(listener);
 	}
 }
 
