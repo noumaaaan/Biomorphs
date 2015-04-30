@@ -14,7 +14,6 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
@@ -365,16 +364,13 @@ public class AdvancedGUI extends AbstractGUI {
 	@Override
 	public void addSaveListener(ActionListener listener) {
 		saveBtn.addActionListener(listener);
-	
 	}
 
 
 	@Override
 	public void addLoadListener(ActionListener listener) {
 		loadBtn.addActionListener(listener);
-        
 	}
-	
 
 
 	@Override
@@ -401,9 +397,5 @@ public class AdvancedGUI extends AbstractGUI {
 	public void updateMutations(List<AbstractBiomorph> biomorphs) {
 		biomorphGrid.updateGrid(biomorphs);
 	}
-
-
-	
-	
 	
 }
