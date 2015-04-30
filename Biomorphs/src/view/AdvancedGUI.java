@@ -234,6 +234,7 @@ public class AdvancedGUI extends AbstractGUI {
 		/** 7. Create navigation buttons at the bottom of the Panel */
 		
 		/** Create the Panel that will hold the different Buttons */
+		
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
 		buttonPanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
@@ -242,9 +243,27 @@ public class AdvancedGUI extends AbstractGUI {
 		
 		
 		/** Create the different Buttons and Action Listener*/
+		
+		
+		
+		
 		saveBtn = new JButton(" Save ");
 		saveBtn.setBounds(10, 10, 63, 23);
 		saveBtn.setToolTipText("Save your current biomorph mutation to your local drive");
+		
+		
+		/** Beginner selection */
+		saveBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new SaveAs().displayGui();
+			}
+
+		});
+		
+		
+		
 
 		loadBtn = new JButton(" Load ");
 		loadBtn.setBounds(83, 10, 61, 23);
@@ -282,7 +301,23 @@ public class AdvancedGUI extends AbstractGUI {
 		buttonPanel.add(exitBtn);
 		buttonPanel.add(userSelect);
 		buttonPanel.add(HallofFamebutton);
+		
 	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -347,9 +382,9 @@ public class AdvancedGUI extends AbstractGUI {
 			
 			colorPanel.setBackground(new Color(r,g,b));
 		}
-
 	}
-
+	
+	
 	@Override
 	public void addMutateListener(ActionListener listener) {
 		generateBtn.addActionListener(listener);
@@ -361,10 +396,10 @@ public class AdvancedGUI extends AbstractGUI {
 	}
 
 
-	@Override
+	/**@Override
 	public void addSaveListener(ActionListener listener) {
 		saveBtn.addActionListener(listener);
-	}
+	}*/
 
 
 	@Override
@@ -396,6 +431,12 @@ public class AdvancedGUI extends AbstractGUI {
 	@Override
 	public void updateMutations(List<AbstractBiomorph> biomorphs) {
 		biomorphGrid.updateGrid(biomorphs);
+	}
+
+	@Override
+	public void addSaveListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
