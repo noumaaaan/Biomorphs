@@ -1,6 +1,5 @@
 package view;
 
-import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
@@ -10,20 +9,20 @@ import javax.swing.JFrame;
  * @author Nouman Mehmood <mehmoodn@aston.ac.uk>
  */
 
-public class SaveFile {
+public class SaveFile<T> {
+	
+	JFrame frame;
+	JFileChooser fileChooser;
 
 	public SaveFile() {
 		// parent component of the dialog
-		JFrame frame = new JFrame(); 
-		JFileChooser fileChooser = new JFileChooser();
-		fileChooser.setDialogTitle("Save the project");   
-		 
+		frame  = new JFrame(); 
+		fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("Save the project");   		
+	}
+	
+	public void saveFile(T object) {
 		int userSelection = fileChooser.showSaveDialog(frame);
-		 
-		if (userSelection == JFileChooser.APPROVE_OPTION) {
-		    File fileToSave = fileChooser.getSelectedFile();
-		    System.out.println("Save as file: " + fileToSave.getAbsolutePath());
-		}
 	}
 
 	
