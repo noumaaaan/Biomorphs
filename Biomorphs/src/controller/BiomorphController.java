@@ -1,14 +1,17 @@
 package controller;
 
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.AbstractBiomorph;
 import model.EvolutionaryBiomorph;
+import model.Genome;
 import model.RandomBiomorph;
 import view.AdvancedGUI;
 import view.Help;
+import view.SaveFile;
 import view.Viewable;
 
 public class BiomorphController {
@@ -28,6 +31,8 @@ public class BiomorphController {
 		view.addExitListener(new ExitListener());
 		view.addUpdateBiomorphListener(new UpdateBiomorphListener());
 		view.addHelpListener(new HelpListener());
+		view.addSaveListener(new SaveListener());
+		
 	}
 	
 	/**
@@ -98,6 +103,25 @@ public class BiomorphController {
 		}
 		
 	}
+	
+	
+	/**
+	 * Action to save when a biomorph when save button is pressed.
+	 */
+	class SaveListener extends EventAction {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			try {
+				new SaveFile<Genome>(model.getGenome()).saveFile();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}		}
+		
+	}
+	
+
 	
 	/**
 	 * Creates an instance of the controller, with a view and model.

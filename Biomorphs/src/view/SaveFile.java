@@ -1,7 +1,16 @@
 package view;
 
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+
+import model.AbstractBiomorph;
+import model.FileSerializer;
 
 /**
  * Save the project
@@ -10,26 +19,31 @@ import javax.swing.JFrame;
  */
 
 public class SaveFile<T> {
-	
-	JFrame frame;
-	JFileChooser fileChooser;
+	JFrame frame; 
+	JFileChooser fileChooser = new JFileChooser();
 
-	public SaveFile() {
+	private T element;
+
+	public SaveFile(T element) {
 		// parent component of the dialog
-		frame  = new JFrame(); 
-		fileChooser = new JFileChooser();
-		fileChooser.setDialogTitle("Save the project");   		
+		frame = new JFrame();
+		fileChooser.setDialogTitle("Save the project");
+		fileChooser = new JFileChooser();  
+		this.element=element; 
 	}
-	
-	public void saveFile(T object) {
+
+
+	public void saveFile() throws IOException{
 		int userSelection = fileChooser.showSaveDialog(frame);
+
+		if (userSelection == JFileChooser.APPROVE_OPTION) {
+			File fileToSave = fileChooser.getSelectedFile();
+			System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+
+			new FileSerializer<T>().serialiseFile(element,fileToSave.getAbsolutePath());
+		}
+
+		//TODO functionality incomplete
+
 	}
-
-	
-	//TODO functionality incomplete
-
 }
-
-
-
-
