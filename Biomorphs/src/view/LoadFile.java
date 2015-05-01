@@ -3,6 +3,8 @@ package view;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 
+import model.FileSerializer;
+
 /**
  * Load the project into the application 
  * 
@@ -24,11 +26,15 @@ public class LoadFile {
 	if (filechooser.showOpenDialog(open) == JFileChooser.APPROVE_OPTION){
 		
 		//TODO functionality incomplete
-		
+		new FileSerializer<T>().deserialiseFile(filechooser.getSelectedFile().getAbsolutePath());
 	}
 	
 	/** Prints out what the user clicks on */
 	System.out.println("You chose : " + filechooser.getSelectedFile().getAbsolutePath());
 	
+	
+	
 	}	
 }
+
+
