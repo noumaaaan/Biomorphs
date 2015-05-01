@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -68,6 +70,7 @@ public class AdvancedGUI extends AbstractGUI {
 	private JButton saveasproject;
 	private JButton cancel;
 	private JPanel switchPanel;
+	private JCheckBox randomColor;
 	
 	CardLayout c = new CardLayout();
 	
@@ -176,13 +179,10 @@ public class AdvancedGUI extends AbstractGUI {
 		blueSlider.addChangeListener(e);
 		greenSlider.addChangeListener(e);
 		
-		/** Create a button to save the colour combination */
-		JButton updateColor = new JButton("Update");
-		updateColor.setBounds(220, 86, 70, 20);
-		updateColor.setToolTipText("Save your current biomorph mutation to your local drive");
 		
 		/** Create a CheckBox which on default it checked */
-		JCheckBox randomColor = new JCheckBox("Use Random Colours");
+		randomColor = new JCheckBox("Use Random Colours");
+		randomColor.addItemListener(new randomColor());
 		randomColor.setBounds(10, 86, 150, 23);
 		randomColor.setSelected(true);
 		
@@ -192,6 +192,13 @@ public class AdvancedGUI extends AbstractGUI {
 		sliderPanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 		sliderPanel.setBounds(10, 122, 300, 120);
 		sliderPanel.setLayout(null);
+		
+		/** Create a button to save the colour combination */
+		JButton updateColor = new JButton("Update");
+		updateColor.setBounds(220, 86, 70, 20);
+		updateColor.setToolTipText("Save your current biomorph mutation to your local drive");
+		
+		
 		
 		/** Add the different components to the sliderPanel() */
 		sliderPanel.add(sliders);
@@ -221,23 +228,12 @@ public class AdvancedGUI extends AbstractGUI {
 		currentBiomorphPanel.setBounds(10, 285, 300, 232);
 		currentBiomorphPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
 		currentBiomorphPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-		
-		/** Create the Panel to hold the current Biomorph */
-//		JPanel currentBiomorphPanel = new JPanel();
-//		currentBiomorphPanel.setLayout(null);
-//		currentBiomorphPanel.setBounds(10, 285, 300, 232);
-//		currentBiomorphPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
-//		currentBiomorphPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-		
-		
-		
-		
+
 		
 		/** 6. Create a Panel that displays the different Evolutionary Biomorphs */
 		biomorphGrid = new BiomorphGrid(3,3);
 		biomorphGrid.setBounds(320, 11, 882, 591);
 		biomorphGrid.setBorder(new EmptyBorder(15, 15, 15, 15));
-		biomorphGrid.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		
 		/** 7. Create navigation buttons at the bottom of the Panel */
@@ -281,6 +277,7 @@ public class AdvancedGUI extends AbstractGUI {
 		JButton HallofFamebutton = new JButton(" Hall of Fame ");
 		HallofFamebutton.setToolTipText("Insert text here :O");
 		HallofFamebutton.setBounds(180, 40, 100, 23);
+		
 		/** TODO Hall of Fame Listener*/ 
 		
 		
@@ -367,6 +364,7 @@ public class AdvancedGUI extends AbstractGUI {
 	
 	
 	
+	
 	private void addPropertyChangeListeners() {
 		model.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent event) {
@@ -387,12 +385,46 @@ public class AdvancedGUI extends AbstractGUI {
 			int g = greenSlider.getValue();
 			int b = blueSlider.getValue();
 			
+			
 			redLabel.setText("Red : " + r);
 			blueLabel.setText("Blue : " + b);
 			greenLabel.setText("Green : " + g);
 			
 			colorPanel.setBackground(new Color(r,g,b));	
 		}
+	
+	
+	public class randomColor implements ItemListener {
+		@SuppressWarnings("deprecation")
+		public void itemStateChanged(ItemEvent ie) {
+			if (randomColor.isSelected()) {
+				
+				redSlider.setValue(0);
+				redSlider.disable();
+				blueSlider.disable();
+				blueSlider.setValue(0);
+				greenSlider.disable();
+				greenSlider.setValue(0);
+			
+			} else {
+				
+				redSlider.enable();
+				blueSlider.enable();
+				greenSlider.enable();
+			
+			};}}
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
 		
 	public class event implements ChangeListener{
 		
