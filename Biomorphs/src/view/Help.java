@@ -76,56 +76,32 @@ public class Help extends AbstractGUI{
 	}
 
 	@Override
-	public void addMutateListener(ActionListener listener) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void addMutateListener(ActionListener listener) { }
 
 	@Override
-	public void addExitListener(ActionListener listener) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void addExitListener(ActionListener listener) { }
 
 	@Override
-	public void addSaveListener(ActionListener listener) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void addSaveProjectListener(ActionListener listener) { }
 
 	@Override
-	public void addLoadListener(ActionListener listener) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void addLoadListener(ActionListener listener) { }
 
 	@Override
-	public void addHelpListener(ActionListener listener) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void addHelpListener(ActionListener listener) { }
 
 	@Override
-	public void addGenerateListener(ActionListener listener) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void addGenerateListener(ActionListener listener) { }
 
 	@Override
-	public void addUpdateBiomorphListener(MouseListener listener) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void addUpdateBiomorphListener(MouseListener listener) { }
 
 	@Override
-	public void updateMutations(List<AbstractBiomorph> biomorphs) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void updateMutations(List<AbstractBiomorph> biomorphs) { }
 
 	@Override
-	public AbstractBiomorph getMutatedBiomorph() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public AbstractBiomorph getMutatedBiomorph() { return null; }
+
+	@Override
+	public void addSaveImageListener(ActionListener listener) { }
 }

@@ -460,9 +460,13 @@ public class AdvancedGUI extends AbstractGUI {
 	}
 
 	@Override
-	public void addSaveListener(ActionListener listener) {
-		// TODO Auto-generated method stub
-		
+	public void addSaveProjectListener(ActionListener listener) {
+		saveasproject.addActionListener(listener);
+	}
+
+	@Override
+	public void addSaveImageListener(ActionListener listener) {
+		saveasfile.addActionListener(listener);
 	}
 	
 }

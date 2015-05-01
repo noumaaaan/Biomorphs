@@ -99,7 +99,7 @@ public class BasicGUI extends AbstractGUI {
 		newEndBtn.addActionListener(listener);
 	}
 	
-	public void addSaveListener(ActionListener listener) {
+	public void addSaveProjectListener(ActionListener listener) {
 		newSaveBtn.addActionListener(listener);
 	}
 	
@@ -119,4 +119,9 @@ public class BasicGUI extends AbstractGUI {
 
 	@Override
 	public AbstractBiomorph getMutatedBiomorph() { return null; }
+
+	@Override
+	public void addSaveImageListener(ActionListener listener) {
+		// todo add here
+	}
 }

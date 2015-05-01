@@ -11,8 +11,9 @@ import model.Genome;
 import model.RandomBiomorph;
 import view.AdvancedGUI;
 import view.Help;
-import view.SaveFile;
 import view.Viewable;
+import view.components.SaveImageDialog;
+import view.components.SaveProjectDialog;
 
 public class BiomorphController {
 
@@ -31,7 +32,7 @@ public class BiomorphController {
 		view.addExitListener(new ExitListener());
 		view.addUpdateBiomorphListener(new UpdateBiomorphListener());
 		view.addHelpListener(new HelpListener());
-		view.addSaveListener(new SaveListener());
+		view.addSaveProjectListener(new SaveProjectListener());
 		
 	}
 	
@@ -108,16 +109,33 @@ public class BiomorphController {
 	/**
 	 * Action to save when a biomorph when save button is pressed.
 	 */
-	class SaveListener extends EventAction {
+	class SaveProjectListener extends EventAction {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			try {
-				new SaveFile<Genome>(model.getGenome()).saveFile();
+				new SaveImageDialog<Genome>(model.getGenome()).saveFile();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}	
+		}
+		
+	}
+	
+	/**
+	 * Action to save when a biomorph when save button is pressed.
+	 */
+	class SaveImageListener extends EventAction {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			try {
+				new SaveProjectDialog<Genome>(model.getGenome()).saveFile();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}		}
+			}
+		}
 		
 	}
 	

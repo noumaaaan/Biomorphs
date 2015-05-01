@@ -12,10 +12,12 @@ public interface Viewable {
 	void addMutateListener(ActionListener listener);
 	void addUpdateBiomorphListener(MouseListener listener);
 	void addExitListener(ActionListener listener);
-	void addSaveListener(ActionListener listener);
 	void addLoadListener(ActionListener listener);
 	void addHelpListener(ActionListener listener);
 	
+	void addSaveProjectListener(ActionListener listener);
+	void addSaveImageListener(ActionListener listener);	
+		
 	void updateMutations(List<AbstractBiomorph> biomorphs);
 	AbstractBiomorph getMutatedBiomorph();
 	
