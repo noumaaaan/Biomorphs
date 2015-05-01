@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -61,6 +62,14 @@ public class AdvancedGUI extends AbstractGUI {
 	private JButton loadBtn;
 	private JButton exitBtn;
 	private JButton helpBtn;
+	private JButton userSelect;
+	
+	private JButton saveasfile;
+	private JButton saveasproject;
+	private JButton cancel;
+	private JPanel switchPanel;
+	
+	CardLayout c = new CardLayout();
 	
 	public AdvancedGUI(AbstractBiomorph model) {
 		
@@ -168,7 +177,7 @@ public class AdvancedGUI extends AbstractGUI {
 		greenSlider.addChangeListener(e);
 		
 		/** Create a button to save the colour combination */
-		JButton updateColor = new JButton("Save");
+		JButton updateColor = new JButton("Update");
 		updateColor.setBounds(220, 86, 70, 20);
 		updateColor.setToolTipText("Save your current biomorph mutation to your local drive");
 		
@@ -233,8 +242,7 @@ public class AdvancedGUI extends AbstractGUI {
 		
 		/** 7. Create navigation buttons at the bottom of the Panel */
 		
-		/** Create the Panel that will hold the different Buttons */
-		
+		/** Create panel #1 that will hold the different Buttons */
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
 		buttonPanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
@@ -242,29 +250,18 @@ public class AdvancedGUI extends AbstractGUI {
 		buttonPanel.setLayout(null);
 		
 		
-		/** Create the different Buttons and Action Listener*/
-		
-		
-		
-		
+		/** Create Panel #2 that will have the save buttons */
+		JPanel savePanel = new JPanel();
+		savePanel.setBorder(new EmptyBorder(15, 15, 15, 15));
+		savePanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+		savePanel.setBounds(10, 528, 300, 74);
+		savePanel.setLayout(null);
+	
+		/** Different components to add to Button Panel */
 		saveBtn = new JButton(" Save ");
 		saveBtn.setBounds(10, 10, 63, 23);
 		saveBtn.setToolTipText("Save your current biomorph mutation to your local drive");
-		
-		
-		/** Beginner selection */
-		saveBtn.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new SaveAs().displayGui();
-			}
-
-		});
-		
-		
-		
-
+			
 		loadBtn = new JButton(" Load ");
 		loadBtn.setBounds(83, 10, 61, 23);
 		loadBtn.setToolTipText("Open up a previously saved biomorph mutation");
@@ -277,20 +274,13 @@ public class AdvancedGUI extends AbstractGUI {
 		exitBtn.setBounds(223, 10, 57, 23);
 		exitBtn.setToolTipText("Quit the application by clicking here");
 		
-		JButton userSelect = new JButton(" Return to User selection ");
+		userSelect = new JButton(" Return to User selection ");
 		userSelect.setBounds(10, 40, 155, 23);
 		userSelect.setToolTipText("Return to the user selection screen");
-		userSelect.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//returnUserSelect();
-			
-			}});
 		
 		JButton HallofFamebutton = new JButton(" Hall of Fame ");
 		HallofFamebutton.setToolTipText("Insert text here :O");
 		HallofFamebutton.setBounds(180, 40, 100, 23);
-		
 		/** TODO Hall of Fame Listener*/ 
 		
 		
@@ -302,24 +292,58 @@ public class AdvancedGUI extends AbstractGUI {
 		buttonPanel.add(userSelect);
 		buttonPanel.add(HallofFamebutton);
 		
-	
+		
+		/** Different components to add to save options Panel */
+		saveasfile = new JButton(" Save as JPEG ");
+		saveasfile.setBounds(10, 10, 110, 23);
+		saveasfile.setToolTipText("Save the Biomorph as an image to your disk");
+			
+		saveasproject = new JButton(" Save as Project ");
+		saveasproject.setBounds(10, 40, 115, 23);
+		saveasproject.setToolTipText("Save the project so you can return to it later");
+		
+		cancel = new JButton(" Cancel ");
+		cancel.setBounds(220, 10, 70, 23);
+		cancel.setToolTipText("Return to the biomorph project");
+		
+		/** Add these different components to the Panel */
+		savePanel.add(saveasfile);
+		savePanel.add(saveasproject);
+		savePanel.add(cancel);
+		
+		/** Create the panel that will hold the other panels*/
+		switchPanel = new JPanel();
+		switchPanel.setLayout(c);
+		
+		switchPanel.add(buttonPanel, "card 1");
+		switchPanel.add(savePanel, "card 2");
+		
+		c.show(switchPanel, "card 1");
+		
+		
+		switchPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
+		switchPanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+		switchPanel.setBounds(10, 528, 300, 74);
 		
 		
 		
 		
+		saveBtn.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				c.show(switchPanel, "card 2");
+			
+				
+			
+			
+			}});
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		cancel.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				c.show(switchPanel, "card 1");
+				
+			
+			
+			}});
 		
 		
 		/** 8. Create a Panel that will hold all the components on the Frame */
@@ -329,10 +353,10 @@ public class AdvancedGUI extends AbstractGUI {
 		windowPanel.add(sliderPanel);
 		windowPanel.add(generatePanel);
 		windowPanel.add(BiomorphValueChanger);
-		windowPanel.add(buttonPanel);
 		windowPanel.add(biomorphGrid);
 		windowPanel.add(currentBiomorphPanel);
 		windowPanel.add(CBholdPanel);
+		windowPanel.add(switchPanel);
 		
 		windowFrame.setVisible(true);
 		windowFrame.pack();
@@ -340,6 +364,8 @@ public class AdvancedGUI extends AbstractGUI {
 		addPropertyChangeListeners();
 		
 	}
+	
+	
 	
 	private void addPropertyChangeListeners() {
 		model.addPropertyChangeListener(new PropertyChangeListener() {
