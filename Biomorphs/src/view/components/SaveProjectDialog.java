@@ -14,12 +14,8 @@ public class SaveProjectDialog<T> extends FileSelectionDialog<T> {
 
 	@Override
 	protected void processFile(T element, String path) {
-		try {
-			System.out.println("before serialisationa");
-			
+		try {			
 			new FileSerializer<T>().serialiseFile(element, path);
-			
-			System.out.println("before ioexception thrown");
 			
 			throw new IOException("test");
 		} catch (IOException e) {			

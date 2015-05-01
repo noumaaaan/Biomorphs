@@ -33,8 +33,6 @@ public abstract class FileSelectionDialog<T> {
 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 			File fileToSave = fileChooser.getSelectedFile();
 			
-			System.out.println("before process file");
-			
 			processFile(element, fileToSave.getAbsolutePath());
 		}
 	}
