@@ -13,8 +13,8 @@ import javax.swing.JFrame;
  */
 
 public abstract class FileSelectionDialog<T> {
-	JFrame frame; 
-	JFileChooser fileChooser = new JFileChooser();
+	protected JFrame frame; 
+	private JFileChooser fileChooser = new JFileChooser();
 
 	private T element;
 
@@ -32,6 +32,8 @@ public abstract class FileSelectionDialog<T> {
 
 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 			File fileToSave = fileChooser.getSelectedFile();
+			
+			System.out.println("before process file");
 			
 			processFile(element, fileToSave.getAbsolutePath());
 		}

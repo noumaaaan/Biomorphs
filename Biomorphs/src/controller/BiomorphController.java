@@ -114,7 +114,7 @@ public class BiomorphController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			try {
-				new SaveImageDialog<Genome>(model.getGenome()).saveFile();
+				new SaveProjectDialog<Genome>(model.getGenome()).saveFile();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}	
@@ -130,7 +130,7 @@ public class BiomorphController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			try {
-				new SaveProjectDialog<Genome>(model.getGenome()).saveFile();
+				new SaveImageDialog<Genome>(model.getGenome()).saveFile();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
