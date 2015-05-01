@@ -16,8 +16,6 @@ public class SaveProjectDialog<T> extends FileSelectionDialog<T> {
 	protected void processFile(T element, String path) {
 		try {			
 			new FileSerializer<T>().serialiseFile(element, path);
-			
-			throw new IOException("test");
 		} catch (IOException e) {			
 			String message = "Unable to save biomorph as a project file.\n\n "
 					+ "Please ensure you have permission to read/write to this directory, "
