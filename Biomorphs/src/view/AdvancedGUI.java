@@ -65,7 +65,7 @@ public class AdvancedGUI extends AbstractGUI implements Viewable {
 	private JButton exitBtn;
 	private JButton helpBtn;
 	private JButton HallofFamebutton;
-	private JButton userSelect;
+	private JButton addToHoFButton;
 	
 	private JButton saveasfile;
 	private JButton saveasproject;
@@ -175,7 +175,7 @@ public class AdvancedGUI extends AbstractGUI implements Viewable {
 		sliders.add(greenSlider);
 		
 		/** Change Listeners for the Sliders */
-		event e = new event();
+		EventChangeListener e = new EventChangeListener();
 		redSlider.addChangeListener(e);
 		blueSlider.addChangeListener(e);
 		greenSlider.addChangeListener(e);
@@ -183,7 +183,7 @@ public class AdvancedGUI extends AbstractGUI implements Viewable {
 		
 		/** Create a CheckBox which on default it checked */
 		randomColor = new JCheckBox("Use Random Colours");
-		randomColor.addItemListener(new randomColor());
+		randomColor.addItemListener(new RandomColorItemListener());
 		randomColor.setBounds(10, 86, 150, 23);
 		randomColor.setSelected(true);
 		
@@ -271,11 +271,11 @@ public class AdvancedGUI extends AbstractGUI implements Viewable {
 		exitBtn.setBounds(223, 10, 57, 23);
 		exitBtn.setToolTipText("Quit the application by clicking here");
 		
-		userSelect = new JButton(" Return to User selection ");
-		userSelect.setBounds(10, 40, 155, 23);
-		userSelect.setToolTipText("Return to the user selection screen");
+		addToHoFButton = new JButton(" Add to Hall of Fame ");
+		addToHoFButton.setBounds(10, 40, 155, 23);
+		addToHoFButton.setToolTipText("Add biomorph to the hall of fame");
 		
-		HallofFamebutton = new JButton(" Hall of Fame ");
+		HallofFamebutton = new JButton(" View Hall of Fame ");
 		HallofFamebutton.setToolTipText("Insert text here :O");
 		HallofFamebutton.setBounds(180, 40, 100, 23);
 		
@@ -287,7 +287,7 @@ public class AdvancedGUI extends AbstractGUI implements Viewable {
 		buttonPanel.add(loadBtn);
 		buttonPanel.add(helpBtn);
 		buttonPanel.add(exitBtn);
-		buttonPanel.add(userSelect);
+		buttonPanel.add(addToHoFButton);
 		buttonPanel.add(HallofFamebutton);
 		
 		
@@ -318,30 +318,22 @@ public class AdvancedGUI extends AbstractGUI implements Viewable {
 		
 		c.show(switchPanel, "card 1");
 		
-		
 		switchPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
 		switchPanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 		switchPanel.setBounds(10, 528, 300, 74);
 		
-		
-		
-		
 		saveBtn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				c.show(switchPanel, "card 2");
-			
-				
-			
-			
-			}});
+				c.show(switchPanel, "card 2");	
+			}
+		});
 		
 		cancel.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
 				c.show(switchPanel, "card 1");
-				
-			
-			
-			}});
+
+			}
+		});
 		
 		
 		/** 8. Create a Panel that will hold all the components on the Frame */
@@ -363,9 +355,6 @@ public class AdvancedGUI extends AbstractGUI implements Viewable {
 		
 	}
 	
-	
-	
-	
 	private void addPropertyChangeListeners() {
 		model.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent event) {
@@ -379,7 +368,6 @@ public class AdvancedGUI extends AbstractGUI implements Viewable {
 		});
 	}
 	
-
 	public void stateChanged(ChangeEvent e) {
 			
 			int r = redSlider.getValue();
@@ -395,39 +383,29 @@ public class AdvancedGUI extends AbstractGUI implements Viewable {
 		}
 	
 	
-	public class randomColor implements ItemListener {
-		@SuppressWarnings("deprecation")
+	public class RandomColorItemListener implements ItemListener {
+
 		public void itemStateChanged(ItemEvent ie) {
 			if (randomColor.isSelected()) {
-				
 				redSlider.setValue(0);
-				redSlider.disable();
-				blueSlider.disable();
 				blueSlider.setValue(0);
-				greenSlider.disable();
 				greenSlider.setValue(0);
-			
+
+				redSlider.setEnabled(false);
+				blueSlider.setEnabled(false);
+				greenSlider.setEnabled(false);
+
 			} else {
-				
-				redSlider.enable();
-				blueSlider.enable();
-				greenSlider.enable();
-			
-			};}}
+				redSlider.setEnabled(true);
+				blueSlider.setEnabled(true);
+				greenSlider.setEnabled(true);
 
-
-
-
-
-	
-	
-	
-	
-	
-	
-	
+			};
+		}
 		
-	public class event implements ChangeListener{
+	}
+		
+	public class EventChangeListener implements ChangeListener{
 		
 		public void stateChanged(ChangeEvent e) {
 			
@@ -441,6 +419,7 @@ public class AdvancedGUI extends AbstractGUI implements Viewable {
 			
 			colorPanel.setBackground(new Color(r,g,b));
 		}
+		
 	}
 	
 	
