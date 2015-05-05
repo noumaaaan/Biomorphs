@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -26,6 +25,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import model.AbstractBiomorph;
+import controller.EventAction;
 
 /**
  * Provides the advanced Graphical User Interface which let's the user manipulate the biomorph
@@ -515,27 +515,27 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	
 	
 	@Override
-	public void addMutateListener(ActionListener listener) {
+	public void addMutateListener(EventAction listener) {
 		generateBtn.addActionListener(listener);
 	}
 
 	@Override
-	public void addExitListener(ActionListener listener) {
+	public void addExitListener(EventAction listener) {
 		exitBtn.addActionListener(listener);
 	}
 
 	@Override
-	public void addHelpListener(ActionListener listener) {
+	public void addHelpListener(EventAction listener) {
 		helpBtn.addActionListener(listener);
 	}
 
 	@Override
-	public void addUpdateBiomorphListener(MouseListener listener) {
+	public void addUpdateBiomorphListener(EventAction listener) {
 		biomorphGrid.addUpdateBiomorphListener(listener);
 	}
 
 	@Override
-	public void addGenerateListener(ActionListener listener) {
+	public void addGenerateListener(EventAction listener) {
 		generateBtn.addActionListener(listener);
 	}
 
@@ -550,22 +550,22 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	}
 
 	@Override
-	public void addSaveProjectListener(ActionListener listener) {
+	public void addSaveProjectListener(EventAction listener) {
 		saveasproject.addActionListener(listener);
 	}
 
 	@Override
-	public void addSaveImageListener(ActionListener listener) {
+	public void addSaveImageListener(EventAction listener) {
 		saveasfile.addActionListener(listener);
 	}
 	
 	@Override
-	public void addLoadProjectListener(ActionListener listener) {
+	public void addLoadProjectListener(EventAction listener) {
 		loadBtn.addActionListener(listener);
 	}
 
 	@Override
-	public void addGenomeChangeListener(ActionListener listener) {
+	public void addGenomeChangeListener(EventAction listener) {
 		updateColorBtn.addActionListener(listener);
 	}
 
@@ -575,17 +575,19 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	}
 	
 	@Override
-	public void addHallOfFameAddListener(ActionListener listener) {
+	public void addHallOfFameAddListener(EventAction listener) {
 		addToHoFButton.addActionListener(listener);
 	}
 	
 	@Override
-	public void addLoadHallOfFameBiomorph(ActionListener listener) {
-		
+	public void addLoadHallOfFameBiomorph(EventAction listener) {
+		for(BiomorphPanel panel : hallOfFameBiomorphs) {
+			panel.refresh(); // ensure all panels are painted with new biomorph
+		}
 	}
 
 	@Override
-	public void addDeleteHallOfFameBiomorph(ActionListener listener) {
+	public void addDeleteHallOfFameBiomorph(EventAction listener) {
 		
 	}
 
@@ -595,7 +597,7 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	}
 
 	@Override
-	public void addUndoListener(ActionListener listener) {
+	public void addUndoListener(EventAction listener) {
 		undoBtn.addActionListener(listener);
 	}
 

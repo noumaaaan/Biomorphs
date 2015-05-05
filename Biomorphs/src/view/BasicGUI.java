@@ -5,8 +5,6 @@ import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
@@ -19,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import model.AbstractBiomorph;
+import controller.EventAction;
 
 /**
  * Provides a graphical user interface
@@ -165,32 +164,32 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	}
 
 	@Override
-	public void addGenerateListener(ActionListener listener) {
+	public void addGenerateListener(EventAction listener) {
 		newBiomorphBtn.addActionListener(listener);
 	}
 
-	public void addMutateListener(ActionListener listener) {
+	public void addMutateListener(EventAction listener) {
 		newBiomorphBtn.addActionListener(listener);
 	}
 	
-	public void addExitListener(ActionListener listener) {
+	public void addExitListener(EventAction listener) {
 		newEndBtn.addActionListener(listener);
 	}
 	
-	public void addSaveProjectListener(ActionListener listener) {
+	public void addSaveProjectListener(EventAction listener) {
 		newSaveBtn.addActionListener(listener);
 	}
 	
-	public void addLoadProjectListener(ActionListener listener) {
+	public void addLoadProjectListener(EventAction listener) {
 		newLoadBtn.addActionListener(listener);
 	}
 	
-	public void addHelpListener(ActionListener listener) {
+	public void addHelpListener(EventAction listener) {
 		newHelpBtn.addActionListener(listener);
 	}
 
 	@Override
-	public void addUpdateBiomorphListener(MouseListener listener) { } // not needed for this gui
+	public void addUpdateBiomorphListener(EventAction listener) { } // not needed for this gui
 
 	@Override
 	public void updateMutations(List<AbstractBiomorph> biomorphs) { }
@@ -199,7 +198,7 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	public AbstractBiomorph getMutatedBiomorph() { return null; }
 
 	@Override
-	public void addSaveImageListener(ActionListener listener) { 
+	public void addSaveImageListener(EventAction listener) { 
 		saveasjpeg.addActionListener(listener);
 	}
 
@@ -209,10 +208,10 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	}
 
 	@Override
-	public void addHallOfFameAddListener(ActionListener listener) { } // not on this gui
+	public void addHallOfFameAddListener(EventAction listener) { } // not on this gui
 
 	@Override
-	public void addGenomeChangeListener(ActionListener listener) { }
+	public void addGenomeChangeListener(EventAction listener) { }
 
 	@Override
 	public GenomeViewUpdateModel getGenomeUpdate() {
@@ -220,10 +219,10 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	}
 
 	@Override
-	public void addDeleteHallOfFameBiomorph(ActionListener listener) { } // not on this gui
+	public void addDeleteHallOfFameBiomorph(EventAction listener) { } // not on this gui
 
 	@Override
-	public void addLoadHallOfFameBiomorph(ActionListener listener) { } // not on this gui
+	public void addLoadHallOfFameBiomorph(EventAction listener) { } // not on this gui
 
 	@Override
 	public BiomorphPanel getBiomorphPanel() {
@@ -231,7 +230,7 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	}
 
 	@Override
-	public void addUndoListener(ActionListener listener) { } // not on this gui
+	public void addUndoListener(EventAction listener) { } // not on this gui
 	
 	@Override
 	public void loadHallOfFame(List<AbstractBiomorph> biomorphs) {

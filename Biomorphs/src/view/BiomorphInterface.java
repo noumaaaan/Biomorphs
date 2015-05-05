@@ -1,33 +1,32 @@
 package view;
 
-import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import java.util.List;
 
 import javax.swing.JFrame;
 
 import model.AbstractBiomorph;
+import controller.EventAction;
 
 public interface BiomorphInterface {
 	
-	void addGenerateListener(ActionListener listener);
-	void addMutateListener(ActionListener listener);
-	void addUpdateBiomorphListener(MouseListener listener);
-	void addExitListener(ActionListener listener);
-	void addHelpListener(ActionListener listener);
-	void addUndoListener(ActionListener listener);
+	void addGenerateListener(EventAction listener);
+	void addMutateListener(EventAction listener);
+	void addUpdateBiomorphListener(EventAction listener);
+	void addExitListener(EventAction listener);
+	void addHelpListener(EventAction listener);
+	void addUndoListener(EventAction listener);
 	
 	void loadHallOfFame(List<AbstractBiomorph> biomorphs);
-	void addHallOfFameAddListener(ActionListener listener);
-	void addDeleteHallOfFameBiomorph(ActionListener listener);
-	void addLoadHallOfFameBiomorph(ActionListener listener);
+	void addHallOfFameAddListener(EventAction listener);
+	void addDeleteHallOfFameBiomorph(EventAction listener);
+	void addLoadHallOfFameBiomorph(EventAction listener);
 	
-	void addLoadProjectListener(ActionListener listener);
+	void addLoadProjectListener(EventAction listener);
 	
-	void addSaveProjectListener(ActionListener listener);
-	void addSaveImageListener(ActionListener listener);	
+	void addSaveProjectListener(EventAction listener);
+	void addSaveImageListener(EventAction listener);	
 	
-	void addGenomeChangeListener(ActionListener listener);
+	void addGenomeChangeListener(EventAction listener);
 		
 	void updateMutations(List<AbstractBiomorph> biomorphs);
 	AbstractBiomorph getMutatedBiomorph();
