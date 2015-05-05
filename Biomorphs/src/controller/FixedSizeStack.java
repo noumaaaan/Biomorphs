@@ -20,17 +20,14 @@ public class FixedSizeStack<T> {
 	
 	public void add(T element) {
 		baseList.add(element);
-		System.out.println("element added to stack");
 		
 		if(baseList.size() > capacity) {
 			baseList.removeFirst();
-			System.out.println("larger than capacity");
 		}
 	}
 	
 	public T pop() {
 		if(baseList.size() == 0) {
-			System.out.println("size 0");
 			return null;
 		}
 		
