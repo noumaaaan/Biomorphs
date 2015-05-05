@@ -4,19 +4,15 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-
-import model.AbstractBiomorph;
 
 /**
  * Class to display User Manual 
@@ -25,7 +21,7 @@ import model.AbstractBiomorph;
  * 
  */
 
-public class Help extends AbstractGUI{
+public class Help extends AbstractGUI {
 
 	public Help() {
 		super("Biomorph Mutation: Help", 600, 400);
@@ -73,41 +69,5 @@ public class Help extends AbstractGUI{
 
 		windowFrame.pack();
 		windowFrame.setLocationRelativeTo(null); // centre aligned
-	}
-
-	@Override
-	public void addMutateListener(ActionListener listener) { }
-
-	@Override
-	public void addExitListener(ActionListener listener) { }
-
-	@Override
-	public void addSaveProjectListener(ActionListener listener) { }
-
-	@Override
-	public void addLoadProjectListener(ActionListener listener) { }
-
-	@Override
-	public void addHelpListener(ActionListener listener) { }
-
-	@Override
-	public void addGenerateListener(ActionListener listener) { }
-
-	@Override
-	public void addUpdateBiomorphListener(MouseListener listener) { }
-
-	@Override
-	public void updateMutations(List<AbstractBiomorph> biomorphs) { }
-
-	@Override
-	public AbstractBiomorph getMutatedBiomorph() { return null; }
-
-	@Override
-	public void addSaveImageListener(ActionListener listener) { }
-
-	@Override
-	public void addHallOfFameListener(ActionListener listener) {
-		// TODO Auto-generated method stub
-		
 	}
 }

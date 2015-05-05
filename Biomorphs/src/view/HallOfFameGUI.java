@@ -1,14 +1,12 @@
 package view;
 
-import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
+import java.awt.BorderLayout;
 import java.io.File;
-import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import model.AbstractBiomorph;
 import model.EvolutionaryBiomorph;
 import model.FileSerializer;
 import model.Genome;
@@ -16,7 +14,8 @@ import model.Genome;
 public class HallOfFameGUI extends AbstractGUI {
 
 	public HallOfFameGUI() {
-		super("Biomorph Hall of Fame", 1225, 640);
+		super("Biomorph Hall of Fame", 600, 400);
+		windowFrame.setResizable(true);
 		
 		JPanel biomorphContainer = new JPanel();
 		
@@ -24,10 +23,14 @@ public class HallOfFameGUI extends AbstractGUI {
 		
 		loadBiomorphs(biomorphContainer, currentPath);
 		
-		windowFrame.add(biomorphContainer);
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.add(new JButton("TEST"));
 		
-		windowFrame.setVisible(true);		
+		windowFrame.add(biomorphContainer, BorderLayout.CENTER);
+		windowFrame.add(buttonPanel, BorderLayout.SOUTH);
+		
 		windowFrame.pack();
+		windowFrame.setLocationRelativeTo(null); // centre aligned
 	}
 	
 	private void loadBiomorphs(JPanel container, String currentPath) {
@@ -49,85 +52,15 @@ public class HallOfFameGUI extends AbstractGUI {
 			
 			EvolutionaryBiomorph biomorph = new EvolutionaryBiomorph(genome);
 			
-			BiomorphPanel biomorphPanel = new BiomorphPanel();
+			BiomorphPanel biomorphPanel = new BiomorphPanel(biomorph, false);
 			biomorphPanel.setBiomorph(biomorph);
 			
 			container.add(biomorphPanel);
-			
-			biomorphPanel.refresh();
 		} catch (Exception e) {
 			String message = "Unable to load file: " + filePath;
 			
 			JOptionPane.showMessageDialog(windowFrame, message, "Unable to load biomorph", JOptionPane.WARNING_MESSAGE);
 		}
-		
-		
 	}
-
-	@Override
-	public void addGenerateListener(ActionListener listener) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void addMutateListener(ActionListener listener) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void addUpdateBiomorphListener(MouseListener listener) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void addExitListener(ActionListener listener) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void addHelpListener(ActionListener listener) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void addLoadProjectListener(ActionListener listener) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void addSaveProjectListener(ActionListener listener) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void addSaveImageListener(ActionListener listener) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void updateMutations(List<AbstractBiomorph> biomorphs) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public AbstractBiomorph getMutatedBiomorph() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void addHallOfFameListener(ActionListener listener) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 }

@@ -15,7 +15,7 @@ import javax.swing.UIManager;
  * @author Nouman Mehmood <mehmoodn@aston.ac.uk>
  */
 
-public abstract class AbstractGUI implements Viewable {
+public abstract class AbstractGUI {
 	
 	protected JFrame windowFrame;
 	
