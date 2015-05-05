@@ -1,11 +1,16 @@
 package controller;
 
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import model.AbstractBiomorph;
 import model.EvolutionaryBiomorph;
+import model.FileSerializer;
 import model.Genome;
 import model.RandomBiomorph;
 import view.AdvancedGUI;
@@ -35,7 +40,8 @@ public class BiomorphController {
 		view.addHelpListener(new HelpListener());
 		view.addSaveProjectListener(new SaveProjectListener());
 		view.addLoadProjectListener(new LoadProjectListener());
-		view.addHallOfFameListener(new HallOfFameListener());
+		view.addHallOfFameViewListener(new HallOfFameListener());
+		view.addHallOfFameAddListener(new AddToHoFListener());
 	}
 	
 	/**
@@ -152,6 +158,41 @@ public class BiomorphController {
 		@Override
 		public void actionPerformed(ActionEvent event) {
 			new HallOfFameGUI().displayGui();
+		}
+		
+	}
+	
+	class AddToHoFListener extends EventAction {
+
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			String currentDirectory = System.getProperty("user.dir");
+			
+			File file = new File(currentDirectory + HallOfFameGUI.HALL_OF_FAME_SUBDIRECTORY);
+			
+			int savedBiomorphCount = countSavedBiomorphs(file);
+			
+			if(savedBiomorphCount < 9) { // can only save 9 biomorphs
+				try {
+					new FileSerializer<Genome>().serialiseFile(model.getGenome(), file.getAbsolutePath() + "/biomorph" + (savedBiomorphCount+1));
+				} catch (IOException e) {
+					System.out.println("Error saving to hall of fame");
+				}
+			} else {
+				String message = "No more biomorphs can be added to the hall of fame. Please delete some existing biomorphs.";
+				
+				JOptionPane.showMessageDialog(view.getFrame(), message, "Error adding to Hall of Fame", JOptionPane.WARNING_MESSAGE);
+			}
+		}
+	
+		private int countSavedBiomorphs(File current) {
+			int savedBiomorphCount = 0;
+			
+			for(@SuppressWarnings("unused") File currentFile : current.listFiles()) {
+				savedBiomorphCount++;
+			};
+		
+			return savedBiomorphCount;
 		}
 		
 	}

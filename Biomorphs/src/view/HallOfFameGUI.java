@@ -12,6 +12,8 @@ import model.FileSerializer;
 import model.Genome;
 
 public class HallOfFameGUI extends AbstractGUI {
+	
+	public static final String HALL_OF_FAME_SUBDIRECTORY = "/hallOfFame";
 
 	public HallOfFameGUI() {
 		super("Biomorph Hall of Fame", 600, 400);
@@ -35,7 +37,7 @@ public class HallOfFameGUI extends AbstractGUI {
 	
 	private void loadBiomorphs(JPanel container, String currentPath) {
 		try {
-			for(File file : new File(currentPath + "/hallOfFame").listFiles()) {
+			for(File file : new File(currentPath + HALL_OF_FAME_SUBDIRECTORY).listFiles()) {
 				processFile(file.getAbsolutePath(), container);
 			}
 		} catch (Exception e) {

@@ -133,7 +133,13 @@ public class BasicGUI extends AbstractGUI implements Viewable {
 	}
 
 	@Override
-	public void addHallOfFameListener(ActionListener listener) {
+	public void addHallOfFameViewListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addHallOfFameAddListener(ActionListener listener) {
 		// TODO Auto-generated method stub
 		
 	}

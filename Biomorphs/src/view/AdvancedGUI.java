@@ -473,8 +473,13 @@ public class AdvancedGUI extends AbstractGUI implements Viewable {
 	}
 
 	@Override
-	public void addHallOfFameListener(ActionListener listener) {
+	public void addHallOfFameViewListener(ActionListener listener) {
 		HallofFamebutton.addActionListener(listener);
+	}
+
+	@Override
+	public void addHallOfFameAddListener(ActionListener listener) {
+		addToHoFButton.addActionListener(listener);
 	}
 	
 }
