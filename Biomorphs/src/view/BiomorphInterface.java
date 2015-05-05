@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 
 import model.AbstractBiomorph;
 
-public interface Viewable {
+public interface BiomorphInterface {
 	
 	void addGenerateListener(ActionListener listener);
 	void addMutateListener(ActionListener listener);

@@ -16,7 +16,7 @@ import model.RandomBiomorph;
 import view.AdvancedGUI;
 import view.HallOfFameGUI;
 import view.Help;
-import view.Viewable;
+import view.BiomorphInterface;
 import view.components.LoadProjectDialog;
 import view.components.SaveImageDialog;
 import view.components.SaveProjectDialog;
@@ -24,9 +24,9 @@ import view.components.SaveProjectDialog;
 public class BiomorphController {
 
 	private AbstractBiomorph model;
-	private Viewable view; 
+	private BiomorphInterface view; 
 	
-	public BiomorphController(Viewable view, AbstractBiomorph biomorph) {
+	public BiomorphController(BiomorphInterface view, AbstractBiomorph biomorph) {
 		this.view = view; 
 		this.model = biomorph;
 		
@@ -205,7 +205,7 @@ public class BiomorphController {
 	 */
 	public static void main(String[] args) {
 		AbstractBiomorph model = new RandomBiomorph();
-		Viewable view = new AdvancedGUI(model);
+		BiomorphInterface view = new AdvancedGUI(model);
 		
 		new BiomorphController(view, model);
 	}

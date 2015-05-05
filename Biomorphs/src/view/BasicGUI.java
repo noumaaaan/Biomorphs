@@ -21,7 +21,7 @@ import model.AbstractBiomorph;
  * @author Nouman Mehmood <mehmoodn@aston.ac.uk>
  * @author Jurgen Hajdini <hajdinij@aston.ac.uk>
  */
-public class BasicGUI extends AbstractGUI implements Viewable {
+public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	
 	private JButton newBiomorphBtn;
 	private JButton newSaveBtn;

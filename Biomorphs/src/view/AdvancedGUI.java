@@ -44,7 +44,7 @@ import model.AbstractBiomorph;
  * 
  */
 
-public class AdvancedGUI extends AbstractGUI implements Viewable {
+public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	
 	private AbstractBiomorph model;
 	
