@@ -23,9 +23,13 @@ public interface BiomorphInterface {
 	
 	void addSaveProjectListener(ActionListener listener);
 	void addSaveImageListener(ActionListener listener);	
+	
+	void addGenomeChangeListener(ActionListener listener);
 		
 	void updateMutations(List<AbstractBiomorph> biomorphs);
 	AbstractBiomorph getMutatedBiomorph();
+	
+	GenomeViewUpdateModel getGenomeUpdate();
 	
 	JFrame getFrame();
 	

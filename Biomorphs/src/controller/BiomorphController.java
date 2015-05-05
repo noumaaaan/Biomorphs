@@ -1,10 +1,12 @@
 package controller;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.JOptionPane;
 
@@ -14,9 +16,10 @@ import model.FileSerializer;
 import model.Genome;
 import model.RandomBiomorph;
 import view.AdvancedGUI;
+import view.BiomorphInterface;
+import view.GenomeViewUpdateModel;
 import view.HallOfFameGUI;
 import view.Help;
-import view.BiomorphInterface;
 import view.components.LoadProjectDialog;
 import view.components.SaveImageDialog;
 import view.components.SaveProjectDialog;
@@ -42,6 +45,7 @@ public class BiomorphController {
 		view.addLoadProjectListener(new LoadProjectListener());
 		view.addHallOfFameViewListener(new HallOfFameListener());
 		view.addHallOfFameAddListener(new AddToHoFListener());
+		view.addGenomeChangeListener(new UpdateGenomeColourListener());
 	}
 	
 	/**
@@ -97,6 +101,35 @@ public class BiomorphController {
 			model.setGenome(view.getMutatedBiomorph().getGenome());
 			
 			view.updateMutations(getMutatedBiomorphs());
+		}
+		
+	}
+	
+	class UpdateGenomeColourListener extends EventAction {
+
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			GenomeViewUpdateModel genomeUpdate = view.getGenomeUpdate();
+			
+			for(Genome genome : model.getGenome()) {
+				Color color;
+				
+				if(genomeUpdate.isRandomColours()) {
+					color = getRandomColor();
+				} else {
+					color = new Color(genomeUpdate.getRed(), genomeUpdate.getGreen(), genomeUpdate.getBlue());
+				}
+				
+				genome.setColour(color);
+			}
+			
+			view.updateMutations(getMutatedBiomorphs());
+		}
+		
+		private Color getRandomColor() {
+			Random rand = new Random();
+			
+			return new Color(rand.nextFloat(), rand.nextFloat(), rand.nextFloat());
 		}
 		
 	}

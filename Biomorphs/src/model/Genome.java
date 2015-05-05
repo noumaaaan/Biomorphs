@@ -13,7 +13,7 @@ import static model.Constants.*;
  * 
  * @author Alex Luckett <lucketta@aston.ac.uk>
  */
-public class Genome implements Iterable<Genome>, Cloneable, Serializable {
+public class Genome extends AbstractModel implements Iterable<Genome>, Cloneable, Serializable {
 	private static final long serialVersionUID = -705113420866471080L;
 	
 	private double angle;
@@ -50,16 +50,32 @@ public class Genome implements Iterable<Genome>, Cloneable, Serializable {
 		}	
 	}
 
-	public void setAngle(double angle) { this.angle = angle; }
+	public void setAngle(double angle) {
+		this.angle = angle;
+		firePropertyChange("genome", this);
+	}
+	
 	public double getAngle() {	return angle; }
 	
-	public void setLength(int length) { this.length = length; }
+	public void setLength(int length) {
+		this.length = length;
+		firePropertyChange("genome", this);
+	}
+	
 	public int getLength() { return length; }
 	
-	public void setColour(Color colour) { this.colour = colour; }
+	public void setColour(Color colour) {
+		this.colour = colour;
+		firePropertyChange("genome", this);
+	}
+	
 	public Color getColour() { return colour; }
 	
-	public void setChild(Genome child) { this.child = child; }
+	public void setChild(Genome child) {
+		this.child = child;
+		firePropertyChange("genome", this);
+	}
+	
 	public Genome getChild() { return child; }
 
 	public int size() {

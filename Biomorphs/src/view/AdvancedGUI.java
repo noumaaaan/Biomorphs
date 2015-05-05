@@ -66,12 +66,15 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	private JButton helpBtn;
 	private JButton HallofFamebutton;
 	private JButton addToHoFButton;
+	private JButton updateColorBtn;
 	
 	private JButton saveasfile;
 	private JButton saveasproject;
 	private JButton cancel;
 	private JPanel switchPanel;
 	private JCheckBox randomColor;
+	
+	private GenomeViewUpdateModel genomeUpdate;
 	
 	CardLayout c = new CardLayout();
 	
@@ -87,7 +90,7 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		windowFrame.setVisible(true);
 		
 		this.model = model;
-
+		genomeUpdate = new GenomeViewUpdateModel();
 		
 		/** 2. Create the Generate button, label and panel */
 		
@@ -195,9 +198,9 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		sliderPanel.setLayout(null);
 		
 		/** Create a button to save the colour combination */
-		JButton updateColor = new JButton("Update");
-		updateColor.setBounds(220, 86, 70, 20);
-		updateColor.setToolTipText("Save your current biomorph mutation to your local drive");
+		updateColorBtn = new JButton("Update");
+		updateColorBtn.setBounds(220, 86, 70, 20);
+		updateColorBtn.setToolTipText("Save your current biomorph mutation to your local drive");
 		
 		
 		
@@ -206,7 +209,7 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		sliderPanel.add(colorPanel);
 		sliderPanel.add(labelPanel);
 		sliderPanel.add(randomColor);
-		sliderPanel.add(updateColor);
+		sliderPanel.add(updateColorBtn);
 		
 		
 		
@@ -352,20 +355,31 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		windowFrame.pack();
 		
 		addPropertyChangeListeners();
-		
 	}
 	
 	private void addPropertyChangeListeners() {
 		model.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent event) {
 				
-				if (event.getPropertyName().equals("genome")) {
-					AdvancedGUI.this.currentBiomorphPanel.refresh();
-					AdvancedGUI.this.biomorphGrid.refresh();
-				}
+				checkGenomeAlteration(event);
 				
 			}
 		});
+		
+		model.getGenome().addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent event) {
+				
+				checkGenomeAlteration(event); // make view listen to genome object to check if that has changed also
+				
+			}
+		});
+	}
+	
+	private void checkGenomeAlteration(PropertyChangeEvent event) {
+		if (event.getPropertyName().equals("genome")) {
+			AdvancedGUI.this.currentBiomorphPanel.refresh();
+			AdvancedGUI.this.biomorphGrid.refresh();
+		}
 	}
 	
 	public void stateChanged(ChangeEvent e) {
@@ -373,12 +387,13 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		int g = greenSlider.getValue();
 		int b = blueSlider.getValue();
 
-
 		redLabel.setText("Red : " + r);
 		blueLabel.setText("Blue : " + b);
 		greenLabel.setText("Green : " + g);
 
-		colorPanel.setBackground(new Color(r,g,b));	
+		colorPanel.setBackground(new Color(r,g,b));
+		
+		
 	}
 
 	
@@ -393,18 +408,20 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 				redSlider.setEnabled(false);
 				blueSlider.setEnabled(false);
 				greenSlider.setEnabled(false);
-
+				
+				genomeUpdate.setRandomColours(true);
 			} else {
 				redSlider.setEnabled(true);
 				blueSlider.setEnabled(true);
 				greenSlider.setEnabled(true);
-
+				
+				genomeUpdate.setRandomColours(false);
 			};
 		}
 		
 	}
 		
-	public class EventChangeListener implements ChangeListener{
+	public class EventChangeListener implements ChangeListener {
 		
 		public void stateChanged(ChangeEvent e) {
 			
@@ -417,6 +434,10 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 			greenLabel.setText("Green : " + g);
 			
 			colorPanel.setBackground(new Color(r,g,b));
+
+			genomeUpdate.setRed(r);
+			genomeUpdate.setGreen(g);
+			genomeUpdate.setBlue(b);
 		}
 		
 	}
@@ -480,6 +501,16 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	@Override
 	public void addHallOfFameAddListener(ActionListener listener) {
 		addToHoFButton.addActionListener(listener);
+	}
+
+	@Override
+	public void addGenomeChangeListener(ActionListener listener) {
+		updateColorBtn.addActionListener(listener);
+	}
+
+	@Override
+	public GenomeViewUpdateModel getGenomeUpdate() {
+		return genomeUpdate;
 	}
 	
 }

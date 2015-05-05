@@ -14,7 +14,7 @@ public abstract class AbstractBiomorph extends AbstractModel {
 	
 	protected Genome genome;
 	
-	public AbstractBiomorph( Genome genome) {
+	public AbstractBiomorph(Genome genome) {
 		this.genome = genome.clone();
 	}
 	

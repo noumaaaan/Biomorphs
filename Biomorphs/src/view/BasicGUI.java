@@ -143,4 +143,16 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void addGenomeChangeListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public GenomeViewUpdateModel getGenomeUpdate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
