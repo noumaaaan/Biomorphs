@@ -106,7 +106,8 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		undoBtn = new JButton("UNDO");
 		undoBtn.setBounds(180, 11, 80, 31);
 		undoBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		undoBtn.setBackground(Color.red);
+		undoBtn.setForeground(Color.red);
+		//undoBtn.setBackground(Color.red);
 		undoBtn.setToolTipText("Click here to generate a new biomorph! ");
 		
 		/** Label */
