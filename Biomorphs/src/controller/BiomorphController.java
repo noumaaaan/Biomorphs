@@ -46,6 +46,7 @@ public class BiomorphController {
 		view.addHallOfFameViewListener(new HallOfFameListener());
 		view.addHallOfFameAddListener(new AddToHoFListener());
 		view.addGenomeChangeListener(new UpdateGenomeColourListener());
+		view.addSaveImageListener(new SaveImageListener());
 	}
 	
 	/**
@@ -166,7 +167,7 @@ public class BiomorphController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			new SaveImageDialog<Genome>(view.getFrame(), model.getGenome()).saveFile();
+			new SaveImageDialog<Genome>(view.getFrame(), model.getGenome(), view.getBiomorphPanel()).saveFile();
 		}
 		
 	}

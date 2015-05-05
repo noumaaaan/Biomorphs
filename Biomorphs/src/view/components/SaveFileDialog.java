@@ -4,6 +4,7 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  * Save the project
@@ -16,15 +17,17 @@ public abstract class SaveFileDialog<T> {
 	private JFileChooser fileChooser = new JFileChooser();
 
 	private T element;
+	private JPanel panel;
 
-	public SaveFileDialog(JFrame frame, T element) {
+	public SaveFileDialog(JFrame frame, T element, JPanel panel) {
 		// parent component of the dialog
 		frame = new JFrame();
 		fileChooser.setDialogTitle("Save the project");
 		fileChooser = new JFileChooser();
 		
 		this.frame = frame;
-		this.element=element; 
+		this.element=element;
+		this.panel=panel;
 	}
 
 
@@ -34,9 +37,9 @@ public abstract class SaveFileDialog<T> {
 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 			File fileToSave = fileChooser.getSelectedFile();
 			
-			processFile(element, fileToSave.getAbsolutePath());
+			processFile(element, fileToSave.getAbsolutePath(), panel);
 		}
 	}
 	
-	protected abstract void processFile(T element, String path);
+	protected abstract void processFile(T element, String path, JPanel panel);
 }

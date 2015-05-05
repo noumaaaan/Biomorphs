@@ -167,4 +167,10 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public BiomorphPanel getBiomorphPanel() {
+		
+		return panel;
+	}
 }

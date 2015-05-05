@@ -525,5 +525,11 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	public void addLoadHallOfFameBiomorph(ActionListener listener) {
 		hallOfFame.addLoadHallOfFameBiomorph(listener);
 	}
+
+	@Override
+	public BiomorphPanel getBiomorphPanel() {
+		// TODO Auto-generated method stub
+		return currentBiomorphPanel;
+	}
 	
 }

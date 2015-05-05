@@ -38,4 +38,6 @@ public interface BiomorphInterface {
 	JFrame getFrame();
 	
 	void exitApplication();
+	
+	BiomorphPanel getBiomorphPanel();
 }
