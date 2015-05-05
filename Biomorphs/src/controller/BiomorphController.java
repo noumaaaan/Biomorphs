@@ -16,6 +16,7 @@ import model.FileSerializer;
 import model.Genome;
 import model.RandomBiomorph;
 import view.AdvancedGUI;
+import view.BasicGUI;
 import view.BiomorphInterface;
 import view.GenomeViewUpdateModel;
 import view.HallOfFameGUI;
@@ -272,7 +273,7 @@ public class BiomorphController {
 	 */
 	public static void main(String[] args) {
 		AbstractBiomorph model = new RandomBiomorph();
-		BiomorphInterface view = new AdvancedGUI(model);
+		BiomorphInterface view = new BasicGUI(model);
 		
 		new BiomorphController(view, model);
 	}

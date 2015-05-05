@@ -46,7 +46,7 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 		newSaveBtn = new JButton(" Save as Project ");
 		newSaveBtn.setToolTipText("Save your project to return to it later");
 		
-		saveasjpeg = new JButton(" Save as JPEG ");
+		saveasjpeg = new JButton(" Save as Image ");
 		saveasjpeg.setToolTipText("Save your current biomorph mutation to your local drive");
 		
 		newLoadBtn = new JButton(" Load ");
@@ -127,7 +127,9 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	public AbstractBiomorph getMutatedBiomorph() { return null; }
 
 	@Override
-	public void addSaveImageListener(ActionListener listener) { }
+	public void addSaveImageListener(ActionListener listener) { 
+		saveasjpeg.addActionListener(listener);
+	}
 
 	@Override
 	public JFrame getFrame() {
