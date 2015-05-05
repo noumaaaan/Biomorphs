@@ -4,17 +4,18 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import model.FileSerializer;
 
 public class SaveProjectDialog<T> extends SaveFileDialog<T> {
 
-	public SaveProjectDialog(JFrame frame, T element) {
-		super(frame, element);
+	public SaveProjectDialog(JFrame frame, T element, JPanel panel) {
+		super(frame, element, panel);
 	}
 
 	@Override
-	protected void processFile(T element, String path) {
+	protected void processFile(T element, String path, JPanel panel) {
 		try {			
 			new FileSerializer<T>().serialiseFile(element, path);
 		} catch (IOException e) {			

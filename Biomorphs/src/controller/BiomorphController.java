@@ -155,7 +155,7 @@ public class BiomorphController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			new SaveProjectDialog<Genome>(view.getFrame(), model.getGenome()).saveFile();
+			new SaveProjectDialog<Genome>(view.getFrame(), model.getGenome(), view.getBiomorphPanel()).saveFile();
 		}
 		
 	}
