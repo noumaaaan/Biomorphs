@@ -85,7 +85,7 @@ public class Help extends AbstractGUI{
 	public void addSaveProjectListener(ActionListener listener) { }
 
 	@Override
-	public void addLoadListener(ActionListener listener) { }
+	public void addLoadProjectListener(ActionListener listener) { }
 
 	@Override
 	public void addHelpListener(ActionListener listener) { }

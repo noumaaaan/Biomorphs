@@ -1,7 +1,6 @@
 package controller;
 
 import java.awt.event.ActionEvent;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +11,7 @@ import model.RandomBiomorph;
 import view.AdvancedGUI;
 import view.Help;
 import view.Viewable;
+import view.components.LoadProjectDialog;
 import view.components.SaveImageDialog;
 import view.components.SaveProjectDialog;
 
@@ -33,6 +33,7 @@ public class BiomorphController {
 		view.addUpdateBiomorphListener(new UpdateBiomorphListener());
 		view.addHelpListener(new HelpListener());
 		view.addSaveProjectListener(new SaveProjectListener());
+		view.addLoadProjectListener(new LoadProjectListener());
 		
 	}
 	
@@ -113,11 +114,7 @@ public class BiomorphController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			try {
-				new SaveProjectDialog<Genome>(model.getGenome()).saveFile();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}	
+			new SaveProjectDialog<Genome>(view.getFrame(), model.getGenome()).saveFile();
 		}
 		
 	}
@@ -129,16 +126,25 @@ public class BiomorphController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			try {
-				new SaveImageDialog<Genome>(model.getGenome()).saveFile();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			new SaveImageDialog<Genome>(view.getFrame(), model.getGenome()).saveFile();
 		}
 		
 	}
 	
+	/**
+	 * Action to load a biomorph from file.
+	 */
+	class LoadProjectListener extends EventAction {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Genome genome = new LoadProjectDialog<Genome>(view.getFrame()).loadFile();
+			
+			model.setGenome(genome);
+			view.updateMutations(getMutatedBiomorphs());
+		}
+		
+	}
 
 	
 	/**

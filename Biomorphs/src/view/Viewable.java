@@ -4,6 +4,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.List;
 
+import javax.swing.JFrame;
+
 import model.AbstractBiomorph;
 
 public interface Viewable {
@@ -12,14 +14,17 @@ public interface Viewable {
 	void addMutateListener(ActionListener listener);
 	void addUpdateBiomorphListener(MouseListener listener);
 	void addExitListener(ActionListener listener);
-	void addLoadListener(ActionListener listener);
 	void addHelpListener(ActionListener listener);
+	
+	void addLoadProjectListener(ActionListener listener);
 	
 	void addSaveProjectListener(ActionListener listener);
 	void addSaveImageListener(ActionListener listener);	
 		
 	void updateMutations(List<AbstractBiomorph> biomorphs);
 	AbstractBiomorph getMutatedBiomorph();
+	
+	JFrame getFrame();
 	
 	void exitApplication();
 }

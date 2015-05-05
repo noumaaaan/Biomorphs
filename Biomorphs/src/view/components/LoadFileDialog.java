@@ -1,11 +1,10 @@
-package view;
+package view.components;
 
-import java.io.IOException;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
-
-import model.FileSerializer;
+import javax.swing.JFrame;
 
 /**
  * Load the project into the application 
@@ -13,12 +12,14 @@ import model.FileSerializer;
  * @author Nouman Mehmood <mehmoodn@aston.ac.uk>
  */
 
-public class LoadFile<T> {
+public abstract class LoadFileDialog<T> {
 
+	protected JFrame frame;
+	
 	private JFileChooser fileChooser;
 	private JButton openButton;
 
-	public LoadFile(){
+	public LoadFileDialog(JFrame frame){
 
 		openButton = new JButton();
 
@@ -27,20 +28,22 @@ public class LoadFile<T> {
 
 		fileChooser.setDialogTitle("Open your existing Biomorph Project");
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		
+		this.frame = frame;
 
 	}	
 
-	public T loadFile() throws ClassNotFoundException, IOException {
+	public T loadFile() {
 		T file = null;
 		
 		if (fileChooser.showOpenDialog(openButton) == JFileChooser.APPROVE_OPTION){
-			FileSerializer<T> deserialiser = new FileSerializer<T>();
-					
-			file = deserialiser.deserialiseFile(fileChooser.getSelectedFile().getAbsolutePath());
+			file = processFile(fileChooser.getSelectedFile());
 		}
 		
 		return file;
 	}
+	
+	protected abstract T processFile(File file);
 }
 
 

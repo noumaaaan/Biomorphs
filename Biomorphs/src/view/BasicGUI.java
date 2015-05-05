@@ -10,6 +10,7 @@ import java.beans.PropertyChangeListener;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import model.AbstractBiomorph;
@@ -103,7 +104,7 @@ public class BasicGUI extends AbstractGUI {
 		newSaveBtn.addActionListener(listener);
 	}
 	
-	public void addLoadListener(ActionListener listener) {
+	public void addLoadProjectListener(ActionListener listener) {
 		newLoadBtn.addActionListener(listener);
 	}
 	
@@ -123,5 +124,11 @@ public class BasicGUI extends AbstractGUI {
 	@Override
 	public void addSaveImageListener(ActionListener listener) {
 		// todo add here
+	}
+
+	@Override
+	public JFrame getFrame() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

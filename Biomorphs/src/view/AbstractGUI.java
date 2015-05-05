@@ -15,7 +15,7 @@ import javax.swing.UIManager;
  * @author Nouman Mehmood <mehmoodn@aston.ac.uk>
  */
 
-public abstract class AbstractGUI implements Viewable  {
+public abstract class AbstractGUI implements Viewable {
 	
 	protected JFrame windowFrame;
 	
@@ -63,6 +63,10 @@ public abstract class AbstractGUI implements Viewable  {
 		if (response == target) {
 			System.exit(0);
 		}
+	}
+	
+	public JFrame getFrame() {
+		return windowFrame;
 	}
 	
 	/** Return to the User Selection screen */

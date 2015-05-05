@@ -1,10 +1,12 @@
 package view.components;
 
+import javax.swing.JFrame;
 
-public class SaveImageDialog<T> extends FileSelectionDialog<T> {
 
-	public SaveImageDialog(T element) {
-		super(element);
+public class SaveImageDialog<T> extends SaveFileDialog<T> {
+
+	public SaveImageDialog(JFrame frame, T element) {
+		super(frame, element);
 	}
 
 	@Override

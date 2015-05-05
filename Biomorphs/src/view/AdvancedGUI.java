@@ -453,19 +453,6 @@ public class AdvancedGUI extends AbstractGUI {
 		exitBtn.addActionListener(listener);
 	}
 
-
-	/**@Override
-	public void addSaveListener(ActionListener listener) {
-		saveBtn.addActionListener(listener);
-	}*/
-
-
-	@Override
-	public void addLoadListener(ActionListener listener) {
-		loadBtn.addActionListener(listener);
-	}
-
-
 	@Override
 	public void addHelpListener(ActionListener listener) {
 		helpBtn.addActionListener(listener);
@@ -499,6 +486,11 @@ public class AdvancedGUI extends AbstractGUI {
 	@Override
 	public void addSaveImageListener(ActionListener listener) {
 		saveasfile.addActionListener(listener);
+	}
+	
+	@Override
+	public void addLoadProjectListener(ActionListener listener) {
+		loadBtn.addActionListener(listener);
 	}
 	
 }

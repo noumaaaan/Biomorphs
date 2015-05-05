@@ -1,7 +1,6 @@
 package view.components;
 
 import java.io.File;
-import java.io.IOException;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -12,22 +11,24 @@ import javax.swing.JFrame;
  * @author Nouman Mehmood <mehmoodn@aston.ac.uk>
  */
 
-public abstract class FileSelectionDialog<T> {
+public abstract class SaveFileDialog<T> {
 	protected JFrame frame; 
 	private JFileChooser fileChooser = new JFileChooser();
 
 	private T element;
 
-	public FileSelectionDialog(T element) {
+	public SaveFileDialog(JFrame frame, T element) {
 		// parent component of the dialog
 		frame = new JFrame();
 		fileChooser.setDialogTitle("Save the project");
-		fileChooser = new JFileChooser();  
+		fileChooser = new JFileChooser();
+		
+		this.frame = frame;
 		this.element=element; 
 	}
 
 
-	public void saveFile() throws IOException{
+	public void saveFile() {
 		int userSelection = fileChooser.showSaveDialog(frame);
 
 		if (userSelection == JFileChooser.APPROVE_OPTION) {

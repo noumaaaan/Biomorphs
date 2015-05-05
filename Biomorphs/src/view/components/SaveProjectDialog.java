@@ -2,14 +2,15 @@ package view.components;
 
 import java.io.IOException;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import model.FileSerializer;
 
-public class SaveProjectDialog<T> extends FileSelectionDialog<T> {
+public class SaveProjectDialog<T> extends SaveFileDialog<T> {
 
-	public SaveProjectDialog(T element) {
-		super(element);
+	public SaveProjectDialog(JFrame frame, T element) {
+		super(frame, element);
 	}
 
 	@Override
