@@ -537,8 +537,12 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 
 	@Override
 	public BiomorphPanel getBiomorphPanel() {
-		// TODO Auto-generated method stub
 		return currentBiomorphPanel;
+	}
+
+	@Override
+	public void addUndoListener(ActionListener listener) {
+		undoBtn.addActionListener(listener);
 	}
 	
 }

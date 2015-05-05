@@ -19,6 +19,7 @@ public class Genome extends AbstractModel implements Iterable<Genome>, Cloneable
 	private double angle;
 	private int length;
 	private Color colour;
+	private boolean isHighlighted;
 
 	private Genome child; // chain from parent to final child
 
@@ -27,14 +28,16 @@ public class Genome extends AbstractModel implements Iterable<Genome>, Cloneable
 			Random rand = new Random();
 
 			angle = rand.nextInt() * rand.nextDouble();
-			length = rand.nextInt(GENOME_MAX_LENGTH);
+			length = rand.nextInt(GENOME_MAX_LENGTH) + 10;
 			colour = new Color(rand.nextFloat(), rand.nextFloat(), rand.nextFloat());
 			child = null;
+			isHighlighted = false;
 		} else {
 			angle = GENOME_DEFAULT_ANGLE;
 			length = GENOME_DEFAULT_LENGTH;
 			colour = GENOME_DEFAULT_COLOUR;
 			child = null;
+			isHighlighted = false;
 		}
 	}
 
@@ -69,7 +72,16 @@ public class Genome extends AbstractModel implements Iterable<Genome>, Cloneable
 		firePropertyChange("genome", this);
 	}
 	
-	public Color getColour() { return colour; }
+	public Color getColour() {
+		if(isHighlighted) {
+			return Color.BLACK;
+		}
+		
+		return colour;
+	}
+	
+	public void setHighlighted(boolean isHighlighted) {	this.isHighlighted = isHighlighted; } 
+	public boolean isHighlighted() { return isHighlighted; }
 	
 	public void setChild(Genome child) {
 		this.child = child;
@@ -90,7 +102,7 @@ public class Genome extends AbstractModel implements Iterable<Genome>, Cloneable
 
 	@Override
 	public String toString() {
-		String str = angle + ", " + length + ", " + colour.getRGB();
+		String str = "A" + angle + ", L" + length + ", C" + colour.getRGB();
 		
 		if(child != null) {
 			str += "\n {" + child.toString() + "}";

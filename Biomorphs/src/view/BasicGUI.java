@@ -127,55 +127,38 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	public AbstractBiomorph getMutatedBiomorph() { return null; }
 
 	@Override
-	public void addSaveImageListener(ActionListener listener) {
-		// todo add here
-	}
+	public void addSaveImageListener(ActionListener listener) { }
 
 	@Override
 	public JFrame getFrame() {
-		// TODO Auto-generated method stub
-		return null;
+		return windowFrame;
 	}
 
 	@Override
-	public void addHallOfFameViewListener(ActionListener listener) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void addHallOfFameViewListener(ActionListener listener) { } // not on this gui
 
 	@Override
-	public void addHallOfFameAddListener(ActionListener listener) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void addHallOfFameAddListener(ActionListener listener) { } // not on this gui
 
 	@Override
-	public void addGenomeChangeListener(ActionListener listener) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void addGenomeChangeListener(ActionListener listener) { }
 
 	@Override
 	public GenomeViewUpdateModel getGenomeUpdate() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void addDeleteHallOfFameBiomorph(ActionListener listener) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void addDeleteHallOfFameBiomorph(ActionListener listener) { } // not on this gui
 
 	@Override
-	public void addLoadHallOfFameBiomorph(ActionListener listener) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void addLoadHallOfFameBiomorph(ActionListener listener) { } // not on this gui
 
 	@Override
 	public BiomorphPanel getBiomorphPanel() {
-		
 		return panel;
 	}
+
+	@Override
+	public void addUndoListener(ActionListener listener) { } // not on this gui
 }

@@ -27,11 +27,15 @@ import view.components.SaveProjectDialog;
 public class BiomorphController {
 
 	private AbstractBiomorph model;
-	private BiomorphInterface view; 
+	private BiomorphInterface view;
+	
+	private FixedSizeStack<Genome> history; // used for undo functionality
 	
 	public BiomorphController(BiomorphInterface view, AbstractBiomorph biomorph) {
 		this.view = view; 
 		this.model = biomorph;
+		
+		this.history = new FixedSizeStack<Genome>(10);
 		
 		// update the mutations for the current biomorph
 		view.updateMutations(getMutatedBiomorphs());
@@ -47,6 +51,7 @@ public class BiomorphController {
 		view.addHallOfFameAddListener(new AddToHoFListener());
 		view.addGenomeChangeListener(new UpdateGenomeColourListener());
 		view.addSaveImageListener(new SaveImageListener());
+		view.addUndoListener(new UndoActionListener());
 	}
 	
 	/**
@@ -67,6 +72,14 @@ public class BiomorphController {
 		return biomorphs;
 	}
 	
+	private void addHistory(Genome genome) {
+		history.add(genome.clone());
+	}
+	
+	private Genome undoAction() {
+		return history.pop();
+	}
+	
 	/**
 	 * Action to run when the active biomorph is mutated.
 	 */
@@ -74,6 +87,10 @@ public class BiomorphController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			addHistory(model.getGenome());
+			
+			System.out.println("added to history");
+			
 			model.mutate();
 			view.updateMutations(getMutatedBiomorphs());
 		}
@@ -99,6 +116,10 @@ public class BiomorphController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			addHistory(model.getGenome());
+			
+			System.out.println("added to history");
+			
 			model.setGenome(view.getMutatedBiomorph().getGenome());
 			
 			view.updateMutations(getMutatedBiomorphs());
@@ -110,6 +131,9 @@ public class BiomorphController {
 
 		@Override
 		public void actionPerformed(ActionEvent event) {
+			addHistory(model.getGenome());
+			System.out.println("added to history");
+			
 			GenomeViewUpdateModel genomeUpdate = view.getGenomeUpdate();
 			
 			for(Genome genome : model.getGenome()) {
@@ -192,6 +216,21 @@ public class BiomorphController {
 		@Override
 		public void actionPerformed(ActionEvent event) {
 			new HallOfFameGUI().displayGui();
+		}
+		
+	}
+	
+	class UndoActionListener extends EventAction {
+
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			Genome genome = undoAction();
+			
+			if(genome != null) {
+				model.setGenome(genome);
+				
+				view.updateMutations(getMutatedBiomorphs());
+			}
 		}
 		
 	}

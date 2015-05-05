@@ -15,13 +15,12 @@ public interface BiomorphInterface {
 	void addUpdateBiomorphListener(MouseListener listener);
 	void addExitListener(ActionListener listener);
 	void addHelpListener(ActionListener listener);
+	void addUndoListener(ActionListener listener);
 	
 	void addHallOfFameAddListener(ActionListener listener);
 	void addHallOfFameViewListener(ActionListener listener);
 	void addDeleteHallOfFameBiomorph(ActionListener listener);
 	void addLoadHallOfFameBiomorph(ActionListener listener);
-	
-	
 	
 	void addLoadProjectListener(ActionListener listener);
 	
