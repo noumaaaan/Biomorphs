@@ -19,7 +19,9 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.JSlider;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -84,7 +86,7 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 
 		/** 1. Create the JFrame */ 
 		
-		super("Biomorph Mutation: Advanced User", 1225, 640);
+		super("Biomorph Mutation: Advanced User", 1500, 640);
 		windowFrame.pack();
 		windowFrame.setLocationRelativeTo(null); 
 		windowFrame.setResizable(false);
@@ -351,7 +353,63 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		});
 		
 		
-		/** 8. Create a Panel that will hold all the components on the Frame */
+		
+		/** TODO 9. Create the Hall of Fame big Panel*/
+		JPanel hofPanel = new JPanel();
+		hofPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
+		hofPanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+		hofPanel.setBounds(1205, 10, 270, 590);
+		hofPanel.setLayout(null);
+		
+		JLabel hofLabel = new JLabel(" Hall of Fame ");
+		hofLabel.setBounds(100, 10, 150, 14);	
+		hofLabel.setFont((new Font("Tahoma", Font.PLAIN, 16)));
+		
+		
+		JPanel hof1 = new JPanel();
+		hof1.setBorder(new EmptyBorder(15, 15, 15, 15));
+		hof1.setBorder(BorderFactory.createLineBorder(Color.red));
+		hof1.setBounds(10, 35, 250, 150);
+		hof1.setLayout(null);
+		
+		JPanel hof2 = new JPanel();
+		hof2.setBorder(new EmptyBorder(15, 15, 15, 15));
+		hof2.setBorder(BorderFactory.createLineBorder(Color.green));
+		hof2.setBounds(10, 220, 250, 150);
+		hof2.setLayout(null);
+		
+		JPanel hof3 = new JPanel();
+		hof3.setBorder(new EmptyBorder(15, 15, 15, 15));
+		hof3.setBorder(BorderFactory.createLineBorder(Color.blue));
+		hof3.setBounds(10, 405, 250, 150);
+		hof3.setLayout(null);
+		
+		JButton hof1remove = new JButton("Remove");
+		hof1remove.setFont((new Font("Tahoma", Font.PLAIN, 12)));
+		hof1remove.setBounds(10, 190, 90, 20);
+		
+		JButton hof2remove = new JButton("Remove");
+		hof2remove.setFont((new Font("Tahoma", Font.PLAIN, 12)));
+		hof2remove.setBounds(10, 375, 90, 20);
+		
+		
+		JButton hof3remove = new JButton("Remove");
+		hof3remove.setFont((new Font("Tahoma", Font.PLAIN, 12)));
+		hof3remove.setBounds(10, 560, 90, 20);
+		
+		
+		hofPanel.add(hofLabel);
+		hofPanel.add(hof1remove);
+		hofPanel.add(hof2remove);
+		hofPanel.add(hof3remove);
+		hofPanel.add(hof1);
+		hofPanel.add(hof2);
+		hofPanel.add(hof3);
+		
+		
+		
+		
+		/** 9. Create a Panel that will hold all the components on the Frame */
 		JPanel windowPanel = new JPanel();
 		windowFrame.getContentPane().add(windowPanel);
 		windowPanel.setLayout(null);
@@ -362,6 +420,7 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		windowPanel.add(currentBiomorphPanel);
 		windowPanel.add(CBholdPanel);
 		windowPanel.add(switchPanel);
+		windowPanel.add(hofPanel);
 		
 		windowFrame.setVisible(true);
 		windowFrame.pack();

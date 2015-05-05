@@ -1,7 +1,9 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.ComponentOrientation;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
@@ -9,9 +11,12 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 import model.AbstractBiomorph;
 
@@ -33,7 +38,7 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	private BiomorphPanel panel;
 
 	public BasicGUI(AbstractBiomorph model) {
-		super("Biomorph Mutation: Beginner User", 800, 600);
+		super("Biomorph Mutation: Beginner User", 1500, 640);
 
 		/** Panel to hold the components */
 		JPanel button_panel = new JPanel();
@@ -74,9 +79,76 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 
 		/** Defining the draw canvas */
 		this.panel = new BiomorphPanel(model, true);
-
+	
+		
+		
+		/** TODO 9. Hall of fame Panel */
+		JPanel hofPanel = new JPanel();
+		hofPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
+		hofPanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+		hofPanel.setBounds(1205, 10, 270, 590);
+		hofPanel.setLayout(null);
+		
+		JLabel hofLabel = new JLabel(" Hall of Fame ");
+		hofLabel.setBounds(100, 10, 150, 14);	
+		hofLabel.setFont((new Font("Tahoma", Font.PLAIN, 16)));
+		
+		
+		JPanel hof1 = new JPanel();
+		hof1.setBorder(new EmptyBorder(15, 15, 15, 15));
+		hof1.setBorder(BorderFactory.createLineBorder(Color.red));
+		hof1.setBounds(10, 35, 250, 150);
+		hof1.setLayout(null);
+		
+		JPanel hof2 = new JPanel();
+		hof2.setBorder(new EmptyBorder(15, 15, 15, 15));
+		hof2.setBorder(BorderFactory.createLineBorder(Color.green));
+		hof2.setBounds(10, 220, 250, 150);
+		hof2.setLayout(null);
+		
+		JPanel hof3 = new JPanel();
+		hof3.setBorder(new EmptyBorder(15, 15, 15, 15));
+		hof3.setBorder(BorderFactory.createLineBorder(Color.blue));
+		hof3.setBounds(10, 405, 250, 150);
+		hof3.setLayout(null);
+		
+		JButton hof1remove = new JButton("Remove");
+		hof1remove.setFont((new Font("Tahoma", Font.PLAIN, 12)));
+		hof1remove.setBounds(10, 190, 90, 20);
+		
+		JButton hof2remove = new JButton("Remove");
+		hof2remove.setFont((new Font("Tahoma", Font.PLAIN, 12)));
+		hof2remove.setBounds(10, 375, 90, 20);
+		
+		
+		JButton hof3remove = new JButton("Remove");
+		hof3remove.setFont((new Font("Tahoma", Font.PLAIN, 12)));
+		hof3remove.setBounds(10, 560, 90, 20);
+		
+		
+		hofPanel.add(hofLabel);
+		hofPanel.add(hof1remove);
+		hofPanel.add(hof2remove);
+		hofPanel.add(hof3remove);
+		hofPanel.add(hof1);
+		hofPanel.add(hof2);
+		hofPanel.add(hof3);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		windowFrame.add(panel);
-		windowFrame.setVisible(true);		
+		windowFrame.setVisible(true);
+		windowFrame.add(hofPanel);
 
 		windowFrame.pack();
 		windowFrame.setLocationRelativeTo(null); // centre aligned
