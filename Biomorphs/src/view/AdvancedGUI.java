@@ -98,10 +98,10 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		generateBtn = new JButton("GENERATE");
 		generateBtn.setBounds(91, 11, 130, 31);
 		generateBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		generateBtn.setToolTipText("Click here to generate the biomorph");
+		generateBtn.setToolTipText("Click here to generate a new biomorph! ");
 		
 		/** Label */
-		JLabel GenerateLabel = new JLabel(" Click Generate to implement your changes! ");
+		JLabel GenerateLabel = new JLabel(" Click here to generate a new biomorph! ");
 		GenerateLabel.setBounds(50, 49, 211, 14);	
 		
 		/** Panel : */
@@ -275,12 +275,12 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		exitBtn.setToolTipText("Quit the application by clicking here");
 		
 		addToHoFButton = new JButton(" Add to Hall of Fame ");
-		addToHoFButton.setBounds(10, 40, 155, 23);
+		addToHoFButton.setBounds(10, 40, 140, 23);
 		addToHoFButton.setToolTipText("Add biomorph to the hall of fame");
 		
 		HallofFamebutton = new JButton(" View Hall of Fame ");
 		HallofFamebutton.setToolTipText("Insert text here :O");
-		HallofFamebutton.setBounds(180, 40, 100, 23);
+		HallofFamebutton.setBounds(155, 40, 130, 23);
 		
 		/** TODO Hall of Fame Listener*/ 
 		
