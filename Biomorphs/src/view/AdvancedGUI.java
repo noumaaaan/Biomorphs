@@ -51,6 +51,8 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	private BiomorphPanel currentBiomorphPanel;
 	private BiomorphGrid biomorphGrid;
 	
+	private HallOfFameGUI hallOfFame;
+	
 	private JSlider redSlider;
 	private JSlider blueSlider;
 	private JSlider greenSlider;
@@ -76,8 +78,6 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	
 	private GenomeViewUpdateModel genomeUpdate;
 	
-	CardLayout c = new CardLayout();
-	
 	public AdvancedGUI(AbstractBiomorph model) {
 		
 
@@ -91,6 +91,8 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		
 		this.model = model;
 		genomeUpdate = new GenomeViewUpdateModel();
+		
+		hallOfFame = new HallOfFameGUI();
 		
 		/** 2. Create the Generate button, label and panel */
 		
@@ -314,6 +316,7 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		
 		/** Create the panel that will hold the other panels*/
 		switchPanel = new JPanel();
+		final CardLayout c = new CardLayout();
 		switchPanel.setLayout(c);
 		
 		switchPanel.add(buttonPanel, "card 1");
@@ -511,6 +514,16 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	@Override
 	public GenomeViewUpdateModel getGenomeUpdate() {
 		return genomeUpdate;
+	}
+
+	@Override
+	public void addDeleteHallOfFameBiomorph(ActionListener listener) {
+		hallOfFame.addDeleteHallOfFameBiomorph(listener);
+	}
+	
+	@Override
+	public void addLoadHallOfFameBiomorph(ActionListener listener) {
+		hallOfFame.addLoadHallOfFameBiomorph(listener);
 	}
 	
 }

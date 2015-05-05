@@ -155,4 +155,16 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void addDeleteHallOfFameBiomorph(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addLoadHallOfFameBiomorph(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
 }

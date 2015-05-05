@@ -229,7 +229,6 @@ public class BiomorphController {
 		}
 		
 	}
-
 	
 	/**
 	 * Creates an instance of the controller, with a view and model.

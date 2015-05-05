@@ -46,13 +46,14 @@ public class BiomorphPanel extends JPanel {
 	}
 
 	@Override
-	protected void paintComponent(Graphics g) {
+	protected void paintComponent(Graphics g) {		
 		super.paintComponent(g); // do not remove this - clears the previous canvas
 		
 		centreBiomorph();
 				
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setStroke(new BasicStroke(2f));
+		//g2d.scale(0.5, 0.5);
 		
 		drawSection(middleX, middleY, biomorph, DrawSection.LEFT, g2d);		
 		drawSection(middleX, middleY, biomorph, DrawSection.RIGHT, g2d);

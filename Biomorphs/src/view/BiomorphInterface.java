@@ -18,6 +18,10 @@ public interface BiomorphInterface {
 	
 	void addHallOfFameAddListener(ActionListener listener);
 	void addHallOfFameViewListener(ActionListener listener);
+	void addDeleteHallOfFameBiomorph(ActionListener listener);
+	void addLoadHallOfFameBiomorph(ActionListener listener);
+	
+	
 	
 	void addLoadProjectListener(ActionListener listener);
 	
