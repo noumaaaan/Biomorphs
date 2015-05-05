@@ -62,6 +62,7 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	private JPanel colorPanel;
 	
 	private JButton generateBtn;
+	private JButton undoBtn;
 	private JButton saveBtn;
 	private JButton loadBtn;
 	private JButton exitBtn;
@@ -96,11 +97,17 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		
 		/** 2. Create the Generate button, label and panel */
 		
-		/** Button : */
+		/** Generate Button : */
 		generateBtn = new JButton("GENERATE");
-		generateBtn.setBounds(91, 11, 130, 31);
+		generateBtn.setBounds(41, 11, 130, 31);
 		generateBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		generateBtn.setToolTipText("Click here to generate a new biomorph! ");
+		
+		undoBtn = new JButton("UNDO");
+		undoBtn.setBounds(180, 11, 80, 31);
+		undoBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		undoBtn.setBackground(Color.red);
+		undoBtn.setToolTipText("Click here to generate a new biomorph! ");
 		
 		/** Label */
 		JLabel GenerateLabel = new JLabel(" Click here to generate a new biomorph! ");
@@ -115,6 +122,7 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		
 		/** Add the button and label to the Panel */
 		generatePanel.add(generateBtn);
+		generatePanel.add(undoBtn);
 		generatePanel.add(GenerateLabel);
 	
 		
