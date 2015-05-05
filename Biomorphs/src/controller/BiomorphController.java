@@ -89,8 +89,6 @@ public class BiomorphController {
 		public void actionPerformed(ActionEvent e) {
 			addHistory(model.getGenome());
 			
-			System.out.println("added to history");
-			
 			model.mutate();
 			view.updateMutations(getMutatedBiomorphs());
 		}
@@ -118,8 +116,6 @@ public class BiomorphController {
 		public void actionPerformed(ActionEvent e) {
 			addHistory(model.getGenome());
 			
-			System.out.println("added to history");
-			
 			model.setGenome(view.getMutatedBiomorph().getGenome());
 			
 			view.updateMutations(getMutatedBiomorphs());
@@ -132,7 +128,6 @@ public class BiomorphController {
 		@Override
 		public void actionPerformed(ActionEvent event) {
 			addHistory(model.getGenome());
-			System.out.println("added to history");
 			
 			GenomeViewUpdateModel genomeUpdate = view.getGenomeUpdate();
 			
