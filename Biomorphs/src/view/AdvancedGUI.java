@@ -12,6 +12,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -19,9 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
 import javax.swing.JSlider;
-import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -45,15 +44,12 @@ import model.AbstractBiomorph;
  * @author Alexander Luckett <lucketta@aston.ac.uk>
  * 
  */
-
 public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	
 	private AbstractBiomorph model;
 	
 	private BiomorphPanel currentBiomorphPanel;
 	private BiomorphGrid biomorphGrid;
-	
-	private HallOfFameGUI hallOfFame;
 	
 	private JSlider redSlider;
 	private JSlider blueSlider;
@@ -79,6 +75,8 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	private JPanel switchPanel;
 	private JCheckBox randomColor;
 	
+	private List<BiomorphPanel> hallOfFameBiomorphs; 
+	
 	private GenomeViewUpdateModel genomeUpdate;
 	
 	public AdvancedGUI(AbstractBiomorph model) {
@@ -94,8 +92,6 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		
 		this.model = model;
 		genomeUpdate = new GenomeViewUpdateModel();
-		
-		hallOfFame = new HallOfFameGUI();
 		
 		/** 2. Create the Generate button, label and panel */
 		
@@ -355,6 +351,8 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		
 		
 		/** TODO 9. Create the Hall of Fame big Panel*/
+		hallOfFameBiomorphs = new ArrayList<BiomorphPanel>();
+		
 		JPanel hofPanel = new JPanel();
 		hofPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
 		hofPanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
@@ -366,23 +364,25 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		hofLabel.setFont((new Font("Tahoma", Font.PLAIN, 16)));
 		
 		
-		JPanel hof1 = new JPanel();
+		BiomorphPanel hof1 = new BiomorphPanel();
 		hof1.setBorder(new EmptyBorder(15, 15, 15, 15));
 		hof1.setBorder(BorderFactory.createLineBorder(Color.red));
 		hof1.setBounds(10, 35, 250, 150);
 		hof1.setLayout(null);
 		
-		JPanel hof2 = new JPanel();
+		BiomorphPanel hof2 = new BiomorphPanel();
 		hof2.setBorder(new EmptyBorder(15, 15, 15, 15));
 		hof2.setBorder(BorderFactory.createLineBorder(Color.green));
 		hof2.setBounds(10, 220, 250, 150);
 		hof2.setLayout(null);
 		
-		JPanel hof3 = new JPanel();
+		BiomorphPanel hof3 = new BiomorphPanel();
 		hof3.setBorder(new EmptyBorder(15, 15, 15, 15));
 		hof3.setBorder(BorderFactory.createLineBorder(Color.blue));
 		hof3.setBounds(10, 405, 250, 150);
 		hof3.setLayout(null);
+		
+		hallOfFameBiomorphs.add(hof1); hallOfFameBiomorphs.add(hof2); hallOfFameBiomorphs.add(hof3); 
 		
 		JButton hof1remove = new JButton("Remove");
 		hof1remove.setFont((new Font("Tahoma", Font.PLAIN, 12)));
@@ -565,16 +565,6 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	}
 
 	@Override
-	public void addHallOfFameViewListener(ActionListener listener) {
-		HallofFamebutton.addActionListener(listener);
-	}
-
-	@Override
-	public void addHallOfFameAddListener(ActionListener listener) {
-		addToHoFButton.addActionListener(listener);
-	}
-
-	@Override
 	public void addGenomeChangeListener(ActionListener listener) {
 		updateColorBtn.addActionListener(listener);
 	}
@@ -583,15 +573,20 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	public GenomeViewUpdateModel getGenomeUpdate() {
 		return genomeUpdate;
 	}
-
+	
 	@Override
-	public void addDeleteHallOfFameBiomorph(ActionListener listener) {
-		hallOfFame.addDeleteHallOfFameBiomorph(listener);
+	public void addHallOfFameAddListener(ActionListener listener) {
+		addToHoFButton.addActionListener(listener);
 	}
 	
 	@Override
 	public void addLoadHallOfFameBiomorph(ActionListener listener) {
-		hallOfFame.addLoadHallOfFameBiomorph(listener);
+		
+	}
+
+	@Override
+	public void addDeleteHallOfFameBiomorph(ActionListener listener) {
+		
 	}
 
 	@Override
@@ -603,10 +598,14 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	public void addUndoListener(ActionListener listener) {
 		undoBtn.addActionListener(listener);
 	}
-	
+
 	@Override
-	public void loadHallOfFame() {
-		hallOfFame.displayGui();
+	public void loadHallOfFame(List<AbstractBiomorph> biomorphs) {
+		if(hallOfFameBiomorphs.size() == 3 && biomorphs.size() == 3) {
+			for(int i = 0; i < 3; i++) {
+				hallOfFameBiomorphs.get(i).setBiomorph(biomorphs.get(i));
+			}
+		}		
 	}
 	
 }

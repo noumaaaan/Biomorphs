@@ -14,7 +14,6 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import model.AbstractBiomorph;
-import model.EvolutionaryBiomorph;
 import model.Genome;
 
 /**
@@ -37,20 +36,25 @@ public class BiomorphPanel extends JPanel {
 	private int activeLineNumber; // corresponds to the child genome number
 
 	public BiomorphPanel() {
-		this(new EvolutionaryBiomorph(), true); // default use evolutionary
+		super();
+		
+		setBackground(Color.WHITE);
+		
+		midPoint = new Point2D.Double(0, 0);
+		leftLines = new ArrayList<Line2D>(400);
+		rightLines = new ArrayList<Line2D>(400);
 	}
 
 	public BiomorphPanel(final AbstractBiomorph biomorph, boolean generateChildren) {
-		super();
-		this.setBackground(Color.WHITE);
-
+		setBackground(Color.WHITE);
+		
+		midPoint = new Point2D.Double(0, 0);
+		
 		this.biomorph = biomorph;
 
 		if (generateChildren)
 			this.biomorph.generateChildren();
-
-		midPoint = new Point2D.Double(0, 0);
-
+		
 		leftLines = new ArrayList<Line2D>(400);
 		rightLines = new ArrayList<Line2D>(400);
 
@@ -68,17 +72,20 @@ public class BiomorphPanel extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g); // do not remove this - clears the previous canvas
+		
+		if(biomorph != null) {
+			resetMidpoint();
 
-		resetMidpoint();
+			Graphics2D g2d = (Graphics2D) g;
+			g2d.setStroke(new BasicStroke(5f));
 
-		Graphics2D g2d = (Graphics2D) g;
-		g2d.setStroke(new BasicStroke(5f));
+			leftLines.clear();
+			rightLines.clear();
 
-		leftLines.clear();
-		rightLines.clear();
+			leftLines.addAll(drawSection(midPoint, biomorph, CanvasSide.LEFT, g2d));
+			rightLines.addAll(drawSection(midPoint, biomorph, CanvasSide.RIGHT, g2d));
+		}
 
-		leftLines.addAll(drawSection(midPoint, biomorph, CanvasSide.LEFT, g2d));
-		rightLines.addAll(drawSection(midPoint, biomorph, CanvasSide.RIGHT, g2d));
 	}
 
 	/**
@@ -89,8 +96,7 @@ public class BiomorphPanel extends JPanel {
 	 * @param biomorph biomorph to draw
 	 * @param g2d graphics to draw with
 	 */
-	private ArrayList<Line2D> drawSection(Point2D point,
-			AbstractBiomorph biomorph, CanvasSide section, Graphics2D g2d) {
+	private ArrayList<Line2D> drawSection(Point2D point, AbstractBiomorph biomorph, CanvasSide section, Graphics2D g2d) {
 		ArrayList<Line2D> lines = new ArrayList<Line2D>(200);
 
 		double lastX = point.getX();
@@ -104,7 +110,7 @@ public class BiomorphPanel extends JPanel {
 
 			double endX = genome.getLength() * sinAngle;
 			double endY = lastY + (genome.getLength() * cosAngle); // always the same -> want it symmetrical along y axis
-			
+
 			if (section == CanvasSide.RIGHT) { // need to invert if left side (+ and -)
 				endX = lastX + endX;
 			} else {

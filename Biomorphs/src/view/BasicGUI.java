@@ -209,9 +209,6 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	}
 
 	@Override
-	public void addHallOfFameViewListener(ActionListener listener) { } // not on this gui
-
-	@Override
 	public void addHallOfFameAddListener(ActionListener listener) { } // not on this gui
 
 	@Override
@@ -237,5 +234,7 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	public void addUndoListener(ActionListener listener) { } // not on this gui
 	
 	@Override
-	public void loadHallOfFame() { } // not on this gui
+	public void loadHallOfFame(List<AbstractBiomorph> biomorphs) {
+		
+	}
 }

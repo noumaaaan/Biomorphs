@@ -16,7 +16,6 @@ import model.FileSerializer;
 import model.Genome;
 import model.RandomBiomorph;
 import view.AdvancedGUI;
-import view.BasicGUI;
 import view.BiomorphInterface;
 import view.GenomeViewUpdateModel;
 import view.HallOfFameGUI;
@@ -41,6 +40,8 @@ public class BiomorphController {
 		// update the mutations for the current biomorph
 		view.updateMutations(getMutatedBiomorphs());
 		
+		view.loadHallOfFame(getHallOfFameBiomorphs());
+		
 		// add listeners to the interface
 		view.addMutateListener(new MutateListener());
 		view.addExitListener(new ExitListener());
@@ -48,7 +49,6 @@ public class BiomorphController {
 		view.addHelpListener(new HelpListener());
 		view.addSaveProjectListener(new SaveProjectListener());
 		view.addLoadProjectListener(new LoadProjectListener());
-		view.addHallOfFameViewListener(new HallOfFameListener());
 		view.addHallOfFameAddListener(new AddToHoFListener());
 		view.addGenomeChangeListener(new UpdateGenomeColourListener());
 		view.addSaveImageListener(new SaveImageListener());
@@ -79,6 +79,33 @@ public class BiomorphController {
 	
 	private Genome undoAction() {
 		return history.pop();
+	}
+	
+	private List<AbstractBiomorph> getHallOfFameBiomorphs() {
+		ArrayList<AbstractBiomorph> biomorphs = new ArrayList<AbstractBiomorph>();
+		
+		File hallOfFameDirectory = new File(System.getProperty("user.dir") + HallOfFameGUI.HALL_OF_FAME_SUBDIRECTORY);
+		
+		FileSerializer<Genome> serialiser = new FileSerializer<Genome>();
+		
+		for(File file : hallOfFameDirectory.listFiles()) {
+			
+			try {
+				Genome genome = serialiser.deserialiseFile(file.getAbsolutePath());
+				biomorphs.add(new EvolutionaryBiomorph(genome));
+			} catch (ClassNotFoundException | IOException e) {
+				String message = "Failed to load hall of fame biomorph: " + file.getName();
+				
+				JOptionPane.showMessageDialog(view.getFrame(), message, "Hall of fame error", JOptionPane.WARNING_MESSAGE);
+			}
+			
+		}
+		
+		System.out.println(biomorphs.size());
+		
+		return biomorphs;
+		
+		//if(savedBiomorphCount < 3) { // can only save 3 biomorphs
 	}
 	
 	/**
@@ -207,15 +234,6 @@ public class BiomorphController {
 		
 	}
 	
-	class HallOfFameListener extends EventAction {
-
-		@Override
-		public void actionPerformed(ActionEvent event) {
-			view.loadHallOfFame();
-		}
-		
-	}
-	
 	class UndoActionListener extends EventAction {
 
 		@Override
@@ -239,9 +257,9 @@ public class BiomorphController {
 			
 			File file = new File(currentDirectory + HallOfFameGUI.HALL_OF_FAME_SUBDIRECTORY);
 			
-			int savedBiomorphCount = countSavedBiomorphs(file);
+			int savedBiomorphCount = file.listFiles().length;
 			
-			if(savedBiomorphCount < 9) { // can only save 9 biomorphs
+			if(savedBiomorphCount < 3) { // can only save 3 biomorphs
 				try {
 					new FileSerializer<Genome>().serialiseFile(model.getGenome(), file.getAbsolutePath() + "/biomorph" + (savedBiomorphCount+1));
 				} catch (IOException e) {
@@ -253,16 +271,6 @@ public class BiomorphController {
 				JOptionPane.showMessageDialog(view.getFrame(), message, "Error adding to Hall of Fame", JOptionPane.WARNING_MESSAGE);
 			}
 		}
-	
-		private int countSavedBiomorphs(File current) {
-			int savedBiomorphCount = 0;
-			
-			for(@SuppressWarnings("unused") File currentFile : current.listFiles()) {
-				savedBiomorphCount++;
-			};
-		
-			return savedBiomorphCount;
-		}
 		
 	}
 	
@@ -273,7 +281,7 @@ public class BiomorphController {
 	 */
 	public static void main(String[] args) {
 		AbstractBiomorph model = new RandomBiomorph();
-		BiomorphInterface view = new BasicGUI(model);
+		BiomorphInterface view = new AdvancedGUI(model);
 		
 		new BiomorphController(view, model);
 	}
