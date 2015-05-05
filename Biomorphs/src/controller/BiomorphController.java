@@ -215,7 +215,7 @@ public class BiomorphController {
 
 		@Override
 		public void actionPerformed(ActionEvent event) {
-			new HallOfFameGUI().displayGui();
+			view.loadHallOfFame();
 		}
 		
 	}

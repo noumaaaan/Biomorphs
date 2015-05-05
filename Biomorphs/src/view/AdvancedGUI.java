@@ -545,4 +545,9 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		undoBtn.addActionListener(listener);
 	}
 	
+	@Override
+	public void loadHallOfFame() {
+		hallOfFame.displayGui();
+	}
+	
 }

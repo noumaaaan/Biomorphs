@@ -161,4 +161,7 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 
 	@Override
 	public void addUndoListener(ActionListener listener) { } // not on this gui
+	
+	@Override
+	public void loadHallOfFame() { } // not on this gui
 }
