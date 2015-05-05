@@ -28,6 +28,7 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	private JButton newLoadBtn;
 	private JButton newHelpBtn;
 	private JButton newEndBtn;
+	private JButton saveasjpeg;
 	
 	private BiomorphPanel panel;
 
@@ -36,14 +37,17 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 
 		/** Panel to hold the components */
 		JPanel button_panel = new JPanel();
-		button_panel.setLayout(new GridLayout(6, 1, 20, 20));
+		button_panel.setLayout(new GridLayout(7, 1, 20, 20));
 
 		/** Create the buttons */ 
 		newBiomorphBtn = new JButton(" Generate Biomorph ");
 		newBiomorphBtn.setToolTipText("Create a new biomorph by clicking here"); 
 		
-		newSaveBtn = new JButton(" Save ");
-		newSaveBtn.setToolTipText("Save your current biomorph mutation to your local drive");
+		newSaveBtn = new JButton(" Save as Project ");
+		newSaveBtn.setToolTipText("Save your project to return to it later");
+		
+		saveasjpeg = new JButton(" Save as JPEG ");
+		saveasjpeg.setToolTipText("Save your current biomorph mutation to your local drive");
 		
 		newLoadBtn = new JButton(" Load ");
 		newLoadBtn.setToolTipText("Open up a previously saved biomorph mutation");
@@ -61,6 +65,7 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 		button_panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		button_panel.add(newBiomorphBtn);
 		button_panel.add(newSaveBtn);
+		button_panel.add(saveasjpeg);
 		button_panel.add(newLoadBtn);
 		button_panel.add(newHelpBtn);
 		button_panel.add(userSelect);
