@@ -49,7 +49,7 @@ public class BiomorphController {
 		view.addHelpListener(new HelpListener());
 		view.addSaveProjectListener(new SaveProjectListener());
 		view.addLoadProjectListener(new LoadProjectListener());
-		view.addHallOfFameAddListener(new AddToHoFListener());
+		view.addHallOfFameAddListener(new AddToHallOfFameListener());
 		view.addGenomeChangeListener(new UpdateGenomeColourListener());
 		view.addSaveImageListener(new SaveImageListener());
 		view.addUndoListener(new UndoActionListener());
@@ -249,7 +249,7 @@ public class BiomorphController {
 		
 	}
 	
-	class AddToHoFListener extends EventAction {
+	class AddToHallOfFameListener extends EventAction {
 
 		@Override
 		public void actionPerformed(ActionEvent event) {
@@ -270,6 +270,8 @@ public class BiomorphController {
 				
 				JOptionPane.showMessageDialog(view.getFrame(), message, "Error adding to Hall of Fame", JOptionPane.WARNING_MESSAGE);
 			}
+			
+			view.loadHallOfFame(getHallOfFameBiomorphs());
 		}
 		
 	}

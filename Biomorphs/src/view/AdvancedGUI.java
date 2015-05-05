@@ -601,11 +601,15 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 
 	@Override
 	public void loadHallOfFame(List<AbstractBiomorph> biomorphs) {
-		if(hallOfFameBiomorphs.size() == 3 && biomorphs.size() == 3) {
-			for(int i = 0; i < 3; i++) {
+		if(biomorphs.size() <= 3) {
+			for(int i = 0; i < biomorphs.size(); i++) {
 				hallOfFameBiomorphs.get(i).setBiomorph(biomorphs.get(i));
 			}
-		}		
+		}
+		
+		for(BiomorphPanel panel : hallOfFameBiomorphs) {
+			panel.refresh(); // ensure all panels are painted with new biomorph
+		}
 	}
 	
 }
