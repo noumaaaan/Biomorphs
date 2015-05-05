@@ -64,6 +64,7 @@ public class AdvancedGUI extends AbstractGUI {
 	private JButton loadBtn;
 	private JButton exitBtn;
 	private JButton helpBtn;
+	private JButton HallofFamebutton;
 	private JButton userSelect;
 	
 	private JButton saveasfile;
@@ -274,7 +275,7 @@ public class AdvancedGUI extends AbstractGUI {
 		userSelect.setBounds(10, 40, 155, 23);
 		userSelect.setToolTipText("Return to the user selection screen");
 		
-		JButton HallofFamebutton = new JButton(" Hall of Fame ");
+		HallofFamebutton = new JButton(" Hall of Fame ");
 		HallofFamebutton.setToolTipText("Insert text here :O");
 		HallofFamebutton.setBounds(180, 40, 100, 23);
 		
@@ -491,6 +492,11 @@ public class AdvancedGUI extends AbstractGUI {
 	@Override
 	public void addLoadProjectListener(ActionListener listener) {
 		loadBtn.addActionListener(listener);
+	}
+
+	@Override
+	public void addHallOfFameListener(ActionListener listener) {
+		HallofFamebutton.addActionListener(listener);
 	}
 	
 }

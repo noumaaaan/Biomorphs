@@ -131,4 +131,10 @@ public class BasicGUI extends AbstractGUI {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void addHallOfFameListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
 }

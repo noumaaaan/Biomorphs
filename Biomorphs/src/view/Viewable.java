@@ -15,6 +15,7 @@ public interface Viewable {
 	void addUpdateBiomorphListener(MouseListener listener);
 	void addExitListener(ActionListener listener);
 	void addHelpListener(ActionListener listener);
+	void addHallOfFameListener(ActionListener listener);
 	
 	void addLoadProjectListener(ActionListener listener);
 	

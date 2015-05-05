@@ -9,6 +9,7 @@ import model.EvolutionaryBiomorph;
 import model.Genome;
 import model.RandomBiomorph;
 import view.AdvancedGUI;
+import view.HallOfFameGUI;
 import view.Help;
 import view.Viewable;
 import view.components.LoadProjectDialog;
@@ -34,7 +35,7 @@ public class BiomorphController {
 		view.addHelpListener(new HelpListener());
 		view.addSaveProjectListener(new SaveProjectListener());
 		view.addLoadProjectListener(new LoadProjectListener());
-		
+		view.addHallOfFameListener(new HallOfFameListener());
 	}
 	
 	/**
@@ -142,6 +143,15 @@ public class BiomorphController {
 			
 			model.setGenome(genome);
 			view.updateMutations(getMutatedBiomorphs());
+		}
+		
+	}
+	
+	class HallOfFameListener extends EventAction {
+
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			new HallOfFameGUI().displayGui();
 		}
 		
 	}

@@ -152,4 +152,10 @@ public class GuiStartup extends AbstractGUI {
 
 	@Override
 	public void addSaveImageListener(ActionListener listener) { }
+
+	@Override
+	public void addHallOfFameListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
 }
