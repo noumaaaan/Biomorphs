@@ -369,19 +369,18 @@ public class AdvancedGUI extends AbstractGUI implements Viewable {
 	}
 	
 	public void stateChanged(ChangeEvent e) {
-			
-			int r = redSlider.getValue();
-			int g = greenSlider.getValue();
-			int b = blueSlider.getValue();
-			
-			
-			redLabel.setText("Red : " + r);
-			blueLabel.setText("Blue : " + b);
-			greenLabel.setText("Green : " + g);
-			
-			colorPanel.setBackground(new Color(r,g,b));	
-		}
-	
+		int r = redSlider.getValue();
+		int g = greenSlider.getValue();
+		int b = blueSlider.getValue();
+
+
+		redLabel.setText("Red : " + r);
+		blueLabel.setText("Blue : " + b);
+		greenLabel.setText("Green : " + g);
+
+		colorPanel.setBackground(new Color(r,g,b));	
+	}
+
 	
 	public class RandomColorItemListener implements ItemListener {
 
