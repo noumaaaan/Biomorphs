@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.border.EmptyBorder;
 
 import model.AbstractBiomorph;
@@ -34,6 +35,7 @@ public class InterfacePicker extends AbstractGUI  {
 	private JLabel helpLabel;
 	private JLabel quitLabel;
 
+	private JSeparator separator;
 	
 	private JButton beginner;
 	private JButton advanced;
@@ -46,7 +48,7 @@ public class InterfacePicker extends AbstractGUI  {
 
 
 	public InterfacePicker(final AbstractBiomorph model) {
-		super("Biomorph Mutation: Select User type", 1400, 640);
+		super("Biomorph Mutation: Select User type", 1200, 640);
 		windowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		windowFrame.setResizable(false);
 
@@ -75,6 +77,9 @@ public class InterfacePicker extends AbstractGUI  {
 		usertype.setBounds(20, 180, 300, 40);
 		
 		/** Create the different buttons */
+		separator = new JSeparator();
+		separator.setBounds(20, 358, 550, 2);
+		
 		beginner = new JButton(" Beginner ");
 		beginner.setForeground(Color.BLACK);
 		beginner.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -136,10 +141,10 @@ public class InterfacePicker extends AbstractGUI  {
 		panel.add(advancedLabel);
 		panel.add(helpLabel);
 		panel.add(quitLabel);
-		
+		panel.add(separator);
 		
 
-		
+		JPanel testPanel = new JPanel();
 		
 		//TODO Add the HOF 
 		
@@ -200,6 +205,4 @@ public class InterfacePicker extends AbstractGUI  {
 	public BiomorphInterface getInterfaceToLoad() {
 		return interfaceToLoad;
 	}
-
-
 }

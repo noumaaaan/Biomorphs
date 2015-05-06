@@ -59,6 +59,7 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	private JLabel blueLabel;
 	private JLabel greenLabel;
 	private JPanel colorPanel;
+	private JPanel labelPanel;
 	
 	private JButton generateBtn;
 	private JButton undoBtn;
@@ -88,7 +89,7 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 
 		/** 1. Create the JFrame */ 
 		
-		super("Biomorph Mutation: Advanced User", 1500, 640);
+		super("Biomorph Mutation: Advanced User", 1200, 640);
 		windowFrame.pack();
 		windowFrame.setLocationRelativeTo(null); 
 		windowFrame.setResizable(false);
@@ -101,23 +102,23 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		
 		/** Generate Button : */
 		generateBtn = new JButton("GENERATE");
-		generateBtn.setBounds(41, 11, 130, 31);
+		generateBtn.setBounds(11, 11, 130, 31);
 		generateBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		generateBtn.setToolTipText("Click here to generate a new biomorph! ");
 		
 		undoBtn = new JButton("UNDO");
-		undoBtn.setBounds(180, 11, 80, 31);
+		undoBtn.setBounds(150, 11, 80, 31);
 		undoBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		undoBtn.setForeground(Color.red);
 		undoBtn.setToolTipText("Click here to generate a new biomorph! ");
 		
 		/** Label */
 		JLabel GenerateLabel = new JLabel(" Click here to generate a new biomorph! ");
-		GenerateLabel.setBounds(50, 49, 211, 14);	
+		GenerateLabel.setBounds(20, 49, 211, 14);	
 		
 		/** Panel : */
 		JPanel generatePanel = new JPanel();
-		generatePanel.setBounds(10, 11, 300, 74);
+		generatePanel.setBounds(10, 11, 255, 74);
 		generatePanel.setBorder(new EmptyBorder(15, 15, 15, 15));
 		generatePanel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 		generatePanel.setLayout(null);
@@ -137,11 +138,11 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		JPanel BiomorphValueChanger = new JPanel();
 		BiomorphValueChanger.setBorder(new EmptyBorder(15, 15, 15, 15));
 		BiomorphValueChanger.setBorder(BorderFactory.createLineBorder(Color.lightGray));
-		BiomorphValueChanger.setBounds(10, 90, 300, 26);
+		BiomorphValueChanger.setBounds(10, 90, 255, 26);
 		BiomorphValueChanger.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		/** Create the label and add it to the Panel */
-		JLabel ValueLabel = new JLabel("Change the colour of the biomorphs by moving the Slider");
+		JLabel ValueLabel = new JLabel("Change the colour by moving the Sliders");
 		BiomorphValueChanger.add(ValueLabel);
 		
 		
@@ -165,17 +166,17 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	     
 		/** Create the different Labels for the Sliders */
 		redLabel = new JLabel(" Red : 0 ");
-		blueLabel = new JLabel(" Green : 0 ");
-		greenLabel = new JLabel(" Blue : 0 ");
+		blueLabel = new JLabel(" Blue : 0 ");
+		greenLabel = new JLabel(" Green : 0 ");
 		
 		/** Create the Panel where the colour will be displayed */
 		colorPanel = new JPanel();
-		colorPanel.setBounds(216, 6, 74, 73);
+		colorPanel.setBounds(170, 6, 74, 73);
 		colorPanel.setBackground(Color.black);
 		
 		/** Create a Panel to hold the Labels */
-		JPanel labelPanel = new JPanel();
-		labelPanel.setBounds(146, 6, 60, 73);
+		labelPanel = new JPanel();
+		labelPanel.setBounds(110, 6, 60, 73);
 		labelPanel.setLayout(new GridLayout(3, 1, 2, 2));
 		labelPanel.add(redLabel);
 		labelPanel.add(blueLabel);
@@ -183,7 +184,7 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		
 		/** Create a Panel to hold the Sliders */
 		JPanel sliders	= new JPanel();
-		sliders.setBounds(10, 6, 126, 73);
+		sliders.setBounds(10, 6, 96, 73);
 		sliders.setLayout(new GridLayout(3, 1, 3, 3));
 		sliders.add(redSlider);
 		sliders.add(blueSlider);
@@ -206,12 +207,12 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		JPanel sliderPanel = new JPanel();
 		sliderPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
 		sliderPanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
-		sliderPanel.setBounds(10, 122, 300, 120);
+		sliderPanel.setBounds(10, 122, 255, 120);
 		sliderPanel.setLayout(null);
 		
 		/** Create a button to save the colour combination */
 		updateColorBtn = new JButton("Update");
-		updateColorBtn.setBounds(220, 86, 70, 20);
+		updateColorBtn.setBounds(170, 86, 70, 20);
 		updateColorBtn.setToolTipText("Save your current biomorph mutation to your local drive");
 		
 		
@@ -232,7 +233,7 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		/** Create a Label above the Current Biomorph and a Panel to hold it */
 		JLabel CurrentBiomorphLabel = new JLabel("Current Biomorph :");
 		JPanel CBholdPanel = new JPanel();
-		CBholdPanel.setBounds(10, 248, 300, 26);
+		CBholdPanel.setBounds(10, 248, 255, 26);
 		CBholdPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		CBholdPanel.add(CurrentBiomorphLabel);
 		
@@ -241,14 +242,14 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		//panel.setSize(882, 591);
 		//currentBiomorphPanel.add(panel);
 		currentBiomorphPanel.setLayout(null);
-		currentBiomorphPanel.setBounds(10, 285, 300, 232);
+		currentBiomorphPanel.setBounds(10, 279, 255, 238);
 		currentBiomorphPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
 		currentBiomorphPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		
 		/** 6. Create a Panel that displays the different Evolutionary Biomorphs */
 		biomorphGrid = new BiomorphGrid(3,3);
-		biomorphGrid.setBounds(320, 11, 882, 591);
+		biomorphGrid.setBounds(275, 11, 646, 591);
 		biomorphGrid.setBorder(new EmptyBorder(15, 15, 15, 15));
 		
 		
@@ -258,7 +259,7 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
 		buttonPanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
-		buttonPanel.setBounds(10, 528, 300, 74);
+		buttonPanel.setBounds(10, 528, 255, 74);
 		buttonPanel.setLayout(null);
 		
 		
@@ -266,44 +267,22 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		JPanel savePanel = new JPanel();
 		savePanel.setBorder(new EmptyBorder(15, 15, 15, 15));
 		savePanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
-		savePanel.setBounds(10, 528, 300, 74);
+		savePanel.setBounds(10, 528, 255, 74);
 		savePanel.setLayout(null);
 	
 		/** Different components to add to Button Panel */
-		saveBtn = new JButton(" Save ");
-		saveBtn.setBounds(10, 10, 63, 23);
+		saveBtn = new JButton(" Save/Load");
+		saveBtn.setBounds(10, 10, 90, 23);
 		saveBtn.setToolTipText("Save your current biomorph mutation to your local drive");
-			
-		loadBtn = new JButton(" Load ");
-		loadBtn.setBounds(83, 10, 61, 23);
-		loadBtn.setToolTipText("Open up a previously saved biomorph mutation");
-		
-		helpBtn = new JButton(" Help ");
-		helpBtn.setBounds(154, 10, 59, 23);
-		helpBtn.setToolTipText("Click here for Instructions on how to use the application");
-		
-		exitBtn = new JButton(" Exit ");
-		exitBtn.setBounds(223, 10, 57, 23);
-		exitBtn.setToolTipText("Quit the application by clicking here");
-		
-		addToHoFButton = new JButton(" Add to Hall of Fame ");
-		addToHoFButton.setBounds(10, 40, 140, 23);
-		addToHoFButton.setForeground(Color.red);
-		addToHoFButton.setToolTipText("Add biomorph to the hall of fame");
 		
 		userSelectionBtton = new JButton(" Main Menu ");
 		userSelectionBtton.setToolTipText("Pick a new interface type");
-		userSelectionBtton.setBounds(180, 40, 100, 23);
-		
-		/** TODO Hall of Fame Listener*/ 
+		userSelectionBtton.setBounds(10, 38, 90, 23);
+	
 		
 		
 		/** Add these different components to the Panel */
 		buttonPanel.add(saveBtn);
-		buttonPanel.add(loadBtn);
-		buttonPanel.add(helpBtn);
-		buttonPanel.add(exitBtn);
-		buttonPanel.add(addToHoFButton);
 		buttonPanel.add(userSelectionBtton);
 		
 		
@@ -317,7 +296,7 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		saveasproject.setToolTipText("Save the project so you can return to it later");
 		
 		cancel = new JButton(" Cancel ");
-		cancel.setBounds(220, 10, 70, 23);
+		cancel.setBounds(172, 40, 70, 23);
 		cancel.setToolTipText("Return to the biomorph project");
 		
 		/** Add these different components to the Panel */
@@ -331,13 +310,34 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		switchPanel.setLayout(c);
 		
 		switchPanel.add(buttonPanel, "card 1");
+		
+		helpBtn = new JButton(" Help ");
+		helpBtn.setBounds(110, 10, 59, 23);
+		buttonPanel.add(helpBtn);
+		helpBtn.setToolTipText("Click here for Instructions on how to use the application");
+		
+		exitBtn = new JButton(" Exit ");
+		exitBtn.setBounds(179, 10, 57, 23);
+		buttonPanel.add(exitBtn);
+		exitBtn.setToolTipText("Quit the application by clicking here");
+		
+		addToHoFButton = new JButton(" Add to Hall of Fame ");
+		addToHoFButton.setBounds(110, 38, 132, 23);
+		buttonPanel.add(addToHoFButton);
+		addToHoFButton.setForeground(Color.red);
+		addToHoFButton.setToolTipText("Add biomorph to the hall of fame");
 		switchPanel.add(savePanel, "card 2");
+		
+		loadBtn = new JButton(" Load Project");
+		loadBtn.setBounds(147, 10, 95, 23);
+		savePanel.add(loadBtn);
+		loadBtn.setToolTipText("Open up a previously saved biomorph mutation");
 		
 		c.show(switchPanel, "card 1");
 		
 		switchPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
 		switchPanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
-		switchPanel.setBounds(10, 528, 300, 74);
+		switchPanel.setBounds(10, 528, 255, 74);
 		
 		saveBtn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
@@ -354,19 +354,17 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		
 		
 		
-		/** TODO 9. Create the Hall of Fame big Panel*/
+		/** 9. Create the Hall of Fame big Panel*/
 		hallOfFameBiomorphs = new ArrayList<BiomorphPanel>();
 		hallOfFameDeleteButtons = new ArrayList<JButton>();
 		
 		JPanel hofPanel = new JPanel();
-		hofPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
-		hofPanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
-		hofPanel.setBounds(1205, 10, 270, 590);
+		hofPanel.setBounds(919, 12, 270, 590);
 		hofPanel.setLayout(null);
 		
 		JLabel hofLabel = new JLabel(" Hall of Fame ");
-		hofLabel.setBounds(100, 10, 150, 14);	
-		hofLabel.setFont((new Font("Tahoma", Font.PLAIN, 16)));
+		hofLabel.setBounds(80, 0, 125, 30);
+		hofLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
 			
 		hofPanel.add(hofLabel);
 		
@@ -377,7 +375,7 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		for(int i = 0; i < 3; i++) {
 			BiomorphPanel hofSubpanel = new BiomorphPanel();
 			hofSubpanel.setBorder(new EmptyBorder(15, 15, 15, 15));
-			hofSubpanel.setBorder(BorderFactory.createLineBorder(Color.red));
+			hofSubpanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 			hofSubpanel.setBounds(10, previousPanelY, 250, 150);
 			hofSubpanel.setLayout(null);
 			hofSubpanel.addMouseListener(new HallOfFameLoadListener(hofSubpanel));
@@ -400,6 +398,7 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		/** 9. Create a Panel that will hold all the components on the Frame */
 		JPanel windowPanel = new JPanel();
 		windowFrame.getContentPane().add(windowPanel);
+		windowPanel.setSize(1364, 640);
 		windowPanel.setLayout(null);
 		windowPanel.add(sliderPanel);
 		windowPanel.add(generatePanel);

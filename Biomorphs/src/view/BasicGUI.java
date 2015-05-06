@@ -34,7 +34,7 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	private BiomorphPanel panel;
 
 	public BasicGUI(AbstractBiomorph model) {
-		super("Biomorph Mutation: Beginner User", 1500, 640);
+		super("Biomorph Mutation: Beginner User", 1200, 640);
 
 		/** Panel to hold the components */
 		JPanel button_panel = new JPanel();
