@@ -14,7 +14,6 @@ import javax.swing.JOptionPane;
 
 import model.AbstractBiomorph;
 import model.EvolutionaryBiomorph;
-import model.FileSerializer;
 import model.Genome;
 import model.RandomBiomorph;
 import view.AdvancedGUI;
@@ -26,6 +25,12 @@ import view.components.LoadProjectDialog;
 import view.components.SaveImageDialog;
 import view.components.SaveProjectDialog;
 
+/**
+ * Controller to control communication between view and model. Attaches actions to views
+ * so application is consistent in behaviour and functionality.
+ * 
+ * @author Alex Luckett <lucketta@aston.ac.uk>
+ */
 public class BiomorphController {
 
 	private AbstractBiomorph model;

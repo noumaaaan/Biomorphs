@@ -42,8 +42,6 @@ import controller.EventAction;
  * 
  * 
  * @author Nouman Mehmood <mehmoodn@aston.ac.uk>
- * @author Alexander Luckett <lucketta@aston.ac.uk>
- * 
  */
 public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	
