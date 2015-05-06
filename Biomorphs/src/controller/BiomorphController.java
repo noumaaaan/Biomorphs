@@ -46,6 +46,8 @@ public class BiomorphController {
 	
 	private void initialiseView(BiomorphInterface view) {
 		view.updateMutations(getMutatedBiomorphs()); // update the mutations for the current biomorph
+		
+		
 		view.loadHallOfFame(getHallOfFameBiomorphs());
 	}
 	
@@ -97,6 +99,10 @@ public class BiomorphController {
 		ArrayList<AbstractBiomorph> biomorphs = new ArrayList<AbstractBiomorph>();
 		
 		File hallOfFameDirectory = new File(System.getProperty("user.dir") + BiomorphController.HALL_OF_FAME_SUBDIRECTORY);
+		
+		if(!hallOfFameDirectory.exists()) {
+			hallOfFameDirectory.mkdir(); // create directory if it doesn't exist - need to be able to save
+		}
 		
 		FileSerializer<Genome> serialiser = new FileSerializer<Genome>();
 		
