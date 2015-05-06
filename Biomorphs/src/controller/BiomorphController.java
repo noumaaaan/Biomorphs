@@ -93,7 +93,7 @@ public class BiomorphController {
 	}
 	
 	private void addHistory(Genome genome) {
-		history.add(genome.clone());
+		history.push(genome.clone());
 	}
 	
 	private Genome undoAction() {
