@@ -45,7 +45,7 @@ public class BiomorphPanel extends JPanel {
 		rightLines = new ArrayList<Line2D>(400);
 	}
 
-	public BiomorphPanel(final AbstractBiomorph biomorph, boolean generateChildren) {
+	public BiomorphPanel(final AbstractBiomorph biomorph, boolean generateChildren, boolean isEditable) {
 		setBackground(Color.WHITE);
 		
 		midPoint = new Point2D.Double(0, 0);
@@ -58,8 +58,11 @@ public class BiomorphPanel extends JPanel {
 		leftLines = new ArrayList<Line2D>(400);
 		rightLines = new ArrayList<Line2D>(400);
 
-		addMouseListener(new BiomorphMouseHandler());
-		addMouseMotionListener(new BiomorphMouseHandler());
+		
+		if(isEditable) {
+			addMouseListener(new BiomorphMouseHandler());
+			addMouseMotionListener(new BiomorphMouseHandler());
+		}
 	}
 
 	private void resetMidpoint() {

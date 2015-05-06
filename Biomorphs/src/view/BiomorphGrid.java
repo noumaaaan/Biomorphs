@@ -36,7 +36,7 @@ public class BiomorphGrid extends JPanel {
 
 	private void setupGrid(List<AbstractBiomorph> biomorphs) {		
 		for(AbstractBiomorph biomorph : biomorphs) {
-			final BiomorphPanel panel = new BiomorphPanel(biomorph, false);
+			final BiomorphPanel panel = new BiomorphPanel(biomorph, false, false);
 			panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
 			panel.addMouseListener(new MouseListener() {

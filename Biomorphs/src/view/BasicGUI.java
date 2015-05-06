@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
@@ -77,9 +78,7 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 		windowFrame.add(button_panel, BorderLayout.WEST);
 
 		/** Defining the draw canvas */
-		this.panel = new BiomorphPanel(model, true);
-	
-		
+		this.panel = new BiomorphPanel(model, true, true);	
 		
 		/** TODO 9. Hall of fame Panel */
 		JPanel hofPanel = new JPanel();
@@ -245,5 +244,10 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	public AbstractBiomorph getHofBiomorphToLoad() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void addManipulateBiomorphListener(MouseListener listener) {
+		panel.addMouseListener(listener);
 	}
 }

@@ -2,6 +2,8 @@ package controller;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -55,6 +57,7 @@ public class BiomorphController {
 		view.addAddHallOfFameListener(new AddToHallOfFameListener());
 		view.addLoadHallOfFameBiomorphListener(new LoadBiomorphFromHallOfFameListener());
 		view.addDeleteHallOfFameBiomorphListener(new DeleteBiomorphFromHallOfFameListener());
+		view.addManipulateBiomorphListener(new ManipulateBiomorphListener());
 	}
 	
 	/**
@@ -107,8 +110,6 @@ public class BiomorphController {
 		}
 		
 		return biomorphs;
-		
-		//if(savedBiomorphCount < 3) { // can only save 3 biomorphs
 	}
 	
 	/**
@@ -305,6 +306,27 @@ public class BiomorphController {
 			List<AbstractBiomorph> updatedBiomorphs = getHallOfFameBiomorphs();
 			
 			view.loadHallOfFame(updatedBiomorphs); // refresh hall of fame
+		}
+		
+	}
+	
+	class ManipulateBiomorphListener implements MouseListener {
+
+		@Override
+		public void mouseClicked(MouseEvent e) { }
+
+		@Override
+		public void mouseEntered(MouseEvent e) { }
+
+		@Override
+		public void mouseExited(MouseEvent e) { }
+
+		@Override
+		public void mousePressed(MouseEvent e) { }
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			view.updateMutations(getMutatedBiomorphs());
 		}
 		
 	}

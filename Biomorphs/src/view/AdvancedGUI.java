@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -237,7 +238,7 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		CBholdPanel.add(CurrentBiomorphLabel);
 		
 		/** Add the Biomorph to the Panel */
-		currentBiomorphPanel = new BiomorphPanel(model, true);
+		currentBiomorphPanel = new BiomorphPanel(model, true, true);
 		//panel.setSize(882, 591);
 		//currentBiomorphPanel.add(panel);
 		currentBiomorphPanel.setLayout(null);
@@ -643,6 +644,11 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	@Override
 	public AbstractBiomorph getHofBiomorphToLoad() {
 		return biomorphPanelToLoad.getBiomorph();
+	}
+
+	@Override
+	public void addManipulateBiomorphListener(MouseListener listener) {
+		currentBiomorphPanel.addMouseListener(listener);
 	}
 	
 }

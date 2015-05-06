@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.event.MouseListener;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -22,7 +23,9 @@ public interface BiomorphInterface {
 	void addLoadHallOfFameBiomorphListener(EventAction listener);
 	
 	AbstractBiomorph getHofBiomorphToDelete(); // delete of fame biomorph
-	AbstractBiomorph getHofBiomorphToLoad(); // load hall of fame bopmorph
+	AbstractBiomorph getHofBiomorphToLoad(); // load hall of fame biomorph
+	
+	void addManipulateBiomorphListener(MouseListener listener); // must be a mouse listener - need the "on release" method
 	
 	void addLoadProjectListener(EventAction listener);
 	
