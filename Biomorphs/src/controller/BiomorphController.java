@@ -49,10 +49,10 @@ public class BiomorphController {
 		view.addHelpListener(new HelpListener());
 		view.addSaveProjectListener(new SaveProjectListener());
 		view.addLoadProjectListener(new LoadProjectListener());
-		view.addHallOfFameAddListener(new AddToHallOfFameListener());
 		view.addGenomeChangeListener(new UpdateGenomeColourListener());
 		view.addSaveImageListener(new SaveImageListener());
 		view.addUndoListener(new UndoActionListener());
+		view.addAddHallOfFameListener(new AddToHallOfFameListener());
 		view.addLoadHallOfFameBiomorphListener(new LoadBiomorphFromHallOfFameListener());
 		view.addDeleteHallOfFameBiomorphListener(new DeleteBiomorphFromHallOfFameListener());
 	}
@@ -264,9 +264,12 @@ public class BiomorphController {
 			
 			if(savedBiomorphCount < 3) { // can only save 3 biomorphs
 				try {
-					new FileSerializer<Genome>().serialiseFile(model.getGenome(), file.getAbsolutePath() + "/biomorph" + (savedBiomorphCount+1));
+					new FileSerializer<Genome>().serialiseFile(model.getGenome(), file.getAbsolutePath() + "/biomorph" + System.currentTimeMillis());
 				} catch (IOException e) {
-					System.out.println("Error saving to hall of fame");
+					String message = "Unable to add to hall of fame. "
+							+ "Please ensure you have permission to write to your biomorph application folder.";
+					
+					JOptionPane.showMessageDialog(view.getFrame(), message, "Error adding to Hall of Fame", JOptionPane.WARNING_MESSAGE);
 				}
 			} else {
 				String message = "No more biomorphs can be added to the hall of fame. Please delete some existing biomorphs.";
@@ -300,7 +303,6 @@ public class BiomorphController {
 			fileToDelete.delete();
 			
 			List<AbstractBiomorph> updatedBiomorphs = getHallOfFameBiomorphs();
-			System.out.println("updated size: " + updatedBiomorphs.size());
 			
 			view.loadHallOfFame(updatedBiomorphs); // refresh hall of fame
 		}

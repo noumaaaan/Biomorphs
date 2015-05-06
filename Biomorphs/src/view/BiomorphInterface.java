@@ -17,7 +17,7 @@ public interface BiomorphInterface {
 	void addUndoListener(EventAction listener);
 	
 	void loadHallOfFame(List<AbstractBiomorph> biomorphs);
-	void addHallOfFameAddListener(EventAction listener);
+	void addAddHallOfFameListener(EventAction listener);
 	void addDeleteHallOfFameBiomorphListener(EventAction listener);
 	void addLoadHallOfFameBiomorphListener(EventAction listener);
 	

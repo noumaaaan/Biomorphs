@@ -562,7 +562,7 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	}
 	
 	@Override
-	public void addHallOfFameAddListener(EventAction listener) {
+	public void addAddHallOfFameListener(EventAction listener) {
 		addToHoFButton.addActionListener(listener);
 	}
 	

@@ -208,7 +208,7 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	}
 
 	@Override
-	public void addHallOfFameAddListener(EventAction listener) { } // not on this gui
+	public void addAddHallOfFameListener(EventAction listener) { } // not on this gui
 
 	@Override
 	public void addGenomeChangeListener(EventAction listener) { }
