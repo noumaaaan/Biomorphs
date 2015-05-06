@@ -248,7 +248,6 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		/** 6. Create a Panel that displays the different Evolutionary Biomorphs */
 		biomorphGrid = new BiomorphGrid(3,3);
 		biomorphGrid.setBounds(275, 11, 646, 591);
-		biomorphGrid.setBorder(new EmptyBorder(15, 15, 15, 15));
 		
 		
 		/** 7. Create navigation buttons at the bottom of the Panel */
@@ -380,7 +379,7 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 			
 			JButton hofRemoveBtn = new JButton("Remove");
 			hofRemoveBtn.setFont((new Font("Tahoma", Font.PLAIN, 12)));
-			hofRemoveBtn.setBounds(10, previousBtnY, 90, 20);
+			hofRemoveBtn.setBounds(95, previousBtnY, 90, 20);
 			hofRemoveBtn.addMouseListener(new HallOfFameDeleteListener(hofSubpanel));
 			
 			previousPanelY += 185; // height of each component
