@@ -36,4 +36,9 @@ public class FixedSizeStack<T> {
 		return element;
 	}
 	
+	
+	public int size(){
+		return baseList.size();
+		
+	}
 }
