@@ -31,6 +31,7 @@ import controller.EventAction;
 public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	
 	private JButton newBiomorphBtn;
+	private JButton addtoHOFbtn;
 	private JButton newSaveBtn;
 	private JButton newLoadBtn;
 	private JButton newHelpBtn;
@@ -53,11 +54,15 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 
 		/** Panel to hold the components */
 		JPanel button_panel = new JPanel();
-		button_panel.setLayout(new GridLayout(7, 1, 20, 20));
+		button_panel.setLayout(new GridLayout(8, 1, 20, 20));
 
 		/** Create the buttons */ 
 		newBiomorphBtn = new JButton(" Generate Biomorph ");
 		newBiomorphBtn.setToolTipText("Create a new biomorph by clicking here"); 
+		
+		addtoHOFbtn = new JButton(" Add to Hall of Fame ");
+		addtoHOFbtn.setToolTipText("Add the Biomorph to the Hall of Fame");
+		addtoHOFbtn.setForeground(Color.red);
 		
 		newSaveBtn = new JButton(" Save as Project ");
 		newSaveBtn.setToolTipText("Save your project to return to it later");
@@ -80,6 +85,7 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 		/** Add buttons to the panel */
 		button_panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		button_panel.add(newBiomorphBtn);
+		button_panel.add(addtoHOFbtn);
 		button_panel.add(newSaveBtn);
 		button_panel.add(saveasjpeg);
 		button_panel.add(newLoadBtn);
@@ -90,7 +96,10 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 
 		/** Defining the draw canvas */
 		this.panel = new BiomorphPanel(model, true, true);	
-		
+		JPanel bigPanel = new JPanel();
+		bigPanel.add(panel);
+		bigPanel.setBounds(100, 20, 300, 400);
+	
 		
 		
 		
@@ -145,7 +154,7 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 		
 		
 		
-		windowFrame.add(panel);
+		windowFrame.add(bigPanel);
 		windowFrame.setVisible(true);
 
 		windowFrame.pack();
@@ -226,17 +235,7 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	
 	
 
-	@Override
-	public AbstractBiomorph getHofBiomorphToDelete() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
-	@Override
-	public AbstractBiomorph getHofBiomorphToLoad() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void addManipulateBiomorphListener(MouseListener listener) {
@@ -247,7 +246,6 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	public void addLoadInterfacePickerListener(EventAction listener) {
 		userSelect.addActionListener(listener);
 	}
-	
 	
 	
 	
@@ -329,12 +327,20 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 		}
 	}
 
+	@Override
+	public AbstractBiomorph getHofBiomorphToDelete() {
+		return biomorphPanelToDelete.getBiomorph(); // files don't use 0 based numbering
+	}
 
+	@Override
+	public AbstractBiomorph getHofBiomorphToLoad() {
+		return biomorphPanelToLoad.getBiomorph();
+	}
 	
 	
 	
 	
 	
-	
+	 
 	
 }
