@@ -109,7 +109,6 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		undoBtn.setBounds(180, 11, 80, 31);
 		undoBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		undoBtn.setForeground(Color.red);
-		//undoBtn.setBackground(Color.red);
 		undoBtn.setToolTipText("Click here to generate a new biomorph! ");
 		
 		/** Label */
@@ -289,11 +288,12 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		
 		addToHoFButton = new JButton(" Add to Hall of Fame ");
 		addToHoFButton.setBounds(10, 40, 140, 23);
+		addToHoFButton.setForeground(Color.red);
 		addToHoFButton.setToolTipText("Add biomorph to the hall of fame");
 		
-		userSelectionBtton = new JButton(" Return to user selection ");
+		userSelectionBtton = new JButton(" Main Menu ");
 		userSelectionBtton.setToolTipText("Pick a new interface type");
-		userSelectionBtton.setBounds(155, 40, 130, 23);
+		userSelectionBtton.setBounds(180, 40, 100, 23);
 		
 		/** TODO Hall of Fame Listener*/ 
 		
