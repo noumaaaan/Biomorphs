@@ -66,7 +66,7 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	private JButton loadBtn;
 	private JButton exitBtn;
 	private JButton helpBtn;
-	private JButton HallofFamebutton;
+	private JButton userSelectionBtton;
 	private JButton addToHoFButton;
 	private JButton updateColorBtn;
 	
@@ -291,9 +291,9 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		addToHoFButton.setBounds(10, 40, 140, 23);
 		addToHoFButton.setToolTipText("Add biomorph to the hall of fame");
 		
-		HallofFamebutton = new JButton(" View Hall of Fame ");
-		HallofFamebutton.setToolTipText("Insert text here :O");
-		HallofFamebutton.setBounds(155, 40, 130, 23);
+		userSelectionBtton = new JButton(" Return to user selection ");
+		userSelectionBtton.setToolTipText("Pick a new interface type");
+		userSelectionBtton.setBounds(155, 40, 130, 23);
 		
 		/** TODO Hall of Fame Listener*/ 
 		
@@ -304,7 +304,7 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		buttonPanel.add(helpBtn);
 		buttonPanel.add(exitBtn);
 		buttonPanel.add(addToHoFButton);
-		buttonPanel.add(HallofFamebutton);
+		buttonPanel.add(userSelectionBtton);
 		
 		
 		/** Different components to add to save options Panel */
@@ -649,6 +649,11 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	@Override
 	public void addManipulateBiomorphListener(MouseListener listener) {
 		currentBiomorphPanel.addMouseListener(listener);
+	}
+
+	@Override
+	public void addLoadInterfacePickerListener(EventAction listener) {
+		userSelectionBtton.addActionListener(listener);
 	}
 	
 }

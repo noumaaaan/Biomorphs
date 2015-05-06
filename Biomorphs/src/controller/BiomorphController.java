@@ -21,6 +21,7 @@ import view.AdvancedGUI;
 import view.BiomorphInterface;
 import view.GenomeViewUpdateModel;
 import view.Help;
+import view.InterfacePicker;
 import view.components.LoadProjectDialog;
 import view.components.SaveImageDialog;
 import view.components.SaveProjectDialog;
@@ -39,11 +40,16 @@ public class BiomorphController {
 		
 		this.history = new FixedSizeStack<Genome>(10);
 		
-		// update the mutations for the current biomorph
-		view.updateMutations(getMutatedBiomorphs());
-		
+		initialiseView(view);
+		addListenersToView(view);
+	}
+	
+	private void initialiseView(BiomorphInterface view) {
+		view.updateMutations(getMutatedBiomorphs()); // update the mutations for the current biomorph
 		view.loadHallOfFame(getHallOfFameBiomorphs());
-		
+	}
+	
+	private void addListenersToView(BiomorphInterface view) {
 		// add listeners to the interface
 		view.addMutateListener(new MutateListener());
 		view.addExitListener(new ExitListener());
@@ -58,6 +64,7 @@ public class BiomorphController {
 		view.addLoadHallOfFameBiomorphListener(new LoadBiomorphFromHallOfFameListener());
 		view.addDeleteHallOfFameBiomorphListener(new DeleteBiomorphFromHallOfFameListener());
 		view.addManipulateBiomorphListener(new ManipulateBiomorphListener());
+		view.addLoadInterfacePickerListener(new InterfacePickerListener());
 	}
 	
 	/**
@@ -327,6 +334,34 @@ public class BiomorphController {
 		@Override
 		public void mouseReleased(MouseEvent e) {
 			view.updateMutations(getMutatedBiomorphs());
+		}
+		
+	}
+	
+	private InterfacePicker interfacePicker;
+	
+	class InterfacePickerListener extends EventAction {
+
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			view.getFrame().setVisible(false);
+			view.getFrame().dispose();
+			
+			interfacePicker = new InterfacePicker(model);
+			interfacePicker.addInterfacePickedListener(new InterfacePickedListener());
+			interfacePicker.displayGui();
+		}
+		
+	}
+	
+	class InterfacePickedListener extends EventAction {
+
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			view = interfacePicker.getInterfaceToLoad();
+			
+			initialiseView(view);
+			addListenersToView(view);
 		}
 		
 	}

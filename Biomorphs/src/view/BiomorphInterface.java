@@ -17,6 +17,8 @@ public interface BiomorphInterface {
 	void addHelpListener(EventAction listener);
 	void addUndoListener(EventAction listener);
 	
+	void addLoadInterfacePickerListener(EventAction listener);
+	
 	void loadHallOfFame(List<AbstractBiomorph> biomorphs);
 	void addAddHallOfFameListener(EventAction listener);
 	void addDeleteHallOfFameBiomorphListener(EventAction listener);
@@ -30,7 +32,7 @@ public interface BiomorphInterface {
 	void addLoadProjectListener(EventAction listener);
 	
 	void addSaveProjectListener(EventAction listener);
-	void addSaveImageListener(EventAction listener);	
+	void addSaveImageListener(EventAction listener);
 	
 	void addGenomeChangeListener(EventAction listener);
 		

@@ -34,6 +34,7 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	private JButton newHelpBtn;
 	private JButton newEndBtn;
 	private JButton saveasjpeg;
+	private JButton userSelect;
 	
 	private BiomorphPanel panel;
 
@@ -60,7 +61,7 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 		newHelpBtn = new JButton(" Help ");
 		newHelpBtn.setToolTipText("Click here for Instructions on how to use the application");
 		
-		JButton userSelect = new JButton(" Return to User selection ");
+		userSelect = new JButton(" Return to User selection ");
 		userSelect.setToolTipText("Return to the user selection screen");
 		
 		newEndBtn = new JButton(" Exit ");
@@ -249,5 +250,10 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	@Override
 	public void addManipulateBiomorphListener(MouseListener listener) {
 		panel.addMouseListener(listener);
+	}
+
+	@Override
+	public void addLoadInterfacePickerListener(EventAction listener) {
+		userSelect.addActionListener(listener);
 	}
 }

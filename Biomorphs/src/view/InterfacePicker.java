@@ -12,16 +12,25 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import model.AbstractBiomorph;
+import controller.EventAction;
+
 /**
  * Splash screen with user selection.
  * 
  * @author Nouman Mehmood <mehmoodn@aston.ac.uk>
  */
 
-public class GuiStartup extends AbstractGUI {
+public class InterfacePicker extends AbstractGUI {
+	
+	private BiomorphInterface interfaceToLoad;
+	
+	private JButton beginner;
+	private JButton advanced;
 
-	public GuiStartup() {
+	public InterfacePicker(final AbstractBiomorph model) {
 		super("Biomorph Mutation: Select User type", 500, 300);
+		
 		windowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		windowFrame.setResizable(false);
 
@@ -29,10 +38,10 @@ public class GuiStartup extends AbstractGUI {
 		JLabel description2 = new JLabel("Produce evolutionary art based on Richard Dawkin's Biomorphs in a creative way");
 		JLabel usertype = new JLabel("First, Choose the type of user you are: ");
 		
-		JButton beginner = new JButton("Beginner");
+		beginner = new JButton("Beginner");
 		beginner.setToolTipText("Using the application for the first time? Choose Beginner");
 		
-		JButton advanced = new JButton("Advanced");
+		advanced = new JButton("Advanced");
 		advanced.setToolTipText("Want to experience something extraordinary? Choose advanced");
 		
 		JButton quit= new JButton("Quit Application");
@@ -84,38 +93,49 @@ public class GuiStartup extends AbstractGUI {
 		panel.add(quit, c);			
 		
 		/** Beginner selection */
-		beginner.addActionListener(new ActionListener() {
+		beginner.addMouseListener(new EventAction() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				destroyGui();
-				//new BasicGUI().displayGui();
+				interfaceToLoad = new BasicGUI(model);
+				System.out.println("basic set");
 			}
 
 		});
 
 		/** Advanced Selection */
-		advanced.addActionListener(new ActionListener() { 	
+		advanced.addMouseListener(new EventAction() {	
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//destroyGui();
-				//new AdvancedGUI().displayGui();
-				//new EvolutionaryGUI().displayGui();
+				interfaceToLoad = new AdvancedGUI(model);
+				System.out.println("advanced set");
 			}
 
 		});
 
 		
 		/** Exit the application*/
-		quit.addActionListener(new ActionListener(){
+		quit.addActionListener(new ActionListener() {
+			
+			@Override
 			public void actionPerformed(ActionEvent event){
-			//exitApplication();
-					}
-				});
+				exitApplication();
+			}
+			
+		});
 		
 		
 		windowFrame.pack();
 		windowFrame.setLocationRelativeTo(null); // centre aligned
+	}
+	
+	public void addInterfacePickedListener(EventAction listener) {
+		beginner.addMouseListener(listener);
+		advanced.addMouseListener(listener);
+	}
+	
+	public BiomorphInterface getInterfaceToLoad() {
+		return interfaceToLoad;
 	}
 }
