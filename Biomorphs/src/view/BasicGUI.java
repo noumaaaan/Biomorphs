@@ -236,4 +236,16 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	public void loadHallOfFame(List<AbstractBiomorph> biomorphs) {
 		
 	}
+
+	@Override
+	public int getHofNumberBiomorphToDelete() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public AbstractBiomorph getHofBiomorphToLoad() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

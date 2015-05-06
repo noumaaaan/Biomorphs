@@ -21,6 +21,9 @@ public interface BiomorphInterface {
 	void addDeleteHallOfFameBiomorph(EventAction listener);
 	void addLoadHallOfFameBiomorph(EventAction listener);
 	
+	int getHofNumberBiomorphToDelete(); // delete of fame biomorph
+	AbstractBiomorph getHofBiomorphToLoad(); // load hall of fame bopmorph
+	
 	void addLoadProjectListener(EventAction listener);
 	
 	void addSaveProjectListener(EventAction listener);

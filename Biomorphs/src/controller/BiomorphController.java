@@ -53,6 +53,7 @@ public class BiomorphController {
 		view.addGenomeChangeListener(new UpdateGenomeColourListener());
 		view.addSaveImageListener(new SaveImageListener());
 		view.addUndoListener(new UndoActionListener());
+		view.addLoadHallOfFameBiomorph(new LoadBiomorphFromHallOfFameListener());
 	}
 	
 	/**
@@ -272,6 +273,18 @@ public class BiomorphController {
 			}
 			
 			view.loadHallOfFame(getHallOfFameBiomorphs());
+		}
+		
+	}
+	
+	class LoadBiomorphFromHallOfFameListener extends EventAction {
+
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			Genome genome = view.getHofBiomorphToLoad().getGenome().clone();
+			model.setGenome(genome);
+			
+			view.updateMutations(getMutatedBiomorphs());
 		}
 		
 	}
