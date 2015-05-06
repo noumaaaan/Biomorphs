@@ -18,7 +18,6 @@ import model.RandomBiomorph;
 import view.AdvancedGUI;
 import view.BiomorphInterface;
 import view.GenomeViewUpdateModel;
-import view.HallOfFameGUI;
 import view.Help;
 import view.components.LoadProjectDialog;
 import view.components.SaveImageDialog;
@@ -30,6 +29,7 @@ public class BiomorphController {
 	private BiomorphInterface view;
 	
 	private FixedSizeStack<Genome> history; // used for undo functionality
+	public static final String HALL_OF_FAME_SUBDIRECTORY = "/hallOfFame";
 	
 	public BiomorphController(BiomorphInterface view, AbstractBiomorph biomorph) {
 		this.view = view; 
@@ -85,7 +85,7 @@ public class BiomorphController {
 	private List<AbstractBiomorph> getHallOfFameBiomorphs() {
 		ArrayList<AbstractBiomorph> biomorphs = new ArrayList<AbstractBiomorph>();
 		
-		File hallOfFameDirectory = new File(System.getProperty("user.dir") + HallOfFameGUI.HALL_OF_FAME_SUBDIRECTORY);
+		File hallOfFameDirectory = new File(System.getProperty("user.dir") + BiomorphController.HALL_OF_FAME_SUBDIRECTORY);
 		
 		FileSerializer<Genome> serialiser = new FileSerializer<Genome>();
 		
@@ -256,7 +256,7 @@ public class BiomorphController {
 		public void actionPerformed(ActionEvent event) {
 			String currentDirectory = System.getProperty("user.dir");
 			
-			File file = new File(currentDirectory + HallOfFameGUI.HALL_OF_FAME_SUBDIRECTORY);
+			File file = new File(currentDirectory + BiomorphController.HALL_OF_FAME_SUBDIRECTORY);
 			
 			int savedBiomorphCount = file.listFiles().length;
 			
@@ -285,6 +285,15 @@ public class BiomorphController {
 			model.setGenome(genome);
 			
 			view.updateMutations(getMutatedBiomorphs());
+		}
+		
+	}
+	
+	class DeleteBiomorphFromHallOfFameListener extends EventAction {
+
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			view.getHofNumberBiomorphToDelete();
 		}
 		
 	}
