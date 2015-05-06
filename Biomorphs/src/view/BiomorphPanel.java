@@ -34,6 +34,9 @@ public class BiomorphPanel extends JPanel {
 
 	private Line2D activeLine; // line currently clicked
 	private int activeLineNumber; // corresponds to the child genome number
+	
+	private final double scaleFactor = 0.5;
+	private final float lineWidth = 3;
 
 	public BiomorphPanel() {
 		super();
@@ -80,7 +83,7 @@ public class BiomorphPanel extends JPanel {
 			resetMidpoint();
 
 			Graphics2D g2d = (Graphics2D) g;
-			g2d.setStroke(new BasicStroke(5f));
+			g2d.setStroke(new BasicStroke(lineWidth));
 
 			leftLines.clear();
 			rightLines.clear();
@@ -99,11 +102,11 @@ public class BiomorphPanel extends JPanel {
 	 * @param biomorph biomorph to draw
 	 * @param g2d graphics to draw with
 	 */
-	private ArrayList<Line2D> drawSection(Point2D point, AbstractBiomorph biomorph, CanvasSide section, Graphics2D g2d) {
+	private ArrayList<Line2D> drawSection(Point2D point, AbstractBiomorph biomorph, CanvasSide section, Graphics2D g2d) {		
 		ArrayList<Line2D> lines = new ArrayList<Line2D>(200);
 
-		double lastX = point.getX();
-		double lastY = point.getY();
+		double lastX = point.getX()/scaleFactor;
+		double lastY = point.getY()/scaleFactor;
 
 		for (Genome genome : biomorph.getGenome()) {
 			g2d.setColor(genome.getColour());
@@ -120,7 +123,7 @@ public class BiomorphPanel extends JPanel {
 				endX = lastX - endX;
 			}
 
-			Line2D line = new Line2D.Double(lastX, lastY, endX, endY);
+			Line2D line = new Line2D.Double(lastX*scaleFactor, lastY*scaleFactor, endX*scaleFactor, endY*scaleFactor);
 			lines.add(line);
 			g2d.draw(line); // draw the line
 
