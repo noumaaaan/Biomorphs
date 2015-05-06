@@ -18,7 +18,7 @@ public class FixedSizeStack<T> {
 		this.baseList = new LinkedList<T>();
 	}
 	
-	public void add(T element) {
+	public void push(T element) {
 		baseList.add(element);
 		
 		if(baseList.size() > capacity) {
@@ -35,7 +35,6 @@ public class FixedSizeStack<T> {
 		
 		return element;
 	}
-	
 	
 	public int size(){
 		return baseList.size();
