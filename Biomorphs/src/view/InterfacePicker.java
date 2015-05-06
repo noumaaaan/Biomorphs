@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -22,7 +25,7 @@ import controller.EventAction;
  * @author Nouman Mehmood <mehmoodn@aston.ac.uk>
  */
 
-public class InterfacePicker extends AbstractGUI  {
+public class InterfacePicker extends AbstractGUI implements BiomorphInterface{
 	
 	private BiomorphInterface interfaceToLoad;
 	
@@ -45,6 +48,14 @@ public class InterfacePicker extends AbstractGUI  {
 	private JPanel panel;
 	private JLabel devlabel1;
 	private JLabel devlabel2;
+	
+	
+	private List<BiomorphPanel> hallOfFameBiomorphs;
+	private List<JButton> hallOfFameDeleteButtons;
+	private BiomorphPanel biomorphPanelToDelete;
+	private BiomorphPanel biomorphPanelToLoad;
+	
+	private GenomeViewUpdateModel genomeUpdate;
 
 
 	public InterfacePicker(final AbstractBiomorph model) {
@@ -143,10 +154,77 @@ public class InterfacePicker extends AbstractGUI  {
 		panel.add(quitLabel);
 		panel.add(separator);
 		
-
-		JPanel testPanel = new JPanel();
+		/**Hall of Fame */
+		hallOfFameBiomorphs = new ArrayList<BiomorphPanel>();
+		hallOfFameDeleteButtons = new ArrayList<JButton>();
 		
-		//TODO Add the HOF 
+		JPanel hofPanel = new JPanel();
+		hofPanel.setBounds(919, 12, 270, 590);
+		hofPanel.setLayout(null);
+		
+		JLabel hofLabel = new JLabel(" Hall of Fame ");
+		hofLabel.setBounds(80, -10, 150, 40);
+		hofLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
+			
+		hofPanel.add(hofLabel);
+		
+		/* start point to position components at */
+		int previousPanelY = 35;
+		int previousBtnY = 190;
+		
+		for(int i = 0; i < 3; i++) {
+			BiomorphPanel hofSubpanel = new BiomorphPanel();
+			hofSubpanel.setBorder(new EmptyBorder(15, 15, 15, 15));
+			hofSubpanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			hofSubpanel.setBounds(10, previousPanelY, 250, 150);
+			hofSubpanel.setLayout(null);
+			hofSubpanel.addMouseListener(new HallOfFameLoadListener(hofSubpanel));
+			
+			JButton hofRemoveBtn = new JButton("Remove");
+			hofRemoveBtn.setFont((new Font("Tahoma", Font.PLAIN, 12)));
+			hofRemoveBtn.setBounds(95, previousBtnY, 90, 20);
+			hofRemoveBtn.addMouseListener(new HallOfFameDeleteListener(hofSubpanel));
+			
+			previousPanelY += 185; // height of each component
+			previousBtnY += 185;
+			
+			hofPanel.add(hofSubpanel);
+			hofPanel.add(hofRemoveBtn);
+			
+			hallOfFameBiomorphs.add(hofSubpanel);
+			hallOfFameDeleteButtons.add(hofRemoveBtn);
+		}				
+		
+	
+		windowFrame.add(hofPanel);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -162,6 +240,7 @@ public class InterfacePicker extends AbstractGUI  {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				interfaceToLoad = new BasicGUI(model);
+				destroyGui();
 				System.out.println("basic set");
 			}
 
@@ -173,6 +252,7 @@ public class InterfacePicker extends AbstractGUI  {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				interfaceToLoad = new AdvancedGUI(model);
+				destroyGui();
 				System.out.println("advanced set");
 			}
 
@@ -205,4 +285,194 @@ public class InterfacePicker extends AbstractGUI  {
 	public BiomorphInterface getInterfaceToLoad() {
 		return interfaceToLoad;
 	}
+	
+	
+	
+	
+	
+	
+
+	@Override
+	public GenomeViewUpdateModel getGenomeUpdate() {
+		return genomeUpdate;
+	}
+	
+	
+	
+	@Override
+	public void addLoadHallOfFameBiomorphListener(EventAction listener) {
+		for(BiomorphPanel panel : hallOfFameBiomorphs) {
+			panel.addMouseListener(listener);
+		}
+	}
+
+	@Override
+	public void addDeleteHallOfFameBiomorphListener(EventAction listener) {
+		for(JButton button : hallOfFameDeleteButtons) {
+			button.addMouseListener(listener);
+		}
+	}
+
+	
+
+	@Override
+	public void loadHallOfFame(List<AbstractBiomorph> biomorphs) {
+		for(BiomorphPanel panel : hallOfFameBiomorphs) {
+			panel.setBiomorph(null);
+		}
+		
+		if(biomorphs.size() <= 3) {
+			for(int i = 0; i < biomorphs.size(); i++) {
+				hallOfFameBiomorphs.get(i).setBiomorph(biomorphs.get(i));
+			}
+		}
+		
+		for(BiomorphPanel panel : hallOfFameBiomorphs) {
+			panel.refresh(); // ensure all panels are painted with new biomorph
+		}
+	}
+	
+	class HallOfFameDeleteListener extends EventAction {
+		
+		private BiomorphPanel biomorphPanel;
+		
+		public HallOfFameDeleteListener(BiomorphPanel biomorphPanel) {
+			this.biomorphPanel = biomorphPanel;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			biomorphPanelToDelete = biomorphPanel;
+		}
+	}
+	
+	class HallOfFameLoadListener extends EventAction {
+		
+		private BiomorphPanel biomorphPanel;
+		
+		public HallOfFameLoadListener(BiomorphPanel biomorphNumber) {
+			this.biomorphPanel = biomorphNumber;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			biomorphPanelToLoad = biomorphPanel;
+		}
+	}
+
+	@Override
+	public AbstractBiomorph getHofBiomorphToDelete() {
+		return biomorphPanelToDelete.getBiomorph(); // files don't use 0 based numbering
+	}
+
+	@Override
+	public AbstractBiomorph getHofBiomorphToLoad() {
+		return biomorphPanelToLoad.getBiomorph();
+	}
+
+	@Override
+	public void addGenerateListener(EventAction listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addMutateListener(EventAction listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addUpdateBiomorphListener(EventAction listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addExitListener(EventAction listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addHelpListener(EventAction listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addUndoListener(EventAction listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addLoadInterfacePickerListener(EventAction listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addAddHallOfFameListener(EventAction listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addManipulateBiomorphListener(MouseListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addLoadProjectListener(EventAction listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addSaveProjectListener(EventAction listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addSaveImageListener(EventAction listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addGenomeChangeListener(EventAction listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateMutations(List<AbstractBiomorph> biomorphs) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public AbstractBiomorph getMutatedBiomorph() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public BiomorphPanel getBiomorphPanel() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	
+	
+	
+	
+	
+	
+	
+	
 }
