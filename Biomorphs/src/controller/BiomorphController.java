@@ -53,7 +53,8 @@ public class BiomorphController {
 		view.addGenomeChangeListener(new UpdateGenomeColourListener());
 		view.addSaveImageListener(new SaveImageListener());
 		view.addUndoListener(new UndoActionListener());
-		view.addLoadHallOfFameBiomorph(new LoadBiomorphFromHallOfFameListener());
+		view.addLoadHallOfFameBiomorphListener(new LoadBiomorphFromHallOfFameListener());
+		view.addDeleteHallOfFameBiomorphListener(new DeleteBiomorphFromHallOfFameListener());
 	}
 	
 	/**
@@ -93,7 +94,10 @@ public class BiomorphController {
 			
 			try {
 				Genome genome = serialiser.deserialiseFile(file.getAbsolutePath());
-				biomorphs.add(new EvolutionaryBiomorph(genome));
+				AbstractBiomorph biomorph = new EvolutionaryBiomorph(genome);
+				biomorph.setFile(file); // keep track of filename
+				
+				biomorphs.add(biomorph);
 			} catch (ClassNotFoundException | IOException e) {
 				String message = "Failed to load hall of fame biomorph: " + file.getName();
 				
@@ -101,8 +105,6 @@ public class BiomorphController {
 			}
 			
 		}
-		
-		System.out.println(biomorphs.size());
 		
 		return biomorphs;
 		
@@ -293,7 +295,14 @@ public class BiomorphController {
 
 		@Override
 		public void actionPerformed(ActionEvent event) {
-			view.getHofNumberBiomorphToDelete();
+			File fileToDelete = view.getHofBiomorphToDelete().getFile();
+			
+			fileToDelete.delete();
+			
+			List<AbstractBiomorph> updatedBiomorphs = getHallOfFameBiomorphs();
+			System.out.println("updated size: " + updatedBiomorphs.size());
+			
+			view.loadHallOfFame(updatedBiomorphs); // refresh hall of fame
 		}
 		
 	}

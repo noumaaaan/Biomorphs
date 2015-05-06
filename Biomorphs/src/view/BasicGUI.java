@@ -219,10 +219,10 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	}
 
 	@Override
-	public void addDeleteHallOfFameBiomorph(EventAction listener) { } // not on this gui
+	public void addDeleteHallOfFameBiomorphListener(EventAction listener) { } // not on this gui
 
 	@Override
-	public void addLoadHallOfFameBiomorph(EventAction listener) { } // not on this gui
+	public void addLoadHallOfFameBiomorphListener(EventAction listener) { } // not on this gui
 
 	@Override
 	public BiomorphPanel getBiomorphPanel() {
@@ -233,16 +233,14 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	public void addUndoListener(EventAction listener) { } // not on this gui
 	
 	@Override
-	public void loadHallOfFame(List<AbstractBiomorph> biomorphs) {
-		
-	}
+	public void loadHallOfFame(List<AbstractBiomorph> biomorphs) {}
 
 	@Override
-	public int getHofNumberBiomorphToDelete() {
+	public AbstractBiomorph getHofBiomorphToDelete() {
 		// TODO Auto-generated method stub
-		return 0;
+		return null;
 	}
-
+	
 	@Override
 	public AbstractBiomorph getHofBiomorphToLoad() {
 		// TODO Auto-generated method stub

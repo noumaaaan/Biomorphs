@@ -18,10 +18,10 @@ public interface BiomorphInterface {
 	
 	void loadHallOfFame(List<AbstractBiomorph> biomorphs);
 	void addHallOfFameAddListener(EventAction listener);
-	void addDeleteHallOfFameBiomorph(EventAction listener);
-	void addLoadHallOfFameBiomorph(EventAction listener);
+	void addDeleteHallOfFameBiomorphListener(EventAction listener);
+	void addLoadHallOfFameBiomorphListener(EventAction listener);
 	
-	int getHofNumberBiomorphToDelete(); // delete of fame biomorph
+	AbstractBiomorph getHofBiomorphToDelete(); // delete of fame biomorph
 	AbstractBiomorph getHofBiomorphToLoad(); // load hall of fame bopmorph
 	
 	void addLoadProjectListener(EventAction listener);

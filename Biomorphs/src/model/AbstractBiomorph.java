@@ -2,6 +2,7 @@ package model;
 import static model.Constants.DEFAULT_GENOME_SIZE;
 import static model.Constants.GENOME_MINIMUM_EVOLUTIONS;
 
+import java.io.File;
 import java.util.Random;
 
 
@@ -13,6 +14,7 @@ import java.util.Random;
 public abstract class AbstractBiomorph extends AbstractModel {
 	
 	protected Genome genome;
+	private File file; // used when loaded from a file, to keep track of path/name
 	
 	public AbstractBiomorph(Genome genome) {
 		this.genome = genome.clone();
@@ -33,6 +35,14 @@ public abstract class AbstractBiomorph extends AbstractModel {
 	
 	public Genome getGenome() {
 		return genome;
+	}
+	
+	public void setFile(File file) {
+		this.file = file;
+	}
+	
+	public File getFile() {
+		return file;
 	}
 	
 	/**
