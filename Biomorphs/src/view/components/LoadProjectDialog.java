@@ -6,7 +6,7 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import model.FileSerializer;
+import controller.FileSerializer;
 
 public class LoadProjectDialog<T> extends LoadFileDialog<T> {
 

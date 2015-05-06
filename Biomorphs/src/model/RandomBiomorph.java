@@ -4,7 +4,8 @@
 package model;
 
 /**
- * Represents the default biomorph type.
+ * Represents the default biomorph type, which does not mutate. Each evolution
+ * generates an entirely new biomorph at random.
  * 
  * @author Alex Luckett <lucketta@aston.ac.uk>
  */

@@ -8,6 +8,10 @@ import javax.swing.JFrame;
 import model.AbstractBiomorph;
 import controller.EventAction;
 
+/**
+ * 
+ * @author Alex Luckett <lucketta@aston.ac.uk>
+ */
 public interface BiomorphInterface {
 	
 	void addGenerateListener(EventAction listener);

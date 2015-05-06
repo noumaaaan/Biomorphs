@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import model.AbstractBiomorph;
 
 /**
- * A panel to draw a biomorph. 
+ * A grid of biomorph panels, with rows and columns set in the constructor. 
  * 
  * @author Alex Luckett <lucketta@aston.ac.uk>
  */

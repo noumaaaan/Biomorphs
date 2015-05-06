@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import model.FileSerializer;
+import controller.FileSerializer;
 
 public class SaveProjectDialog<T> extends SaveFileDialog<T> {
 
