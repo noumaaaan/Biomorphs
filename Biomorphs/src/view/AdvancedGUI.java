@@ -360,7 +360,7 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		hofPanel.setLayout(null);
 		
 		JLabel hofLabel = new JLabel(" Hall of Fame ");
-		hofLabel.setBounds(80, 0, 125, 30);
+		hofLabel.setBounds(80, -10, 150, 40);
 		hofLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
 			
 		hofPanel.add(hofLabel);
