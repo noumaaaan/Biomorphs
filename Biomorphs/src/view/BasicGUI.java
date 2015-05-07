@@ -15,14 +15,12 @@ import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import model.AbstractBiomorph;
-import model.EvolutionaryBiomorph;
 import controller.EventAction;
 
 /**
@@ -41,6 +39,9 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	private JButton newHelpBtn;
 	private JButton newEndBtn;
 	private JButton saveasjpeg;
+	private JButton savetohof;
+	private JButton undoButton;
+	private JButton chooseInterfacePicker;
 	
 	private BiomorphPanel panel;
 	
@@ -54,7 +55,7 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 
 		/** Panel to hold the components */
 		JPanel button_panel = new JPanel();
-		button_panel.setLayout(new GridLayout(7, 1, 20, 20));
+		button_panel.setLayout(new GridLayout(10, 1, 20, 20));
 
 		/** Create the buttons */ 
 		newBiomorphBtn = new JButton(" Generate Biomorph ");
@@ -72,8 +73,14 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 		newHelpBtn = new JButton(" Help ");
 		newHelpBtn.setToolTipText("Click here for Instructions on how to use the application");
 		
-		JButton userSelect = new JButton(" Return to User selection ");
-		userSelect.setToolTipText("Return to the user selection screen");
+		savetohof = new JButton(" Save to Hall of Fame ");
+		savetohof.setToolTipText("Add to hall of fame");
+		
+		undoButton = new JButton(" Undo ");
+		undoButton.setToolTipText("Undo previous action");
+		
+		chooseInterfacePicker = new JButton(" Main menu ");
+		chooseInterfacePicker.setToolTipText("Change interface to basic/advanced");
 		
 		newEndBtn = new JButton(" Exit ");
 		newEndBtn.setToolTipText("Quit the application by clicking here");
@@ -86,9 +93,10 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 		button_panel.add(newBiomorphBtn);
 		button_panel.add(newSaveBtn);
 		button_panel.add(saveasjpeg);
+		button_panel.add(savetohof);
 		button_panel.add(newLoadBtn);
 		button_panel.add(newHelpBtn);
-		button_panel.add(userSelect);
+		button_panel.add(chooseInterfacePicker);
 		button_panel.add(newEndBtn);
 
 		/** Defining the draw canvas */
@@ -185,7 +193,6 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	public JFrame getFrame() {
 		return windowFrame;
 	}
-	
 
 	@Override
 	public void addGenomeChangeListener(EventAction listener) { }
@@ -201,12 +208,13 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	}
 
 	@Override
-	public void addUndoListener(EventAction listener) { } // not on this gui
+	public void addUndoListener(EventAction listener) {
+		undoButton.addActionListener(listener);
+	}
 
 	@Override
 	public void addLoadInterfacePickerListener(EventAction listener) {
-		// TODO Auto-generated method stub
-		
+		chooseInterfacePicker.addActionListener(listener);
 	}
 
 	@Override
@@ -228,8 +236,7 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 
 	@Override
 	public void addAddHallOfFameListener(EventAction listener) {
-		// TODO Auto-generated method stub
-		
+		savetohof.addActionListener(listener);
 	}
 
 	@Override

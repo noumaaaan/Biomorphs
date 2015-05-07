@@ -17,7 +17,6 @@ import model.EvolutionaryBiomorph;
 import model.Genome;
 import model.RandomBiomorph;
 import view.AdvancedGUI;
-import view.BasicGUI;
 import view.BiomorphInterface;
 import view.GenomeViewUpdateModel;
 import view.Help;
@@ -419,7 +418,7 @@ public class BiomorphController {
 	
 	/**
 	 * Creates an instance of the controller, with a view and model.
-	 * 
+	 * l
 	 * @param args
 	 */
 	public static void main(String[] args) {
