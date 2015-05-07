@@ -9,7 +9,10 @@ import java.io.ObjectOutputStream;
 /**
  * Serialises objects of type T.
  * 
- * @author  Alex Luckett <lucketta@aston.ac.uk> Mohammed Hussain Ahmed<ahmedmh@aston.ac.uk> Jurgen Hajdini<hajdinij@aston.ac.uk> Kelvin Chui <chuikll@aston.ac.uk>
+ * @author Alex Luckett <lucketta@aston.ac.uk>
+ * @author Mohammed Hussain Ahmed<ahmedmh@aston.ac.uk>
+ * @author Jurgen Hajdini<hajdinij@aston.ac.uk>
+ * @author Kelvin Chui <chuikll@aston.ac.uk>
  * 
  * @param <T> type of class
  */

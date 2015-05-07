@@ -18,7 +18,6 @@ import javax.swing.JTextArea;
  * Class to display User Manual 
  * 
  * @author Nouman Mehmood <mehmoodn@aston.ac.uk>
- * 
  */
 
 public class Help extends AbstractGUI {

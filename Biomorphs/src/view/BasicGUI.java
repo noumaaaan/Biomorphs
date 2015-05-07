@@ -26,8 +26,10 @@ import controller.EventAction;
 /**
  * Provides a graphical user interface
  * 
- * @author Nouman Mehmood <mehmoodn@aston.ac.uk>, Alex Luckett <lucketta@aston.ac.uk> Mohammed Hussain Ahmed<ahmedmh@aston.ac.uk> Jurgen Hajdini<hajdinij@aston.ac.uk> Kelvin Chui <chuikll@aston.ac.uk>
- * 
+ * @author Nouman Mehmood <mehmoodn@aston.ac.uk>
+ * @author Mohammed Hussain Ahmed<ahmedmh@aston.ac.uk>
+ * @author Jurgen Hajdini<hajdinij@aston.ac.uk>
+ * @author Kelvin Chui <chuikll@aston.ac.uk>
  */
 public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	
@@ -222,11 +224,7 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 
 	@Override
 	public void addGenomeChangeListener(EventAction listener) { }
-
 	
-
-
-
 	@Override
 	public BiomorphPanel getBiomorphPanel() {
 		return panel;
@@ -234,10 +232,6 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 
 	@Override
 	public void addUndoListener(EventAction listener) { } // not on this gui
-	
-	
-
-	
 
 	@Override
 	public void addManipulateBiomorphListener(MouseListener listener) {
@@ -248,25 +242,11 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	public void addLoadInterfacePickerListener(EventAction listener) {
 		userSelect.addActionListener(listener);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	@Override
 	public GenomeViewUpdateModel getGenomeUpdate() {
 		return genomeUpdate;
 	}
-	
-	
 	
 	@Override
 	public void addLoadHallOfFameBiomorphListener(EventAction listener) {
@@ -281,8 +261,6 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 			button.addMouseListener(listener);
 		}
 	}
-
-	
 
 	@Override
 	public void loadHallOfFame(List<AbstractBiomorph> biomorphs) {

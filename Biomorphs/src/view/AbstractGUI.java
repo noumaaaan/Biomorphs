@@ -11,7 +11,6 @@ import javax.swing.UIManager;
 /**
  * Base class for all GUIs
  * 
- * @author Alexander Luckett <lucketta@aston.ac.uk>
  * @author Nouman Mehmood <mehmoodn@aston.ac.uk>
  */
 

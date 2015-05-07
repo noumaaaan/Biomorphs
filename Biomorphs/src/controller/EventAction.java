@@ -5,11 +5,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-/**
- * 
- * Alex Luckett <lucketta@aston.ac.uk> Mohammed Hussain Ahmed<ahmedmh@aston.ac.uk> Jurgen Hajdini<hajdinij@aston.ac.uk> Kelvin Chui <chuikll@aston.ac.uk>
- * Merges mouse click events with the more generalised "ActionListener" type.
+/** 
  * Used for consistency across controller -> view communication.
+ * 
+ * @author Alex Luckett <lucketta@aston.ac.uk>
  */
 public abstract class EventAction implements ActionListener, MouseListener {
 
