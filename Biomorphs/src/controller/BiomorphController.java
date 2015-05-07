@@ -17,6 +17,7 @@ import model.EvolutionaryBiomorph;
 import model.Genome;
 import model.RandomBiomorph;
 import view.AdvancedGUI;
+import view.BasicGUI;
 import view.BiomorphInterface;
 import view.GenomeViewUpdateModel;
 import view.Help;

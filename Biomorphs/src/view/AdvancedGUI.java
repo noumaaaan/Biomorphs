@@ -287,7 +287,7 @@ public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 		
 		
 		/** Different components to add to save options Panel */
-		saveasfile = new JButton(" Save as JPEG ");
+		saveasfile = new JButton(" Save as image ");
 		saveasfile.setBounds(10, 10, 110, 23);
 		saveasfile.setToolTipText("Save the Biomorph as an image to your disk");
 			
