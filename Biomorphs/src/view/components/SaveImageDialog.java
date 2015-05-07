@@ -1,3 +1,12 @@
+
+/**
+ * Serialises objects of type T.
+ * 
+ * @author  Jurgen Hajdini<hajdinij@aston.ac.uk>
+ * 
+ * @param <T> type of class
+ */
+
 package view.components;
 
 import java.awt.Graphics2D;

@@ -12,9 +12,10 @@ import controller.FixedSizeStack;
 /**
  * Test cases for the Fixed size stack
  * 
- * @author Mohammed Hussain Ahmed <ahmedmh@aston.ac.uk>
+ * @author Mohammed Hussain Ahmed<ahmedmh@aston.ac.uk>
+ * @author Jurgen Hajdini<hajdinij@aston.ac.uk>
+ * @author Kelvin Chui <chuikll@aston.ac.uk>
  */
-
 public class FixedSizeStackTest {
 
 	private FixedSizeStack<String> stack;
