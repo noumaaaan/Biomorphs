@@ -82,17 +82,27 @@ public class BiomorphController {
 	 * 
 	 * @return List<AbstractBiomorph>
 	 */
-	private List<AbstractBiomorph> getMutatedBiomorphs() {
+	private List<AbstractBiomorph> getMutatedBiomorphs(boolean useParentColour) {
 		ArrayList<AbstractBiomorph> biomorphs = new ArrayList<AbstractBiomorph>();
 		
 		for(int i = 0; i < 9; i++) {
 			AbstractBiomorph biomorph = new EvolutionaryBiomorph(model.getGenome());
 			biomorph.mutate();
 			
+			if(useParentColour) {
+				for(Genome genome : biomorph.getGenome()) {
+					genome.setColour(model.getGenome().getColour());
+				}
+			}
+			
 			biomorphs.add(biomorph);
 		}
 		
 		return biomorphs;
+	}
+	
+	private List<AbstractBiomorph> getMutatedBiomorphs() {
+		return getMutatedBiomorphs(false);
 	}
 	
 	private void addHistory(Genome genome) {
@@ -176,6 +186,9 @@ public class BiomorphController {
 		
 	}
 	
+	/**
+	 * Action to run when updating a genome colour
+	 */
 	class UpdateGenomeColourListener extends EventAction {
 
 		@Override
@@ -196,7 +209,8 @@ public class BiomorphController {
 				genome.setColour(color);
 			}
 			
-			view.updateMutations(getMutatedBiomorphs());
+			List<AbstractBiomorph> updatedBiomorphs = getMutatedBiomorphs(!genomeUpdate.isRandomColours());
+			view.updateMutations(updatedBiomorphs); // ensure that if random is ticked, it applies it to mutations
 		}
 		
 		private Color getRandomColor() {
