@@ -10,8 +10,12 @@ import org.junit.Test;
 /**
  * Test cases for the Fixed size stack
  * 
- * @author Mohammed Hussain Ahmed <ahmedmh@aston.ac.uk>
+ * 
+ * @author Alex Luckett  Mohammed Hussain Ahmed<ahmedmh@aston.ac.uk> Jurgen Hajdini<hajdinij@aston.ac.uk> Kelvin Chui <chuikll@aston.ac.uk>
+ * 
+ *
  */
+ 
 
 public class FixedSizeStackTest {
 

@@ -5,10 +5,13 @@ import java.util.LinkedList;
 /**
  * Stack with a fixed size. Silently removes any item that fall outside the maximum capacity.
  * 
- * @author Alex Luckett <lucketta@aston.ac.uk>
- *
- * @param <T> contained element type
+ * @author Alex Luckett <lucketta@aston.ac.uk> Mohammed Hussain Ahmed<ahmedmh@aston.ac.uk> Jurgen Hajdini<hajdinij@aston.ac.uk> 
+ * Serialises objects of type T.
+ * 
+ *  
+ * @param <T> type of class
  */
+
 public class FixedSizeStack<T> {
 	private LinkedList<T> baseList;
 	private int capacity;

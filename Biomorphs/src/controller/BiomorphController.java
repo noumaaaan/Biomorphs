@@ -29,7 +29,7 @@ import view.components.SaveProjectDialog;
  * Controller to control communication between view and model. Attaches actions to views
  * so application is consistent in behaviour and functionality.
  * 
- * @author Alex Luckett <lucketta@aston.ac.uk>
+ * @author Alex Luckett <lucketta@aston.ac.uk>, Mohammed Hussain Ahmed<ahmedmh@aston.ac.uk>, Jurgen Hajdini<hajdinij@aston.ac.uk>, Kelvin Chui <chuikll@aston.ac.uk>
  */
 public class BiomorphController {
 

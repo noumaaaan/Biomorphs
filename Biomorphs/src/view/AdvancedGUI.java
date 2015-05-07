@@ -41,7 +41,7 @@ import controller.EventAction;
  * 	8. Create a Panel that will hold all the components on the Frame
  * 
  * 
- * @author Nouman Mehmood <mehmoodn@aston.ac.uk>
+ * @author Nouman Mehmood <mehmoodn@aston.ac.uk>, Alex Luckett <lucketta@aston.ac.uk> Mohammed Hussain Ahmed<ahmedmh@aston.ac.uk> Jurgen Hajdini<hajdinij@aston.ac.uk> Kelvin Chui <chuikll@aston.ac.uk>
  */
 public class AdvancedGUI extends AbstractGUI implements BiomorphInterface {
 	

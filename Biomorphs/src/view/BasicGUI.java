@@ -26,8 +26,8 @@ import controller.EventAction;
 /**
  * Provides a graphical user interface
  * 
- * @author Nouman Mehmood <mehmoodn@aston.ac.uk>
- * @author Jurgen Hajdini <hajdinij@aston.ac.uk>
+ * @author Nouman Mehmood <mehmoodn@aston.ac.uk>, Alex Luckett <lucketta@aston.ac.uk> Mohammed Hussain Ahmed<ahmedmh@aston.ac.uk> Jurgen Hajdini<hajdinij@aston.ac.uk> Kelvin Chui <chuikll@aston.ac.uk>
+ * 
  */
 public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 	
