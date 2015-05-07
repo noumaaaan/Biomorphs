@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
-import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -24,7 +22,7 @@ import controller.EventAction;
  * @author Nouman Mehmood <mehmoodn@aston.ac.uk>
  */
 
-public class InterfacePicker extends AbstractGUI implements BiomorphInterface{
+public class InterfacePicker extends AbstractGUI {
 	
 	private BiomorphInterface interfaceToLoad;
 	
@@ -48,15 +46,6 @@ public class InterfacePicker extends AbstractGUI implements BiomorphInterface{
 	private JLabel devlabel1;
 	private JLabel devlabel2;
 	
-	
-	private List<BiomorphPanel> hallOfFameBiomorphs;
-	private List<JButton> hallOfFameDeleteButtons;
-	private BiomorphPanel biomorphPanelToDelete;
-	private BiomorphPanel biomorphPanelToLoad;
-	
-	private GenomeViewUpdateModel genomeUpdate;
-
-
 	public InterfacePicker(final AbstractBiomorph model) {
 		super("Biomorph Mutation: Select User type", 1200, 640);
 		windowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -113,7 +102,6 @@ public class InterfacePicker extends AbstractGUI implements BiomorphInterface{
 		help.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		help.setToolTipText("Exit the Application. Unsaved Settings will be lost");
 		help.setBounds(20, 386, 120, 40);
-		help.setEnabled(false);
 		
 		helpLabel = new JLabel("Unsure about how to use the application?");
 		helpLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -153,26 +141,6 @@ public class InterfacePicker extends AbstractGUI implements BiomorphInterface{
 		panel.add(quitLabel);
 		panel.add(separator);
 		
-	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		/** Add the panel to the window */
 		windowFrame.getContentPane().add(panel);
 		windowFrame.pack();
@@ -205,7 +173,6 @@ public class InterfacePicker extends AbstractGUI implements BiomorphInterface{
 
 		
 		/** Help Selection */
-	//TODO
 		
 		
 		/** Exit the application*/
@@ -218,8 +185,10 @@ public class InterfacePicker extends AbstractGUI implements BiomorphInterface{
 			
 		});
 		
-		
-		
+	}
+	
+	public void addHelpPickedListener(EventAction listener) {
+		help.addActionListener(listener);
 	}
 	
 	public void addInterfacePickedListener(EventAction listener) {
@@ -230,191 +199,4 @@ public class InterfacePicker extends AbstractGUI implements BiomorphInterface{
 	public BiomorphInterface getInterfaceToLoad() {
 		return interfaceToLoad;
 	}
-	
-	
-	
-	
-	
-	
-
-	@Override
-	public GenomeViewUpdateModel getGenomeUpdate() {
-		return genomeUpdate;
-	}
-	
-	
-	
-	@Override
-	public void addLoadHallOfFameBiomorphListener(EventAction listener) {
-		for(BiomorphPanel panel : hallOfFameBiomorphs) {
-			panel.addMouseListener(listener);
-		}
-	}
-
-	@Override
-	public void addDeleteHallOfFameBiomorphListener(EventAction listener) {
-		for(JButton button : hallOfFameDeleteButtons) {
-			button.addMouseListener(listener);
-		}
-	}
-
-	
-
-	@Override
-	public void loadHallOfFame(List<AbstractBiomorph> biomorphs) {
-		for(BiomorphPanel panel : hallOfFameBiomorphs) {
-			panel.setBiomorph(null);
-		}
-		
-		if(biomorphs.size() <= 3) {
-			for(int i = 0; i < biomorphs.size(); i++) {
-				hallOfFameBiomorphs.get(i).setBiomorph(biomorphs.get(i));
-			}
-		}
-		
-		for(BiomorphPanel panel : hallOfFameBiomorphs) {
-			panel.refresh(); // ensure all panels are painted with new biomorph
-		}
-	}
-	
-	class HallOfFameDeleteListener extends EventAction {
-		
-		private BiomorphPanel biomorphPanel;
-		
-		public HallOfFameDeleteListener(BiomorphPanel biomorphPanel) {
-			this.biomorphPanel = biomorphPanel;
-		}
-
-		@Override
-		public void actionPerformed(ActionEvent event) {
-			biomorphPanelToDelete = biomorphPanel;
-		}
-	}
-	
-	class HallOfFameLoadListener extends EventAction {
-		
-		private BiomorphPanel biomorphPanel;
-		
-		public HallOfFameLoadListener(BiomorphPanel biomorphNumber) {
-			this.biomorphPanel = biomorphNumber;
-		}
-
-		@Override
-		public void actionPerformed(ActionEvent event) {
-			biomorphPanelToLoad = biomorphPanel;
-		}
-	}
-
-	@Override
-	public AbstractBiomorph getHofBiomorphToDelete() {
-		return biomorphPanelToDelete.getBiomorph(); // files don't use 0 based numbering
-	}
-
-	@Override
-	public AbstractBiomorph getHofBiomorphToLoad() {
-		return biomorphPanelToLoad.getBiomorph();
-	}
-
-	@Override
-	public void addGenerateListener(EventAction listener) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addMutateListener(EventAction listener) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addUpdateBiomorphListener(EventAction listener) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addExitListener(EventAction listener) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addHelpListener(EventAction listener) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addUndoListener(EventAction listener) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addLoadInterfacePickerListener(EventAction listener) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addAddHallOfFameListener(EventAction listener) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addManipulateBiomorphListener(MouseListener listener) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addLoadProjectListener(EventAction listener) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addSaveProjectListener(EventAction listener) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addSaveImageListener(EventAction listener) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addGenomeChangeListener(EventAction listener) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateMutations(List<AbstractBiomorph> biomorphs) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public AbstractBiomorph getMutatedBiomorph() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public BiomorphPanel getBiomorphPanel() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	
-	
-	
-	
-	
 }
