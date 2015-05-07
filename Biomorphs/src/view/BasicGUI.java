@@ -55,7 +55,7 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 
 		/** Panel to hold the components */
 		JPanel button_panel = new JPanel();
-		button_panel.setLayout(new GridLayout(10, 1, 20, 20));
+		button_panel.setLayout(new GridLayout(9, 1, 20, 20));
 
 		/** Create the buttons */ 
 		newBiomorphBtn = new JButton(" Generate Biomorph ");
@@ -91,6 +91,7 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 		/** Add buttons to the panel */
 		button_panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		button_panel.add(newBiomorphBtn);
+		button_panel.add(undoButton);
 		button_panel.add(newSaveBtn);
 		button_panel.add(saveasjpeg);
 		button_panel.add(savetohof);
@@ -98,7 +99,7 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 		button_panel.add(newHelpBtn);
 		button_panel.add(chooseInterfacePicker);
 		button_panel.add(newEndBtn);
-
+		
 		/** Defining the draw canvas */
 		this.panel = new BiomorphPanel(model, true, true);
 		
