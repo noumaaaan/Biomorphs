@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -154,61 +153,7 @@ public class InterfacePicker extends AbstractGUI implements BiomorphInterface{
 		panel.add(quitLabel);
 		panel.add(separator);
 		
-		/**Hall of Fame */
-		hallOfFameBiomorphs = new ArrayList<BiomorphPanel>();
-		hallOfFameDeleteButtons = new ArrayList<JButton>();
-		
-		JPanel hofPanel = new JPanel();
-		hofPanel.setBounds(919, 12, 270, 590);
-		hofPanel.setLayout(null);
-		
-		JLabel hofLabel = new JLabel(" Hall of Fame ");
-		hofLabel.setBounds(80, -10, 150, 40);
-		hofLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
-			
-		hofPanel.add(hofLabel);
-		
-		/* start point to position components at */
-		int previousPanelY = 35;
-		int previousBtnY = 190;
-		
-		for(int i = 0; i < 3; i++) {
-			BiomorphPanel hofSubpanel = new BiomorphPanel();
-			hofSubpanel.setBorder(new EmptyBorder(15, 15, 15, 15));
-			hofSubpanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-			hofSubpanel.setBounds(10, previousPanelY, 250, 150);
-			hofSubpanel.setLayout(null);
-			hofSubpanel.addMouseListener(new HallOfFameLoadListener(hofSubpanel));
-			
-			JButton hofRemoveBtn = new JButton("Remove");
-			hofRemoveBtn.setFont((new Font("Tahoma", Font.PLAIN, 12)));
-			hofRemoveBtn.setBounds(95, previousBtnY, 90, 20);
-			hofRemoveBtn.addMouseListener(new HallOfFameDeleteListener(hofSubpanel));
-			
-			previousPanelY += 185; // height of each component
-			previousBtnY += 185;
-			
-			hofPanel.add(hofSubpanel);
-			hofPanel.add(hofRemoveBtn);
-			
-			hallOfFameBiomorphs.add(hofSubpanel);
-			hallOfFameDeleteButtons.add(hofRemoveBtn);
-		}				
-		
 	
-		windowFrame.add(hofPanel);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		
 		
@@ -467,9 +412,6 @@ public class InterfacePicker extends AbstractGUI implements BiomorphInterface{
 	}
 
 
-	
-	
-	
 	
 	
 	

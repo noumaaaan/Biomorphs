@@ -3,6 +3,7 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.ComponentOrientation;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -96,13 +97,14 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 
 		/** Defining the draw canvas */
 		this.panel = new BiomorphPanel(model, true, true);	
-		JPanel bigPanel = new JPanel();
-		bigPanel.add(panel);
-		bigPanel.setBounds(100, 20, 300, 400);
-	
+		//JPanel bigPanel = new JPanel();
+		//bigPanel.add(panel);
+		//bigPanel.setBounds(100, 20, 300, 400);
+		panel.setMaximumSize((new Dimension(200, 100)));
 		
 		
 		
+			
 		
 		
 		hallOfFameBiomorphs = new ArrayList<BiomorphPanel>();
@@ -154,7 +156,7 @@ public class BasicGUI extends AbstractGUI implements BiomorphInterface {
 		
 		
 		
-		windowFrame.add(bigPanel);
+		windowFrame.add(panel);
 		windowFrame.setVisible(true);
 
 		windowFrame.pack();
