@@ -5,74 +5,135 @@ which allows you to produce evolutionary art based on Richard Dawkins's Biomorph
 this in a new and creative way. As a beginner user, you will be restricted as to how you can 
 manipulate the biomorph. For complete control, head over to the advanced user	 	
 
+------------------------------------------------------------------------------------------------------------------
+How to use(Main Menu):
+This is will generate menu with different options to choose from.
+
+1.Beginner
+Opens the basic graphical interface
+
+2.Advanced
+opens the advanced graphical interface
+
+3.Help
+Pull up the user manual on how to use the application
+
+4.Quit
+Exit the application
+
+------------------------------------------------------------------------------------------------------------------
 How to use (Beginner mode):
-//Add brief description here
+Generates a basic biomorph and evolves the biomorph using the branch selector 
 
 1. Generate Biomorph
 This is will generate artwork iteratively by the computer through an artificial evolutionary 
 process. The software will have random representations of different artworks and the process will
 be repeated if this button is pressed
 
-2. Save
+2. Branch selector 
+This will allow to evolve the biomorph by selecting the branch and changing the angles and size
+using the mouse pad 
+
+3. Add to Hall of Fame
+This will add the generated biomorph to the hall of fame
+
+3.1 Hall of Fame panels
+Display the saved biomorphs
+
+3.2 Remove
+removes the biomorph from the Hall of Fame
+
+4. Save as Project
 Save your project by clicking this button. 
 
-3. Load
+5. Save as Image
+Saves the biomorph as a image by clicking this button. 
+
+6. Load Project
 Load an existing project by clicking here.
 
-4. Help
+7. Help
 Pull up the user manual on how to use the application
 
-5. Return to User Selection
+8. Main Menu
 There are two user type modes. This is the beginner user. Click this button to try the advanced
 user
 
-6. Exit
+9. Undo
+returns the previous evolved biomorph
+
+10. Exit
 Exit the application
 
-
-
-
-
-
-
-
-
-
+------------------------------------------------------------------------------------------------------------------
 How to use (Advanced Mode):
-//Add brief description here
+Generates a Advanced biomorph with the abilities of changing colour of the biomorph, evolving the 
+biomorph using the branch selector, returning to the previous evolved biomorph and evolving the 
+biomorph using the panels.
 
 1. Generate 	
 This is will generate artwork iteratively by the computer through an artificial evolutionary 
 process. The software will have random representations of different artworks and the process will
 be repeated if this button is pressed
 
-2. Change Colour
-//Add brief description here
+2. Undo
+returns the previous evolved biomorph
 
-3. Save
-Save your project by clicking this button. 
+3. Change Colour
+Change the colour of the biomorph using the sliders 
 
-4. Load
+3.1 Update 
+Updates the biomorph with the chosen colour.
+
+4.Save/Load
+Loads the save as JPEG, Load Project, Save as Project and Cancel button
+
+4.1 Save as Image
+Save the biomorph as a image by clicking this button. 
+
+4.2 Load Project
 Load an existing project by clicking here.
 
-5. Help
+4.3 Save as Project
+Save your project by clicking this button. 
+
+4.4 Cancel
+Returns the previous buttons,Save/Load,Help,Exit,Main Menu and Add to Hall of Fame
+
+5. Current Biomorph Panel
+Displays the evolved biomorph
+
+5.1 Branch Selector
+This will allow to evolve the biomorph by selecting the branch and changing the angles and size
+using the mouse pad 
+
+6. Evolutionary Panels
+Evolves the current biomorph when they have been pressed on
+
+7. Add to Hall of Fame 
+Adds the current biomorph to the Hall of Fame
+
+8.Hall of Fame panels
+Display the saved biomorphs
+
+8.1 Remove
+removes the biomorph from the Hall of Fame
+
+9. Help
 Pull up the user manual on how to use the application
 
-6. Return to User Selection
+10. Main Menu
 There are two user type modes. This is the beginner user. Click this button to try the advanced
 user
 
 7. Exit
 Exit the application
 
-8. Hall of Fame
-//Add brief description here
-
-
-
+------------------------------------------------------------------------------------------------------------------
 Developers:
 Alex Luckett (lucketta@aston.ac.uk)
 Nouman Mehmood (mehmoodn@aston.ac.uk)
 Jurgen Hajdini (hajdinij@aston.ac.uk)
 Kelvin Chui (chuikkl@aston.ac.uk)
 Hussain Ahmed (ahmedmh@aston.ac.uk)
+
