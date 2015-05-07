@@ -273,6 +273,9 @@ public class BiomorphController {
 		
 	}
 	
+	/**
+	 * Action to run when undo button is pressed.
+	 */
 	class UndoActionListener extends EventAction {
 
 		@Override
@@ -288,6 +291,9 @@ public class BiomorphController {
 		
 	}
 	
+	/**
+	 * Action to run when "add to hall of fame" button is pressed on interface.
+	 */
 	class AddToHallOfFameListener extends EventAction {
 
 		@Override
@@ -318,6 +324,9 @@ public class BiomorphController {
 		
 	}
 	
+	/**
+	 * Action to run when loading a biomorph from the hall of fame.
+	 */
 	class LoadBiomorphFromHallOfFameListener extends EventAction {
 
 		@Override
@@ -330,6 +339,9 @@ public class BiomorphController {
 		
 	}
 	
+	/**
+	 * Action to run when deleting a biomorph from the hall of fame.
+	 */
 	class DeleteBiomorphFromHallOfFameListener extends EventAction {
 
 		@Override
@@ -345,6 +357,9 @@ public class BiomorphController {
 		
 	}
 	
+	/**
+	 * Makes the biomorph update it's mutations when clicked.
+	 */
 	class ManipulateBiomorphListener implements MouseListener {
 
 		@Override
@@ -368,6 +383,10 @@ public class BiomorphController {
 	
 	private InterfacePicker interfacePicker;
 	
+	/**
+	 * Inserts a listener onto the interface picker, to notify the
+	 * controller when an interface is chosen.
+	 */
 	class InterfacePickerListener extends EventAction {
 
 		@Override
@@ -382,6 +401,9 @@ public class BiomorphController {
 		
 	}
 	
+	/**
+	 * Action to run when an interface is picked on the InterfacePicker
+	 */
 	class InterfacePickedListener extends EventAction {
 
 		@Override
